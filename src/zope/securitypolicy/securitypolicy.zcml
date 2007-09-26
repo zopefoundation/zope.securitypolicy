@@ -2,7 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     i18n_domain="zope">
 
-  <include package="zope.app.securitypolicy" />
+  <include package="zope.securitypolicy" />
 
   <securityPolicy
     component="zope.app.securitypolicy.zopepolicy.ZopeSecurityPolicy" />
