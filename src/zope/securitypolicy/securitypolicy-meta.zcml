@@ -1,0 +1,1 @@
+<include package="zope.app.securitypolicy" file="meta.zcml" />
