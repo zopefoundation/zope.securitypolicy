@@ -18,15 +18,14 @@ $Id$
 
 import zope.interface
 
+from zope.component import getUtility
 from zope.security.checker import CheckerPublic
 from zope.security.management import system_user
 from zope.security.simplepolicies import ParanoidSecurityPolicy
 from zope.security.interfaces import ISecurityPolicy
 from zope.security.proxy import removeSecurityProxy
 
-from zope.app import zapi
-
-from zope.app.security.interfaces import PrincipalLookupError
+from zope.app.security.interfaces import PrincipalLookupError, IAuthentication
 
 from zope.securitypolicy.principalpermission import principalPermissionManager
 globalPrincipalPermissionSetting = principalPermissionManager.getSetting
@@ -47,7 +46,7 @@ SettingAsBoolean = {Allow: True, Deny: False, Unset: None, None: None}
 
 class CacheEntry:
     pass
-        
+
 class ZopeSecurityPolicy(ParanoidSecurityPolicy):
     zope.interface.classProvides(ISecurityPolicy)
 
@@ -66,7 +65,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             cache = CacheEntry()
             self._cache[id(parent)] = cache, parent
         return cache
-    
+
     def cached_decision(self, parent, principal, groups, permission):
         # Return the decision for a principal and permission
 
@@ -79,7 +78,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
         cache_decision_prin = cache_decision.get(principal)
         if not cache_decision_prin:
             cache_decision_prin = cache_decision[principal] = {}
-            
+
         try:
             return cache_decision_prin[permission]
         except KeyError:
@@ -87,7 +86,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
 
         # cache_decision_prin[permission] is the cached decision for a
         # principal and permission.
-            
+
         decision = self.cached_prinper(parent, principal, groups, permission)
         if (decision is None) and groups:
             decision = self._group_based_cashed_prinper(parent, principal,
@@ -109,7 +108,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
 
         cache_decision_prin[permission] = decision = False
         return decision
-        
+
     def cached_prinper(self, parent, principal, groups, permission):
         # Compute the permission, if any, for the principal.
         cache = self.cache(parent)
@@ -157,10 +156,10 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             if (decision is None) and ggroups:
                 decision = self._group_based_cashed_prinper(
                     parent, group_id, ggroups, permission)
-            
+
             if decision is None:
                 continue
-            
+
             if decision:
                 return decision
 
@@ -170,7 +169,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             return False
 
         return None
-        
+
     def cached_roles(self, parent, permission):
         cache = self.cache(parent)
         try:
@@ -181,7 +180,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             return cache_roles[permission]
         except KeyError:
             pass
-        
+
         if parent is None:
             roles = dict(
                 [(role, 1)
@@ -246,7 +245,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             roles['zope.Anonymous'] = True # Everybody has Anonymous
             cache_principal_roles[principal] = roles
             return roles
-            
+
         roles = self.cached_principal_roles(
             removeSecurityProxy(getattr(parent, '__parent__', None)),
             principal)
@@ -291,7 +290,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
                 # raise an exception here (or do we), so we'll skip it
                 continue
             seen.append(group_id)
-            
+
             try:
                 group = getPrincipal(group_id)
             except PrincipalLookupError:
@@ -303,7 +302,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             result.append((group_id,
                            self._findGroupsFor(group, getPrincipal, seen)))
             seen.pop()
-            
+
         return tuple(result)
 
     def _groupsFor(self, principal):
@@ -311,7 +310,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
         if groups is None:
             groups = getattr(principal, 'groups', ())
             if groups:
-                getPrincipal = zapi.principals().getPrincipal
+                getPrincipal = getUtility(IAuthentication).getPrincipal
                 groups = self._findGroupsFor(principal, getPrincipal, [])
             else:
                 groups = ()
@@ -327,7 +326,7 @@ def settingsForObject(ob):
     while ob is not None:
         data = {}
         result.append((getattr(ob, '__name__', '(no name)'), data))
-        
+
         principalPermissions = IPrincipalPermissionMap(ob, None)
         if principalPermissions is not None:
             settings = principalPermissions.getPrincipalsAndPermissions()
@@ -349,7 +348,7 @@ def settingsForObject(ob):
             data['rolePermissions'] = [
                 {'permission': p, 'role': r, 'setting': s}
                 for (p, r, s) in settings]
-                
+
         ob = getattr(ob, '__parent__', None)
 
     data = {}

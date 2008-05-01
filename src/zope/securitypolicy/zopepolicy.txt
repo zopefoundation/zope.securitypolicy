@@ -507,7 +507,6 @@ authentication service:
 
   >>> from zope.app.testing import ztapi
   >>> ztapi.provideUtility(IAuthentication, auth)
-  >>> from zope.app import zapi
 
 Let's define a group:
 
