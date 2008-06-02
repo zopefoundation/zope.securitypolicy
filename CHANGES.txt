@@ -1,0 +1,14 @@
+=======
+CHANGES
+=======
+
+Version 3.4.1 (2008/6/2)
+------------------------
+
+- Fix reference to deprecated security policy from ZCML.
+
+
+Version 3.4.0 (2007/9/25)
+-------------------------
+
+- Initial documented release
