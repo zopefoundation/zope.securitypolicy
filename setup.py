@@ -24,7 +24,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='zope.securitypolicy',
-    version = '3.4.0',
+    version = '3.4.2dev',
     author='Zope Corporation and Contributors',
     author_email='zope3-dev@zope.org',
     description='Zope securitypolicy',
@@ -33,8 +33,8 @@ setup(name='zope.securitypolicy',
         + '\n\n' +
         read('CHANGES.txt')
         ),
-    keywords = "zope3 security policy",
-    classifiers = [
+    keywords="zope3 security policy",
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
@@ -47,9 +47,9 @@ setup(name='zope.securitypolicy',
     url='http://svn.zope.org/zope.app.securitypolicy',
     license='ZPL 2.1',
     packages=find_packages('src'),
-    package_dir = {'': 'src'},
+    package_dir={'': 'src'},
     namespace_packages=['zope'],
-    extras_require = dict(
+    extras_require=dict(
         test=['zope.app.testing']),
     install_requires=[
         'setuptools',
@@ -66,6 +66,6 @@ setup(name='zope.securitypolicy',
         'zope.schema',
         'zope.security',
         ],
-    include_package_data = True,
-    zip_safe = False,
+    include_package_data=True,
+    zip_safe=False,
     )
