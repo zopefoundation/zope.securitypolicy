@@ -54,7 +54,6 @@ setup(name='zope.securitypolicy',
     install_requires=[
         'setuptools',
         'zope.annotation',
-        'zope.app.form',
         'zope.app.security',
         'zope.component [hook]',
         'zope.configuration',
