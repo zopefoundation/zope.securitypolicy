@@ -2,13 +2,21 @@
 CHANGES
 =======
 
-Version 3.4.1 (2008/6/2)
-------------------------
+3.4.2 (unreleased)
+------------------
 
-- Fix reference to deprecated security policy from ZCML.
+* Fix test in buildout which still depended on zope.app.securitypolicy
+  by mistake.
 
+* Remove explicit dependency on zope.app.form from ``setup.py``; nothing
+  in the code directly depends on this.
+ 
+3.4.1 (2008/6/2)
+----------------
 
-Version 3.4.0 (2007/9/25)
--------------------------
+* Fix reference to deprecated security policy from ZCML.
 
-- Initial documented release
+3.4.0 (2007/9/25)
+-----------------
+
+* Initial documented release
