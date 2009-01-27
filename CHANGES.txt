@@ -5,6 +5,9 @@ CHANGES
 3.4.2 (unreleased)
 ------------------
 
+* Changed mailing list address to zope-dev at zope.org. Fix package
+  homepage to the pypi page.
+
 * Fix test in buildout which still depended on zope.app.securitypolicy
   by mistake.
 
