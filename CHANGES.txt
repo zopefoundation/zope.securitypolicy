@@ -2,7 +2,12 @@
 CHANGES
 =======
 
-3.4.2 (unreleased)
+3.4.3 (unreleased)
+------------------
+
+- ...
+
+3.4.2 (2009-01-28)
 ------------------
 
 - Changed mailing list address to zope-dev at zope.org. Fix package
