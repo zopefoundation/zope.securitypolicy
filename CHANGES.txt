@@ -5,21 +5,21 @@ CHANGES
 3.4.2 (unreleased)
 ------------------
 
-* Changed mailing list address to zope-dev at zope.org. Fix package
+- Changed mailing list address to zope-dev at zope.org. Fix package
   homepage to the pypi page.
 
-* Fix test in buildout which still depended on zope.app.securitypolicy
+- Fix test in buildout which still depended on zope.app.securitypolicy
   by mistake.
 
-* Remove explicit dependency on zope.app.form from ``setup.py``; nothing
+- Remove explicit dependency on zope.app.form from ``setup.py``; nothing
   in the code directly depends on this.
  
-3.4.1 (2008/6/2)
-----------------
+3.4.1 (2008-06-02)
+------------------
 
-* Fix reference to deprecated security policy from ZCML.
+- Fix reference to deprecated security policy from ZCML.
 
-3.4.0 (2007/9/25)
------------------
+3.4.0 (2007-09-25)
+------------------
 
-* Initial documented release
+- Initial documented release
