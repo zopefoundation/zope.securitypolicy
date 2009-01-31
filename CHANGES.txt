@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.4.3 (unreleased)
+3.5.0 (2009-01-31)
 ------------------
 
 - Include settings that were previously imported from zope.app.security.
