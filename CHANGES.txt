@@ -2,7 +2,12 @@
 CHANGES
 =======
 
-3.5.1 (unreleased)
+3.5.2 (unreleased)
+------------------
+
+- ...
+
+3.5.1 (2009-03-10)
 ------------------
 
 - Don't depend on the `hook` extra of zope.component, as we don't need
