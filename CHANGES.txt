@@ -14,6 +14,11 @@ CHANGES
   The ``zope.app.security`` will be adapted to import them from
   ``zope.securitypolicy.interfaces``.
 
+- Use `_z_instances` instead of `__instances__` for storing instances
+  for ``zope.securitypolicy.settings.PermissionSetting`` singleton
+  implementation, because __*__ name pattern is reserved for special
+  names in python.
+
 - Improve documentation formatting, add it to the package's long
   description.
 

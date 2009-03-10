@@ -20,11 +20,6 @@ from there.
 $Id$
 """
 
-# The location of this module within the package hierarchy is an
-# accident of implementation.  This may change; see the issue:
-# http://www.zope.org/Collectors/Zope3-dev/712
-
-
 class PermissionSetting(object):
     """PermissionSettings should be considered as immutable.
     They can be compared by identity. They are identified by
@@ -36,9 +31,9 @@ class PermissionSetting(object):
         name. If the name already exists in the dict, return that
         instance rather than creating a new one.
         """
-        instances = cls.__dict__.get('__instances__')
+        instances = cls.__dict__.get('_z_instances')
         if instances is None:
-            cls.__instances__ = instances = {}
+            cls._z_instances = instances = {}
         it = instances.get(name)
         if it is None:
             instances[name] = it = object.__new__(cls)
