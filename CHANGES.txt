@@ -19,6 +19,8 @@ CHANGES
   implementation, because __*__ name pattern is reserved for special
   names in python.
 
+- Add security protections for the `PermissionSetting`. 
+
 - Improve documentation formatting, add it to the package's long
   description.
 
