@@ -1,3 +1,4 @@
+============================
 Classic Zope Security Policy
 ============================
 
@@ -649,8 +650,6 @@ and through principals:
   >>> interaction.checkPermission('gP4', ob2)
   True
 
-Cleanup
--------
 
 We clean up the changes we made in these examples:
 

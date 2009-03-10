@@ -21,13 +21,11 @@ $Id$
 from zope.interface import Interface
 from zope.schema import TextLine, Text
 
-
 # These are the "setting" values returned by several methods defined
 # in these interfaces.  The implementation may move to another
 # location in the future, so this should be the preferred module to
 # import these from.
-#
-from zope.app.security.settings import Allow, Deny, Unset
+from zope.securitypolicy.settings import Allow, Deny, Unset
 
 
 class IRole(Interface):

@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Setup for zope.app.securitypolicy package
+"""Setup for zope.securitypolicy package
 
 $Id$
 """
@@ -30,6 +30,8 @@ setup(name='zope.securitypolicy',
     description='Default security policy for Zope3',
     long_description=(
         read('README.txt')
+        + '\n.. contents::\n\n' +
+        read('src', 'zope', 'securitypolicy', 'zopepolicy.txt')
         + '\n\n' +
         read('CHANGES.txt')
         ),
@@ -55,10 +57,8 @@ setup(name='zope.securitypolicy',
         'setuptools',
         'zope.annotation',
         'zope.app.security',
-        'zope.component [hook]',
+        'zope.component',
         'zope.configuration',
-        'zope.exceptions',
-        'zope.i18n',
         'zope.i18nmessageid',
         'zope.interface',
         'zope.location',

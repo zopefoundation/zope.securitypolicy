@@ -14,7 +14,7 @@
 """Security setting constants.
 
 The `Allow`, `Deny`, and `Unset` constants are exposed by the
-`zope.app.securitypolicy.interfaces` module, and should be imported
+`zope.securitypolicy.interfaces` module, and should be imported
 from there.
 
 $Id$

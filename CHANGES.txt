@@ -5,7 +5,21 @@ CHANGES
 3.5.1 (unreleased)
 ------------------
 
-- ...
+- Don't depend on the `hook` extra of zope.component, as we don't need
+  it explicitly.
+
+- Import security settings (Allow, Deny, Unset) in the ``interfaces``
+  module from the ``zope.securitypolicy.settings``, added in previous
+  release instead of old ``zope.app.security.settings``.
+  The ``zope.app.security`` will be adapted to import them from
+  ``zope.securitypolicy.interfaces``.
+
+- Improve documentation formatting, add it to the package's long
+  description.
+
+- Remove unneeded dependencies.
+
+- Remove old zpkg-related files and zcml slugs.
 
 3.5.0 (2009-01-31)
 ------------------
