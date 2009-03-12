@@ -25,8 +25,8 @@ from zope.security.permission import Permission
 
 from zope.app.testing import ztapi
 from zope.app.testing.placelesssetup import PlacelessSetup
-from zope.app.security.interfaces import IAuthentication
-from zope.app.security.principalregistry import principalRegistry
+from zope.authentication.interfaces import IAuthentication
+from zope.principalregistry.principalregistry import principalRegistry
 
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.interfaces import Allow

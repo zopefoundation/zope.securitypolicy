@@ -498,7 +498,7 @@ among other things, converting a principal id to a principal.
 For our examples here, we'll create and register a stub principal
 authentication service:
 
-  >>> from zope.app.security.interfaces import IAuthentication
+  >>> from zope.authentication.interfaces import IAuthentication
   >>> class FauxPrincipals(object):
   ...     zope.interface.implements(IAuthentication)
   ...     def __init__(self):

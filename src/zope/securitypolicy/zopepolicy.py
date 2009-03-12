@@ -25,7 +25,7 @@ from zope.security.simplepolicies import ParanoidSecurityPolicy
 from zope.security.interfaces import ISecurityPolicy
 from zope.security.proxy import removeSecurityProxy
 
-from zope.app.security.interfaces import PrincipalLookupError, IAuthentication
+from zope.authentication.interfaces import PrincipalLookupError, IAuthentication
 
 from zope.securitypolicy.principalpermission import principalPermissionManager
 globalPrincipalPermissionSetting = principalPermissionManager.getSetting

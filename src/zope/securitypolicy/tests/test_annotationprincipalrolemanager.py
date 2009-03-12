@@ -20,7 +20,7 @@ import zope.component
 from zope.interface import implements
 from zope.annotation.interfaces import IAttributeAnnotatable
 
-from zope.app.security.principalregistry import principalRegistry
+from zope.principalregistry.principalregistry import principalRegistry
 from zope.app.component.testing import PlacefulSetup
 
 from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager

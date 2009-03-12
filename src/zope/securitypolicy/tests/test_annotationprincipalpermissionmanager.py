@@ -28,7 +28,7 @@ from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
 
 from zope.app.testing import ztapi
-from zope.app.security.principalregistry import principalRegistry
+from zope.principalregistry.principalregistry import principalRegistry
 from zope.app.testing.placelesssetup import PlacelessSetup
 
 class Manageable(object):

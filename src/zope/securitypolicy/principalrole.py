@@ -17,12 +17,12 @@ $Id$
 """
 from zope.interface import implements
 
+from zope.authentication.principal import checkPrincipal
 from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IPrincipalRoleManager
 from zope.securitypolicy.securitymap import SecurityMap
 from zope.securitypolicy.securitymap import AnnotationSecurityMap
 from zope.securitypolicy.role import checkRole
-from zope.app.security.principal import checkPrincipal
 
 
 class AnnotationPrincipalRoleManager(AnnotationSecurityMap):

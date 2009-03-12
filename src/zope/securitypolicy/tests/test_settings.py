@@ -16,10 +16,10 @@
 $Id$
 """
 import unittest
-
-from zope.app.security.settings import Allow
 from cPickle import Pickler, Unpickler
 from StringIO import StringIO
+
+from zope.securitypolicy.interfaces import Allow
 
 class Test(unittest.TestCase):
 

@@ -2,10 +2,11 @@
 CHANGES
 =======
 
-3.5.2 (unreleased)
+3.6.0 (unreleased)
 ------------------
 
-- ...
+- Change ``zope.app.security`` dependency to the new ``zope.authentication``
+  package, dropping a big number of unused dependencies. 
 
 3.5.1 (2009-03-10)
 ------------------
