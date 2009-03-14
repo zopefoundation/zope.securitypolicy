@@ -18,6 +18,7 @@ $Id$
 import unittest
 
 from zope.component import provideAdapter, provideUtility
+from zope.component.testing import PlacelessSetup
 from zope.interface import implements
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable, IAnnotations
@@ -29,7 +30,6 @@ from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
 
 from zope.principalregistry.principalregistry import principalRegistry
-from zope.app.testing.placelesssetup import PlacelessSetup
 
 class Manageable(object):
     implements(IAttributeAnnotatable)

@@ -18,10 +18,10 @@ $Id$
 import unittest
 
 from zope.component import provideUtility
+from zope.component.testing import PlacelessSetup
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.app.testing.placelesssetup import PlacelessSetup
 from zope.authentication.interfaces import IAuthentication
 from zope.principalregistry.principalregistry import principalRegistry
 
