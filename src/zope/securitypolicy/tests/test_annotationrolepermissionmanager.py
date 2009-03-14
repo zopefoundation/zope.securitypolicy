@@ -16,13 +16,13 @@
 $Id$
 """
 import unittest
-from zope.component import provideUtility
+from zope.component import provideUtility, provideAdapter
+from zope.component.testing import PlacelessSetup
 from zope.interface import implements
+from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
-
-from zope.app.component.testing import PlacefulSetup
 
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.interfaces import Allow, Deny
@@ -32,10 +32,12 @@ from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
 class Manageable(object):
     implements(IAttributeAnnotatable)
 
-class Test(PlacefulSetup, unittest.TestCase):
+class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
-        PlacefulSetup.setUp(self)
+        PlacelessSetup.setUp(self)
+        provideAdapter(AttributeAnnotations)
+
 
         read = Permission('read', 'Read Something')
         provideUtility(read, IPermission, read.id)        

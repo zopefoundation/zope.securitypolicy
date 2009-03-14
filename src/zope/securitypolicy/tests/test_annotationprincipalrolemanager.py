@@ -21,7 +21,8 @@ from zope.interface import implements
 from zope.annotation.interfaces import IAttributeAnnotatable
 
 from zope.principalregistry.principalregistry import principalRegistry
-from zope.app.component.testing import PlacefulSetup
+from zope.component.testing import PlacelessSetup
+from zope.annotation.attribute import AttributeAnnotations
 
 from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
 from zope.securitypolicy.interfaces import Allow, Deny
@@ -36,10 +37,11 @@ def defineRole(id, title=None, description=None):
     zope.component.provideUtility(role, IRole, name=role.id)
     return role
 
-class Test(PlacefulSetup, unittest.TestCase):
-
+class Test(PlacelessSetup, unittest.TestCase):
+    
     def setUp(self):
-        PlacefulSetup.setUp(self)
+        PlacelessSetup.setUp(self)
+        zope.component.provideAdapter(AttributeAnnotations)
 
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(

@@ -52,10 +52,10 @@ setup(name='zope.securitypolicy',
     package_dir={'': 'src'},
     namespace_packages=['zope'],
     extras_require=dict(
-        test=['zope.app.testing',
-              'zope.principalregistry']),
+        test=['zope.testing', 'zope.principalregistry']),
     install_requires=[
         'setuptools',
+        'ZODB3',
         'zope.annotation',
         'zope.authentication',
         'zope.component',

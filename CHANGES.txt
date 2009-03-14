@@ -8,6 +8,9 @@ CHANGES
 - Change ``zope.app.security`` dependency to the new ``zope.authentication``
   package, dropping a big number of unused dependencies. 
 
+- Get rid of ``zope.app.testing`` test dependency. Add ``ZODB3`` to
+  install dependencies, because we use `Persistent` class.
+
 3.5.1 (2009-03-10)
 ------------------
 
