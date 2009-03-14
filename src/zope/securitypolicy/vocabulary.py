@@ -36,7 +36,7 @@ class RoleIdsVocabulary(SimpleVocabulary):
 
     To illustrate, we need to register the role IDs vocab:
 
-    >>> from zope.app.testing.placelesssetup import setUp, tearDown
+    >>> from zope.component.testing import setUp, tearDown
     >>> setUp()
     >>> from zope.schema.vocabulary import getVocabularyRegistry
     >>> registry = getVocabularyRegistry()
