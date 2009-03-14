@@ -20,7 +20,7 @@ import unittest
 from zope.component import provideAdapter
 from zope.component.testing import setUp as componentSetUp
 from zope.component.testing import tearDown as componentTearDown
-from zope.testing.doctestunit import DocFileSuite
+from zope.testing.doctest import DocFileSuite
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.annotation.interfaces import IAnnotations

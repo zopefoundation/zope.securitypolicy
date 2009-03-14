@@ -23,11 +23,11 @@ from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
 from zope.authentication.interfaces import IAuthentication
-from zope.principalregistry.principalregistry import principalRegistry
 
 from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.principalpermission import \
     principalPermissionManager as manager
+from zope.securitypolicy.tests import principalRegistry
 
 
 def definePermission(id, title=None, description=None):
@@ -45,8 +45,7 @@ class Test(PlacelessSetup, unittest.TestCase):
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(
             id or 'APrincipal',
-            title or 'A Principal',
-            login = id or 'APrincipal')
+            title or 'A Principal')
         return p.id
 
     def testUnboundPrincipalPermission(self):

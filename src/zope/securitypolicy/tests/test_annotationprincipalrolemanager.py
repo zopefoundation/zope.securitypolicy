@@ -20,7 +20,6 @@ import zope.component
 from zope.interface import implements
 from zope.annotation.interfaces import IAttributeAnnotatable
 
-from zope.principalregistry.principalregistry import principalRegistry
 from zope.component.testing import PlacelessSetup
 from zope.annotation.attribute import AttributeAnnotations
 
@@ -28,6 +27,7 @@ from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
 from zope.securitypolicy.interfaces import Allow, Deny
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.role import Role
+from zope.securitypolicy.tests import principalRegistry
 
 class Manageable(object):
     implements(IAttributeAnnotatable)
@@ -46,8 +46,7 @@ class Test(PlacelessSetup, unittest.TestCase):
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(
             id or 'APrincipal',
-            title or 'A Principal',
-            login = id or 'APrincipal')
+            title or 'A Principal')
         return p.id
 
     def _make_roleManager(self, obj=None):

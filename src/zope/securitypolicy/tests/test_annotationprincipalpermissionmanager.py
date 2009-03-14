@@ -28,8 +28,8 @@ from zope.security.permission import Permission
 from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
+from zope.securitypolicy.tests import principalRegistry
 
-from zope.principalregistry.principalregistry import principalRegistry
 
 class Manageable(object):
     implements(IAttributeAnnotatable)
@@ -43,8 +43,7 @@ class Test(PlacelessSetup, unittest.TestCase):
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(
             id or 'APrincipal',
-            title or 'A Principal',
-            login = id or 'APrincipal')
+            title or 'A Principal')
         return p.id
 
     def testUnboundPrincipalPermission(self):

@@ -51,8 +51,6 @@ setup(name='zope.securitypolicy',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope'],
-    extras_require=dict(
-        test=['zope.testing', 'zope.principalregistry']),
     install_requires=[
         'setuptools',
         'ZODB3',

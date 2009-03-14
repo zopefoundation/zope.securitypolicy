@@ -21,12 +21,12 @@ from zope.component import provideUtility
 from zope.component.testing import PlacelessSetup
 
 from zope.authentication.interfaces import IAuthentication
-from zope.principalregistry.principalregistry import principalRegistry
 
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.interfaces import Allow, Deny
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.principalrole import principalRoleManager
+from zope.securitypolicy.tests import principalRegistry
 
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)
@@ -42,8 +42,7 @@ class Test(PlacelessSetup, unittest.TestCase):
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(
             id or 'APrincipal',
-            title or 'A Principal',
-            login = id or 'APrincipal')
+            title or 'A Principal')
         return p.id
 
     def testUnboundPrincipalRole(self):

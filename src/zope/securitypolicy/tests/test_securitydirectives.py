@@ -25,7 +25,6 @@ from zope.security.permission import Permission
 
 from zope.component.testing import PlacelessSetup
 from zope.authentication.interfaces import IAuthentication
-from zope.principalregistry.principalregistry import principalRegistry
 
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.interfaces import Allow
@@ -37,6 +36,7 @@ from zope.securitypolicy.principalpermission import \
 from zope.securitypolicy.principalrole import \
     principalRoleManager as principal_role_mgr
 import zope.securitypolicy.tests
+from zope.securitypolicy.tests import principalRegistry
 
 
 def defineRole(id, title=None, description=None):
