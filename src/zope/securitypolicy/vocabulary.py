@@ -46,9 +46,9 @@ class RoleIdsVocabulary(SimpleVocabulary):
 
     >>> from zope.securitypolicy.interfaces import IRole
     >>> from zope.securitypolicy.role import Role
-    >>> from zope.app.testing import ztapi
-    >>> ztapi.provideUtility(IRole, Role('a_id','a_title'), 'a_id')
-    >>> ztapi.provideUtility(IRole, Role('b_id','b_title'), 'b_id')
+    >>> from zope.component import provideUtility
+    >>> provideUtility(Role('a_id','a_title'), IRole, 'a_id')
+    >>> provideUtility(Role('b_id','b_title'), IRole, 'b_id')
 
     Let's lookup the roles using the vocabulary
 

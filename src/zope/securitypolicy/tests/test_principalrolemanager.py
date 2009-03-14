@@ -17,7 +17,7 @@ $Id$
 """
 import unittest
 
-from zope.app.testing import ztapi
+from zope.component import provideUtility
 from zope.app.testing.placelesssetup import PlacelessSetup
 
 from zope.authentication.interfaces import IAuthentication
@@ -30,14 +30,14 @@ from zope.securitypolicy.principalrole import principalRoleManager
 
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)
-    ztapi.provideUtility(IRole, role, name=role.id)
+    provideUtility(role, IRole, role.id)
     return role
 
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
         super(Test, self).setUp()
-        ztapi.provideUtility(IAuthentication, principalRegistry)
+        provideUtility(principalRegistry, IAuthentication)
 
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(

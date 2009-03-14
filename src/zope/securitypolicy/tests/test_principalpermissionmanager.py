@@ -17,10 +17,10 @@ $Id$
 """
 import unittest
 
+from zope.component import provideUtility
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.app.testing import ztapi
 from zope.app.testing.placelesssetup import PlacelessSetup
 from zope.authentication.interfaces import IAuthentication
 from zope.principalregistry.principalregistry import principalRegistry
@@ -32,14 +32,14 @@ from zope.securitypolicy.principalpermission import \
 
 def definePermission(id, title=None, description=None):
     perm = Permission(id, title, description)
-    ztapi.provideUtility(IPermission, perm, name=perm.id)
+    provideUtility(perm, IPermission, perm.id)
     return perm
 
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
         super(Test, self).setUp()
-        ztapi.provideUtility(IAuthentication, principalRegistry)
+        provideUtility(principalRegistry, IAuthentication)
 
 
     def _make_principal(self, id=None, title=None):

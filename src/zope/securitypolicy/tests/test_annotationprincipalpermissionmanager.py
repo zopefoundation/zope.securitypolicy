@@ -17,6 +17,7 @@ $Id$
 """
 import unittest
 
+from zope.component import provideAdapter, provideUtility
 from zope.interface import implements
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable, IAnnotations
@@ -27,7 +28,6 @@ from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
 
-from zope.app.testing import ztapi
 from zope.principalregistry.principalregistry import principalRegistry
 from zope.app.testing.placelesssetup import PlacelessSetup
 
@@ -38,9 +38,7 @@ class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
         super(Test, self).setUp()
-        ztapi.provideAdapter(
-            IAttributeAnnotatable, IAnnotations,
-            AttributeAnnotations)
+        provideAdapter(AttributeAnnotations)
 
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(
@@ -51,7 +49,7 @@ class Test(PlacelessSetup, unittest.TestCase):
 
     def testUnboundPrincipalPermission(self):
         manager = AnnotationPrincipalPermissionManager(Manageable())
-        ztapi.provideUtility(IPermission, Permission('APerm', 'title'), 'APerm')
+        provideUtility(Permission('APerm', 'title'), IPermission, 'APerm')
         permission = 'APerm'
         principal = self._make_principal()
         self.assertEqual(manager.getPrincipalsForPermission(permission), [])
@@ -59,7 +57,7 @@ class Test(PlacelessSetup, unittest.TestCase):
 
     def testPrincipalPermission(self):
         manager = AnnotationPrincipalPermissionManager(Manageable())
-        ztapi.provideUtility(IPermission, Permission('APerm', 'title'), 'APerm')
+        provideUtility(Permission('APerm', 'title'), IPermission, 'APerm')
         permission = 'APerm'
         principal = self._make_principal()
 
@@ -115,11 +113,11 @@ class Test(PlacelessSetup, unittest.TestCase):
 
     def testManyPermissionsOnePrincipal(self):
         manager = AnnotationPrincipalPermissionManager(Manageable())
-        ztapi.provideUtility(
-            IPermission, Permission('Perm One', 'title'), 'Perm One')
+        provideUtility(Permission('Perm One', 'title'), IPermission,
+                       'Perm One')
         perm1 = 'Perm One' 
-        ztapi.provideUtility(
-            IPermission, Permission('Perm Two', 'title'), 'Perm Two')
+        provideUtility(Permission('Perm Two', 'title'), IPermission,
+                       'Perm Two')
         perm2 = 'Perm Two'
         prin1 = self._make_principal()
         manager.grantPermissionToPrincipal(perm1, prin1)
@@ -136,8 +134,8 @@ class Test(PlacelessSetup, unittest.TestCase):
 
     def testManyPrincipalsOnePermission(self):
         manager = AnnotationPrincipalPermissionManager(Manageable())
-        ztapi.provideUtility(
-            IPermission, Permission('Perm One', 'title'), 'Perm One')
+        provideUtility(Permission('Perm One', 'title'), IPermission,
+                       'Perm One')
         perm1 = 'Perm One' 
         prin1 = self._make_principal()
         prin2 = self._make_principal('Principal 2', 'Principal Two')

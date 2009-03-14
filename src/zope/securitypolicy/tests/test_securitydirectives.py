@@ -23,7 +23,6 @@ from zope.configuration.config import ConfigurationConflictError
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.app.testing import ztapi
 from zope.app.testing.placelesssetup import PlacelessSetup
 from zope.authentication.interfaces import IAuthentication
 from zope.principalregistry.principalregistry import principalRegistry
@@ -42,7 +41,7 @@ import zope.securitypolicy.tests
 
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)
-    ztapi.provideUtility(IRole, role, name=role.id)
+    zope.component.provideUtility(role, IRole, role.id)
     return role
 
 
@@ -50,7 +49,7 @@ class TestBase(PlacelessSetup):
 
     def setUp(self):
         super(TestBase, self).setUp()
-        ztapi.provideUtility(IAuthentication, principalRegistry)
+        zope.component.provideUtility(principalRegistry, IAuthentication)
 
 
 class TestRoleDirective(TestBase, unittest.TestCase):
@@ -73,8 +72,8 @@ class TestSecurityMapping(TestBase, unittest.TestCase):
 
     def setUp(self):
         super(TestSecurityMapping, self).setUp()
-        ztapi.provideUtility(IPermission, Permission('zope.Foo', ''),
-                             name='zope.Foo')
+        zope.component.provideUtility(Permission('zope.Foo', ''),
+                                      IPermission, 'zope.Foo')
         defineRole("zope.Bar", '', '')
         principalRegistry.definePrincipal("zope.Blah", '', '')
         self.context = xmlconfig.file("mapping.zcml", zope.securitypolicy.tests)

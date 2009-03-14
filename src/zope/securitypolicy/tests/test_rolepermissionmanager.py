@@ -17,11 +17,11 @@ $Id$
 """
 import unittest
 
+from zope.component import provideUtility
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
 from zope.app.testing.placelesssetup import PlacelessSetup
-from zope.app.testing import ztapi
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.interfaces import Allow, Deny
 from zope.securitypolicy.interfaces import IRole
@@ -30,12 +30,12 @@ from zope.securitypolicy.rolepermission import \
 
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)
-    ztapi.provideUtility(IRole, role, name=role.id)
+    provideUtility(role, IRole, role.id)
     return role
 
 def definePermission(id, title=None, description=None):
     perm = Permission(id, title, description)
-    ztapi.provideUtility(IPermission, perm, name=perm.id)
+    provideUtility(perm, IPermission, perm.id)
     return perm
 
 class Test(PlacelessSetup, unittest.TestCase):

@@ -17,6 +17,7 @@ $Id$
 """
 
 import unittest
+from zope.component import provideAdapter
 from zope.testing.doctestunit import DocFileSuite
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAttributeAnnotatable
@@ -24,7 +25,7 @@ from zope.annotation.interfaces import IAnnotations
 from zope.annotation.attribute import AttributeAnnotations
 from zope.security.management import endInteraction
 
-from zope.app.testing import placelesssetup, ztapi
+from zope.app.testing import placelesssetup
 from zope.securitypolicy.interfaces import IGrantInfo
 from zope.securitypolicy.interfaces import IPrincipalRoleManager
 from zope.securitypolicy.interfaces import IPrincipalPermissionManager
@@ -41,21 +42,14 @@ from zope.securitypolicy.grantinfo import \
 def setUp(test):
     placelesssetup.setUp()
     endInteraction()
-    ztapi.provideAdapter(
-        IAttributeAnnotatable, IAnnotations,
-        AttributeAnnotations)
-    ztapi.provideAdapter(
-        IAnnotatable, IPrincipalPermissionManager,
-        AnnotationPrincipalPermissionManager)
-    ztapi.provideAdapter(
-        IAnnotatable, IPrincipalRoleManager,
-        AnnotationPrincipalRoleManager)
-    ztapi.provideAdapter(
-        IAnnotatable, IRolePermissionManager,
-        AnnotationRolePermissionManager)
-    ztapi.provideAdapter(
-        IAnnotatable, IGrantInfo,
-        AnnotationGrantInfo)
+    provideAdapter(AttributeAnnotations)
+    provideAdapter(AnnotationPrincipalPermissionManager, (IAnnotatable,),
+                   IPrincipalPermissionManager)
+    provideAdapter(AnnotationPrincipalRoleManager, (IAnnotatable,),
+                   IPrincipalRoleManager)
+    provideAdapter(AnnotationRolePermissionManager, (IAnnotatable,),
+                   IRolePermissionManager)
+    provideAdapter(AnnotationGrantInfo, (IAnnotatable,), IGrantInfo)
 
 
 def test_suite():

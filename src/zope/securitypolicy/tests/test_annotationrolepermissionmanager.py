@@ -16,12 +16,12 @@
 $Id$
 """
 import unittest
+from zope.component import provideUtility
 from zope.interface import implements
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.app.testing import ztapi
 from zope.app.component.testing import PlacefulSetup
 
 from zope.securitypolicy.role import Role
@@ -38,19 +38,19 @@ class Test(PlacefulSetup, unittest.TestCase):
         PlacefulSetup.setUp(self)
 
         read = Permission('read', 'Read Something')
-        ztapi.provideUtility(IPermission, read, name=read.id)        
+        provideUtility(read, IPermission, read.id)        
         self.read = read.id
 
         write = Permission('write', 'Write Something')
-        ztapi.provideUtility(IPermission, write, name=write.id)        
+        provideUtility(write, IPermission, write.id)        
         self.write = write.id
 
         peon = Role('peon', 'Poor Slob')
-        ztapi.provideUtility(IRole, peon, name=peon.id)        
+        provideUtility(peon, IRole, peon.id)        
         self.peon = peon.id
 
         manager = Role('manager', 'Supreme Being')
-        ztapi.provideUtility(IRole, manager, name=manager.id)        
+        provideUtility(manager, IRole, manager.id)        
         self.manager = manager.id
 
     def testNormal(self):

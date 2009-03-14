@@ -512,8 +512,8 @@ authentication service:
 
   >>> auth = FauxPrincipals()
 
-  >>> from zope.app.testing import ztapi
-  >>> ztapi.provideUtility(IAuthentication, auth)
+  >>> from zope.component import provideUtility
+  >>> provideUtility(auth, IAuthentication)
 
 Let's define a group:
 
