@@ -2,16 +2,17 @@
 CHANGES
 =======
 
-3.6.1 (unreleased)
+3.6.1 (2009-07-24)
 ------------------
 
-- ...
+- Make tests work when the default and Zope vocabulary registry compete in the
+  cleanup.
 
 3.6.0 (2009-03-14)
 ------------------
 
 - Change ``zope.app.security`` dependency to the new ``zope.authentication``
-  package, dropping a big number of unused dependencies. 
+  package, dropping a big number of unused dependencies.
 
 - Get rid of ``zope.app.testing`` and other testing dependencices.
 
@@ -35,7 +36,7 @@ CHANGES
   implementation, because __*__ name pattern is reserved for special
   names in python.
 
-- Add security protections for the `PermissionSetting`. 
+- Add security protections for the `PermissionSetting`.
 
 - Improve documentation formatting, add it to the package's long
   description.
@@ -60,7 +61,7 @@ CHANGES
 
 - Remove explicit dependency on zope.app.form from ``setup.py``; nothing
   in the code directly depends on this.
- 
+
 3.4.1 (2008-06-02)
 ------------------
 
