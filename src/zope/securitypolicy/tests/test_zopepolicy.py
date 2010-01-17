@@ -16,11 +16,11 @@
 $Id$
 """
 
+from doctest import DocFileSuite
 import unittest
 from zope.component import provideAdapter
 from zope.component.testing import setUp as componentSetUp
 from zope.component.testing import tearDown as componentTearDown
-from zope.testing.doctest import DocFileSuite
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.attribute import AttributeAnnotations
 from zope.security.management import endInteraction
