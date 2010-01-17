@@ -40,7 +40,6 @@ from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IRolePermissionMap
 from zope.securitypolicy.interfaces import IPrincipalPermissionMap
 from zope.securitypolicy.interfaces import IPrincipalRoleMap
-from zope.securitypolicy.interfaces import IGrantInfo
 
 SettingAsBoolean = {Allow: True, Deny: False, Unset: None, None: None}
 

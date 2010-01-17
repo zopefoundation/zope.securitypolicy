@@ -21,7 +21,7 @@ from zope.component import provideAdapter, provideUtility
 from zope.component.testing import PlacelessSetup
 from zope.interface import implements
 from zope.annotation.attribute import AttributeAnnotations
-from zope.annotation.interfaces import IAttributeAnnotatable, IAnnotations
+from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 

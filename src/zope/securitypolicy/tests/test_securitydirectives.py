@@ -55,7 +55,7 @@ class TestBase(PlacelessSetup):
 class TestRoleDirective(TestBase, unittest.TestCase):
 
     def testRegister(self):
-        context = xmlconfig.file("role.zcml", zope.securitypolicy.tests)
+        xmlconfig.file("role.zcml", zope.securitypolicy.tests)
 
         role = zope.component.getUtility(IRole, "zope.Everyperson")
         self.failUnless(role.id.endswith('Everyperson'))

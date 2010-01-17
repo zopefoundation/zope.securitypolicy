@@ -21,7 +21,6 @@ from zope.security.permission import allPermissions
 from zope.securitypolicy.role import checkRole
 from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IRolePermissionManager
-from zope.securitypolicy.interfaces import IRolePermissionMap
 from zope.securitypolicy.securitymap import AnnotationSecurityMap
 from zope.securitypolicy.securitymap import SecurityMap
 
