@@ -50,7 +50,7 @@ class AnnotationPrincipalPermissionManager(AnnotationSecurityMap):
     def getSetting(self, permission_id, principal_id, default=Unset):
         return AnnotationSecurityMap.queryCell(
             self, permission_id, principal_id, default)
-       
+
     getPrincipalsAndPermissions = AnnotationSecurityMap.getAllCells
 
 

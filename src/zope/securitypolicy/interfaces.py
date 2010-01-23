@@ -48,7 +48,6 @@ class IRole(Interface):
         required=False)
 
 
-
 class IPrincipalRoleMap(Interface):
     """Mappings between principals and roles."""
 
@@ -209,6 +208,7 @@ class IPrincipalPermissionManager(IPrincipalPermissionMap):
         principal.
         """
 
+
 class IGrantInfo(Interface):
     """Get grant info needed for checking access
     """
@@ -232,6 +232,7 @@ class IGrantInfo(Interface):
         The role grants are an iterable of role, setting tuples, where
         setting is either Allow or Deny.
         """
+
 
 class IGrantVocabulary(Interface):
     """Marker interface for register the RadioWidget."""

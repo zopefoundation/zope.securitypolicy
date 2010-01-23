@@ -18,8 +18,8 @@ $Id$
 from zope.configuration.exceptions import ConfigurationError
 from zope.component.zcml import utility
 
-from zope.securitypolicy.interfaces import IRole 
-from zope.securitypolicy.role import Role 
+from zope.securitypolicy.interfaces import IRole
+from zope.securitypolicy.role import Role
 from zope.securitypolicy.rolepermission import \
      rolePermissionManager as role_perm_mgr
 from zope.securitypolicy.principalpermission import \
@@ -31,8 +31,7 @@ from zope.securitypolicy.principalrole import \
 def grant(_context, principal=None, role=None, permission=None):
     nspecified = ((principal is not None)
                   + (role is not None)
-                  + (permission is not None)
-                  )
+                  + (permission is not None))
 
     if nspecified != 2:
         raise ConfigurationError(
@@ -42,31 +41,31 @@ def grant(_context, principal=None, role=None, permission=None):
     if principal:
         if role:
             _context.action(
-                discriminator = ('grantRoleToPrincipal', role, principal),
-                callable = principal_role_mgr.assignRoleToPrincipal,
-                args = (role, principal)
+                discriminator=('grantRoleToPrincipal', role, principal),
+                callable=principal_role_mgr.assignRoleToPrincipal,
+                args=(role, principal),
                 )
         else:
             _context.action(
-                discriminator = ('grantPermissionToPrincipal',
-                                 permission,
-                                 principal),
-                callable = principal_perm_mgr.grantPermissionToPrincipal,
-                args = (permission, principal)
+                discriminator=('grantPermissionToPrincipal',
+                               permission,
+                               principal),
+                callable=principal_perm_mgr.grantPermissionToPrincipal,
+                args=(permission, principal),
                 )
     else:
         _context.action(
-            discriminator = ('grantPermissionToRole', permission, role),
-            callable = role_perm_mgr.grantPermissionToRole,
-            args = (permission, role)
+            discriminator=('grantPermissionToRole', permission, role),
+            callable=role_perm_mgr.grantPermissionToRole,
+            args=(permission, role),
             )
+
 
 def grantAll(_context, principal=None, role=None):
     """Grant all permissions to a role or principal
     """
     nspecified = ((principal is not None)
-                  + (role is not None)
-                  )
+                  + (role is not None))
 
     if nspecified != 1:
         raise ConfigurationError(
@@ -75,21 +74,19 @@ def grantAll(_context, principal=None, role=None):
 
     if principal:
         _context.action(
-            discriminator = ('grantAllPermissionsToPrincipal',
-                             principal),
-            callable =
-            principal_perm_mgr.grantAllPermissionsToPrincipal,
-            args = (principal, )
+            discriminator=('grantAllPermissionsToPrincipal',
+                           principal),
+            callable=principal_perm_mgr.grantAllPermissionsToPrincipal,
+            args=(principal, ),
             )
     else:
         _context.action(
-            discriminator = ('grantAllPermissionsToRole', role),
-            callable = role_perm_mgr.grantAllPermissionsToRole,
-            args = (role, )
+            discriminator=('grantAllPermissionsToRole', role),
+            callable=role_perm_mgr.grantAllPermissionsToRole,
+            args=(role, ),
             )
 
 
 def defineRole(_context, id, title, description=''):
     role = Role(id, title, description)
     utility(_context, IRole, role, name=id)
-

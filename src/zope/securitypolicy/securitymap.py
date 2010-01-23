@@ -19,6 +19,7 @@ from persistent import Persistent
 from zope.annotation import IAnnotations
 from zope.security.management import queryInteraction
 
+
 class SecurityMap(object):
 
     def __init__(self):
@@ -44,12 +45,12 @@ class SecurityMap(object):
         col = self._bycol.get(colentry)
         if not col:
             col = self._bycol[colentry] = {}
-            
+
         row[colentry] = value
         col[rowentry] = value
 
         self._invalidated_interaction_cache()
-        
+
         return True
 
     def _invalidated_interaction_cache(self):
@@ -115,6 +116,7 @@ class SecurityMap(object):
                 res.append((r,) + c)
         return res
 
+
 class PersistentSecurityMap(SecurityMap, Persistent):
 
     def addCell(self, rowentry, colentry, value):
@@ -124,6 +126,7 @@ class PersistentSecurityMap(SecurityMap, Persistent):
     def delCell(self, rowentry, colentry):
         if SecurityMap.delCell(self, rowentry, colentry):
             self._p_changed = 1
+
 
 class AnnotationSecurityMap(SecurityMap):
 
@@ -158,4 +161,3 @@ class AnnotationSecurityMap(SecurityMap):
     def delCell(self, rowentry, colentry):
         if SecurityMap.delCell(self, rowentry, colentry):
             self._changed()
-        

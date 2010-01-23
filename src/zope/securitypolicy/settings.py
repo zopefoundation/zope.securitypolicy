@@ -20,6 +20,7 @@ from there.
 $Id$
 """
 
+
 class PermissionSetting(object):
     """PermissionSettings should be considered as immutable.
     They can be compared by identity. They are identified by

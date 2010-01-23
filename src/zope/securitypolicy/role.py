@@ -46,6 +46,7 @@ class LocalRole(Persistent, Location):
         self.title = title
         self.description = description
 
+
 def setIdOnActivation(role, event):
     """Set the permission id upon registration activation.
 
@@ -100,7 +101,6 @@ def unsetIdOnDeactivation(role, event):
     u'<role not activated>'
     """
     role.id = NULL_ID
-
 
 
 def checkRole(context, role_id):

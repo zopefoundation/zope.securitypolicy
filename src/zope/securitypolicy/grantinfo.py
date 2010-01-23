@@ -35,6 +35,7 @@ from zope.securitypolicy.rolepermission import \
 rolepermkey = AnnotationRolePermissionManager.key
 del AnnotationRolePermissionManager
 
+
 class AnnotationGrantInfo(object):
 
     implements(IGrantInfo)
@@ -48,16 +49,16 @@ class AnnotationGrantInfo(object):
 
             prinper = annotations.get(prinperkey)
             if prinper is not None:
-                self.prinper = prinper._bycol # by principals
+                self.prinper = prinper._bycol  # by principals
 
             prinrole = annotations.get(prinrolekey)
             if prinrole is not None:
-                self.prinrole = prinrole._bycol # by principals
+                self.prinrole = prinrole._bycol  # by principals
 
             roleper = annotations.get(rolepermkey)
             if roleper is not None:
-                self.permrole = roleper._byrow # by permission
-            
+                self.permrole = roleper._byrow  # by permission
+
     def __nonzero__(self):
         return bool(self.prinper or self.prinrole or self.permrole)
 

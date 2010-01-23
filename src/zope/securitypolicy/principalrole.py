@@ -43,7 +43,7 @@ class AnnotationPrincipalRoleManager(AnnotationSecurityMap):
     unsetRoleForPrincipal = AnnotationSecurityMap.delCell
     getPrincipalsForRole = AnnotationSecurityMap.getRow
     getRolesForPrincipal = AnnotationSecurityMap.getCol
-    
+
     def getSetting(self, role_id, principal_id):
         return AnnotationSecurityMap.queryCell(
             self, role_id, principal_id, default=Unset)

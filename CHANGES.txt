@@ -5,6 +5,8 @@ CHANGES
 3.6.2 (unreleased)
 ------------------
 
+- Removed unused imports and pep8 cleanup.
+
 - Use doctest module instead of the deprecated zope.testing.doctest.
 
 - AnnotationGrantInfo implements IGrantInfo.

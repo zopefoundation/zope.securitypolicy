@@ -25,7 +25,9 @@ from zope.security.simplepolicies import ParanoidSecurityPolicy
 from zope.security.interfaces import ISecurityPolicy
 from zope.security.proxy import removeSecurityProxy
 
-from zope.authentication.interfaces import PrincipalLookupError, IAuthentication
+from zope.authentication.interfaces import (
+    PrincipalLookupError,
+    IAuthentication)
 
 from zope.securitypolicy.principalpermission import principalPermissionManager
 globalPrincipalPermissionSetting = principalPermissionManager.getSetting
@@ -43,8 +45,10 @@ from zope.securitypolicy.interfaces import IPrincipalRoleMap
 
 SettingAsBoolean = {Allow: True, Deny: False, Unset: None, None: None}
 
+
 class CacheEntry:
     pass
+
 
 class ZopeSecurityPolicy(ParanoidSecurityPolicy):
     zope.interface.classProvides(ISecurityPolicy)
@@ -127,16 +131,14 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
 
         if parent is None:
             prinper = SettingAsBoolean[
-                globalPrincipalPermissionSetting(permission, principal, None)
-                ]
+                globalPrincipalPermissionSetting(permission, principal, None)]
             cache_prin_per[permission] = prinper
             return prinper
 
         prinper = IPrincipalPermissionMap(parent, None)
         if prinper is not None:
             prinper = SettingAsBoolean[
-                prinper.getSetting(permission, principal, None)
-                ]
+                prinper.getSetting(permission, principal, None)]
             if prinper is not None:
                 cache_prin_per[permission] = prinper
                 return prinper
@@ -184,9 +186,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             roles = dict(
                 [(role, 1)
                  for (role, setting) in globalRolesForPermission(permission)
-                 if setting is Allow
-                 ]
-               )
+                 if setting is Allow])
             cache_roles[permission] = roles
             return roles
 
@@ -238,10 +238,8 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
         if parent is None:
             roles = dict(
                 [(role, SettingAsBoolean[setting])
-                 for (role, setting) in globalRolesForPrincipal(principal)
-                 ]
-                 )
-            roles['zope.Anonymous'] = True # Everybody has Anonymous
+                 for (role, setting) in globalRolesForPrincipal(principal)])
+            roles['zope.Anonymous'] = True  # Everybody has Anonymous
             cache_principal_roles[principal] = roles
             return roles
 
@@ -318,6 +316,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
 
         return groups
 
+
 def settingsForObject(ob):
     """Analysis tool to show all of the grants to a process
     """
@@ -370,4 +369,3 @@ def settingsForObject(ob):
         for (p, r, s) in settings]
 
     return result
-

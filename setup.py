@@ -25,11 +25,12 @@ import os
 
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='zope.securitypolicy',
-    version = '3.6.2dev',
+    version='3.6.2dev',
     author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.org',
     description='Default security policy for Zope3',
@@ -38,8 +39,7 @@ setup(name='zope.securitypolicy',
         + '\n.. contents::\n\n' +
         read('src', 'zope', 'securitypolicy', 'zopepolicy.txt')
         + '\n\n' +
-        read('CHANGES.txt')
-        ),
+        read('CHANGES.txt')),
     keywords="zope3 security policy",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
