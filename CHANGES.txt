@@ -5,7 +5,9 @@ CHANGES
 3.4.3 (unreleased)
 ------------------
 
-- TBD
+- LP #564525:  fix permission moved from ``zope.app.dublincore`` namespace
+  to ``zope.dublincore``, and make its grant conditional on the presence of
+  ``zope.dublincore``.
 
 3.4.2 (2009-01-28)
 ------------------
