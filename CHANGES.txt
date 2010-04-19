@@ -5,7 +5,9 @@ CHANGES
 3.4.4 (unreleased)
 ------------------
 
-- TBD
+- LP #564525: Revert the name used for the view permission exported by
+  ``zope.dublincore`` to one which matches the names in released versions
+  of that package (3.6.0 and earlier).
 
 3.4.3 (2010-04-16)
 ------------------

@@ -23,7 +23,7 @@
 
   <configure zcml:condition="installed zope.dublincore">
     <include package="zope.dublincore" />
-    <grant permission="zope.dublincore.view" role="zope.Anonymous" />
+    <grant permission="zope.app.dublincore.view" role="zope.Anonymous" />
   </configure>
 
   <grantAll role="zope.Manager" />
