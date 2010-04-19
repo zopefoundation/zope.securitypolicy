@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.4.4 (unreleased)
+3.4.4 (2010-04-29)
 ------------------
 
 - LP #564525: Revert the name used for the view permission exported by
