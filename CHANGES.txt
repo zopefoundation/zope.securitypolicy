@@ -5,8 +5,8 @@ CHANGES
 3.6.2 (unreleased)
 ------------------
 
-- LP #131115: Clean up inconsistency in interface definitions and actual usage
-  for the various security maps.
+- LP #131115: Clean up inconsistency in ``getSetting`` interface definitions
+  and actual usage for the various security maps.
 
 - LP #564525:  fix permission moved from ``zope.app.dublincore`` namespace
   to ``zope.dublincore``.
