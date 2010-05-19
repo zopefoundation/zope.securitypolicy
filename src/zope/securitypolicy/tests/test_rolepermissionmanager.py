@@ -23,7 +23,7 @@ from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
 from zope.securitypolicy.role import Role
-from zope.securitypolicy.interfaces import Allow, Deny
+from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.rolepermission import \
         rolePermissionManager as manager
@@ -45,6 +45,8 @@ class Test(PlacelessSetup, unittest.TestCase):
         role = defineRole('ARole', 'A Role').id
         self.assertEqual(manager.getRolesForPermission(permission), [])
         self.assertEqual(manager.getPermissionsForRole(role), [])
+        self.assertEqual(manager.getSetting(permission, role), Unset)
+        self.assertEqual(manager.getSetting(permission, role, 1), 1)
 
     def testRolePermission(self):
         permission = definePermission('APerm', 'aPerm title').id
@@ -54,6 +56,7 @@ class Test(PlacelessSetup, unittest.TestCase):
                                                         [(role,Allow)])
         self.assertEqual(manager.getPermissionsForRole(role),
                                                     [(permission,Allow)])
+
 
     def testManyPermissionsOneRole(self):
         perm1 = definePermission('Perm One', 'P1').id

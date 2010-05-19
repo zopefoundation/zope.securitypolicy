@@ -71,7 +71,7 @@ class IPrincipalRoleMap(Interface):
         this principal, then the empty list is returned.
         """
 
-    def getSetting(role_id, principal_id):
+    def getSetting(role_id, principal_id, default=Unset):
         """Return the setting for this principal, role combination
         """
 
@@ -120,7 +120,7 @@ class IRolePermissionMap(Interface):
         returned.
         """
 
-    def getSetting(permission_id, role_id):
+    def getSetting(permission_id, role_id, default=Unset):
         """Return the setting for the given permission id and role id
 
         If there is no setting, Unset is returned
@@ -176,7 +176,7 @@ class IPrincipalPermissionMap(Interface):
         list is returned.
         """
 
-    def getSetting(permission_id, principal_id):
+    def getSetting(permission_id, principal_id, default=Unset):
         """Get the setting for a permission and principal.
 
         Get the setting (Allow/Deny/Unset) for a given permission and

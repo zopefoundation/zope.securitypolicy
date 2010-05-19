@@ -46,9 +46,9 @@ class AnnotationRolePermissionManager(AnnotationSecurityMap):
     getPermissionsForRole = AnnotationSecurityMap.getCol
     getRolesAndPermissions = AnnotationSecurityMap.getAllCells
 
-    def getSetting(self, permission_id, role_id):
+    def getSetting(self, permission_id, role_id, default=Unset):
         return AnnotationSecurityMap.queryCell(
-            self, permission_id, role_id, default=Unset)
+            self, permission_id, role_id, default)
 
 
 class RolePermissionManager(SecurityMap):
@@ -92,9 +92,9 @@ class RolePermissionManager(SecurityMap):
         '''See interface IRolePermissionMap'''
         return self.getCol(role_id)
 
-    def getSetting(self, permission_id, role_id):
+    def getSetting(self, permission_id, role_id, default=Unset):
         '''See interface IRolePermissionMap'''
-        return self.queryCell(permission_id, role_id)
+        return self.queryCell(permission_id, role_id, default)
 
     def getRolesAndPermissions(self):
         '''See interface IRolePermissionMap'''

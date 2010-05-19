@@ -44,9 +44,9 @@ class AnnotationPrincipalRoleManager(AnnotationSecurityMap):
     getPrincipalsForRole = AnnotationSecurityMap.getRow
     getRolesForPrincipal = AnnotationSecurityMap.getCol
 
-    def getSetting(self, role_id, principal_id):
+    def getSetting(self, role_id, principal_id, default=Unset):
         return AnnotationSecurityMap.queryCell(
-            self, role_id, principal_id, default=Unset)
+            self, role_id, principal_id, default)
 
     getPrincipalsAndRoles = AnnotationSecurityMap.getAllCells
 
@@ -90,9 +90,9 @@ class PrincipalRoleManager(SecurityMap):
         ''' See the interface IPrincipalRoleMap '''
         return self.getCol(principal_id)
 
-    def getSetting(self, role_id, principal_id):
+    def getSetting(self, role_id, principal_id, default=Unset):
         ''' See the interface IPrincipalRoleMap '''
-        return self.queryCell(role_id, principal_id, default=Unset)
+        return self.queryCell(role_id, principal_id, default)
 
     def getPrincipalsAndRoles(self):
         ''' See the interface IPrincipalRoleMap '''

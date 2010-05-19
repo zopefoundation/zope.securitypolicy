@@ -100,6 +100,9 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertEqual(manager.getPermissionsForPrincipal(principal), [])
         # check the result of getSetting() when it's empty.
         self.assertEqual(manager.getSetting(permission, principal), Unset)
+        # check the result of getSetting() when it's empty and a default
+        # passed in
+        self.assertEqual(manager.getSetting(permission, principal, 1), 1)
         # check the result of getSetting() when it's allowed.
         manager.grantPermissionToPrincipal(permission, principal)
         self.assertEqual(manager.getSetting(permission, principal), Allow)

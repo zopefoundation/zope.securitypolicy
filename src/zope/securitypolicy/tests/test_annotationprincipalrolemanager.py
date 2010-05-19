@@ -24,7 +24,7 @@ from zope.component.testing import PlacelessSetup
 from zope.annotation.attribute import AttributeAnnotations
 
 from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
-from zope.securitypolicy.interfaces import Allow, Deny
+from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.tests import principalRegistry
@@ -93,6 +93,10 @@ class Test(PlacelessSetup, unittest.TestCase):
                          [])
         self.assertEqual(principalRoleManager.getRolesForPrincipal(principal),
                          [])
+        self.assertEqual(principalRoleManager.getSetting(principal, role),
+                         Unset)
+        self.assertEqual(principalRoleManager.getSetting(principal, role, 1),
+                         1)
 
     def testManyRolesOnePrincipal(self):
         principalRoleManager = self._make_roleManager()

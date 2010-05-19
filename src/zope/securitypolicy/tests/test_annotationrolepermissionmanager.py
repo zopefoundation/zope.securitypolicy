@@ -25,7 +25,7 @@ from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
 from zope.securitypolicy.role import Role
-from zope.securitypolicy.interfaces import Allow, Deny
+from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
 
@@ -86,6 +86,9 @@ class Test(PlacelessSetup, unittest.TestCase):
 
         l = list(mgr.getRolesForPermission(self.read))
         self.assertEqual(l, [(self.manager, Allow)])
+
+        self.assertEqual(mgr.getSetting(self.read, self.peon), Unset)
+        self.assertEqual(mgr.getSetting(self.read, self.peon, 1), 1)
 
 
 def test_suite():
