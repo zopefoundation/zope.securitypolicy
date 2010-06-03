@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Grant info
-
-$Id$
 """
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import implements

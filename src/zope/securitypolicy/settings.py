@@ -16,8 +16,6 @@
 The `Allow`, `Deny`, and `Unset` constants are exposed by the
 `zope.securitypolicy.interfaces` module, and should be imported
 from there.
-
-$Id$
 """
 
 

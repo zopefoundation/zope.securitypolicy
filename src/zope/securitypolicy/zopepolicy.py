@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Define Zope's default security policy
-
-$Id$
 """
 
 import zope.interface

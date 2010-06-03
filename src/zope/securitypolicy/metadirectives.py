@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Grant Directive Schema
-
-$Id$
 """
 from zope.interface import Interface
 from zope.schema import Id

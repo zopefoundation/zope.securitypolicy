@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """ Register security related configuration directives.
-
-$Id$
 """
 from zope.configuration.exceptions import ConfigurationError
 from zope.component.zcml import utility

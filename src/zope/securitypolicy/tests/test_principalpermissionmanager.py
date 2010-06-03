@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test handler for PrincipalPermissionManager module.
-
-$Id$
 """
 import unittest
 

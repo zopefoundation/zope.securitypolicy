@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Role vocabluary doc tests.
-
-$Id$
 """
 from doctest import DocTestSuite
 import unittest

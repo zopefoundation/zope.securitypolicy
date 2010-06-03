@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test handler for RolePermissionManager module.
-
-$Id$
 """
 import unittest
 

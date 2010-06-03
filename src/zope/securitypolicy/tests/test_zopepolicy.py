@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Tests the zope policy.
-
-$Id$
 """
 
 from doctest import DocFileSuite

@@ -15,8 +15,6 @@
 
 In all cases, 'setting' values are one of the defined constants
 `Allow`, `Deny`, or `Unset`.
-
-$Id$
 """
 from zope.interface import Interface
 from zope.schema import TextLine, Text

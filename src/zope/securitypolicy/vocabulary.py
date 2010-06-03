@@ -14,8 +14,6 @@
 """Role Id Vocabulary.
 
 This vocabulary provides role IDs.
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 

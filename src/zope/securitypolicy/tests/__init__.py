@@ -11,9 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""
-$Id$
-"""
 from zope.interface import implements
 from zope.authentication.interfaces import IAuthentication, PrincipalLookupError
 from zope.security.interfaces import IPrincipal

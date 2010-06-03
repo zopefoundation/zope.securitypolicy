@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Mappings between principals and roles, stored in an object locally.
-
-$Id$
 """
 from zope.interface import implements
 

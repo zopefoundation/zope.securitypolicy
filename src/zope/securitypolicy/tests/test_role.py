@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Doctests for 'permission' module.
-
-$Id$
 """
 from doctest import DocTestSuite
 import unittest

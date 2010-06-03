@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Generic two-dimensional array type (in context of security)
-
-$Id$
 """
 from persistent import Persistent
 from zope.annotation import IAnnotations

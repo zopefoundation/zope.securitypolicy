@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test handler for Annotation Principal Permission Manager module.
-
-$Id$
 """
 import unittest
 

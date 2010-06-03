@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Security Settings Tests
-
-$Id$
 """
 import unittest
 from cPickle import Pickler, Unpickler

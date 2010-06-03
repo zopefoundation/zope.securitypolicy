@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Permission to Roles Manager (Adapter)
-
-$Id$
 """
 from zope.interface import implements
 

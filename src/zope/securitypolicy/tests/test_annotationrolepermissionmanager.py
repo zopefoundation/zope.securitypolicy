@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test handler for Annotation Role Permission Manager.
-
-$Id$
 """
 import unittest
 from zope.component import provideUtility, provideAdapter

@@ -12,8 +12,6 @@
 #
 #############################################################################
 """Test SecurityMap implementations
-
-$Id$
 """
 import unittest
 from zope.securitypolicy.securitymap import SecurityMap

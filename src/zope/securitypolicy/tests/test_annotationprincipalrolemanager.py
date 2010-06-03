@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Test handler for PrincipalRoleManager module.
-
-$Id$
 """
 import unittest
 import zope.component
