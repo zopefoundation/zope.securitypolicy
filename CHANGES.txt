@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.7.0 (unreleased)
+3.7.0 (2010-09-25)
 ------------------
 
 - LP #131115: Clean up inconsistency in ``getSetting`` interface definitions
