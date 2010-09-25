@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.6.2 (unreleased)
+3.7.0 (unreleased)
 ------------------
 
 - LP #131115: Clean up inconsistency in ``getSetting`` interface definitions
@@ -16,6 +16,14 @@ CHANGES
 - Use doctest module instead of the deprecated zope.testing.doctest.
 
 - AnnotationGrantInfo implements IGrantInfo.
+
+- Added test extra to declare test dependency on ``zope.component [test]``.
+
+- Added an extra named `dublincore` to express optional dependency on
+  `zope.dublincore >= 3.7`.
+
+- Added tests for ZCML files making sure they include everything they need.
+
 
 3.6.1 (2009-07-24)
 ------------------

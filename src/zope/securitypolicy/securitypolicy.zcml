@@ -6,6 +6,7 @@
 
   <!-- This file contains sample security policy definition -->
 
+  <include package="zope.securitypolicy" file="meta.zcml" />
   <include package="zope.securitypolicy" />
 
   <securityPolicy

@@ -28,7 +28,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='zope.securitypolicy',
-    version='3.6.2dev',
+    version='3.7.0dev',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     description='Default security policy for Zope3',
@@ -67,6 +67,13 @@ setup(name='zope.securitypolicy',
         'zope.schema',
         'zope.security',
         ],
+    extras_require=dict(
+          test=[
+              'zope.component [test]',
+              ],
+          dublincore=[
+              'zope.dublincore >= 3.7',
+              ]),
     include_package_data=True,
     zip_safe=False,
     )
