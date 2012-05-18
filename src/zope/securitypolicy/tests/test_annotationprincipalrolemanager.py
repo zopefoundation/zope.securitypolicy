@@ -15,7 +15,7 @@
 """
 import unittest
 import zope.component
-from zope.interface import implements
+from zope.interface import implementer
 from zope.annotation.interfaces import IAttributeAnnotatable
 
 from zope.component.testing import PlacelessSetup
@@ -27,8 +27,9 @@ from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.tests import principalRegistry
 
+@implementer(IAttributeAnnotatable)
 class Manageable(object):
-    implements(IAttributeAnnotatable)
+    pass
 
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)

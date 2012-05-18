@@ -48,8 +48,8 @@ class CacheEntry:
     pass
 
 
+@zope.interface.provider(ISecurityPolicy)
 class ZopeSecurityPolicy(ParanoidSecurityPolicy):
-    zope.interface.classProvides(ISecurityPolicy)
 
     def __init__(self, *args, **kw):
         ParanoidSecurityPolicy.__init__(self, *args, **kw)

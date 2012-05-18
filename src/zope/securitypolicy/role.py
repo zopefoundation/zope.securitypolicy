@@ -17,7 +17,7 @@ __docformat__ = 'restructuredtext'
 
 from persistent import Persistent
 
-from zope.interface import implements
+from zope.interface import implementer
 from zope.component import getUtilitiesFor
 from zope.location import Location
 
@@ -27,8 +27,8 @@ from zope.i18nmessageid import ZopeMessageFactory as _
 NULL_ID = _('<role not activated>')
 
 
+@implementer(IRole)
 class Role(object):
-    implements(IRole)
 
     def __init__(self, id, title, description=""):
         self.id = id
@@ -36,8 +36,8 @@ class Role(object):
         self.description = description
 
 
+@implementer(IRole)
 class LocalRole(Persistent, Location):
-    implements(IRole)
 
     def __init__(self, title, description=""):
         self.id = NULL_ID

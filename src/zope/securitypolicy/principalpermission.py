@@ -14,7 +14,7 @@
 """Mappings between principals and permissions, stored in an object locally.
 """
 
-from zope.interface import implements
+from zope.interface import implementer
 from zope.security.permission import allPermissions
 
 from zope.authentication.principal import checkPrincipal
@@ -24,6 +24,7 @@ from zope.securitypolicy.securitymap import SecurityMap
 from zope.securitypolicy.securitymap import AnnotationSecurityMap
 
 
+@implementer(IPrincipalPermissionManager)
 class AnnotationPrincipalPermissionManager(AnnotationSecurityMap):
     """Mappings between principals and permissions."""
 
@@ -32,8 +33,6 @@ class AnnotationPrincipalPermissionManager(AnnotationSecurityMap):
     # It is also is misspelled, but that's OK. It just has to be unique.
     # we'll keep it as is, to prevent breaking old data:
     key = 'zopel.app.security.AnnotationPrincipalPermissionManager'
-
-    implements(IPrincipalPermissionManager)
 
     def grantPermissionToPrincipal(self, permission_id, principal_id):
         AnnotationSecurityMap.addCell(self, permission_id, principal_id, Allow)
@@ -52,10 +51,9 @@ class AnnotationPrincipalPermissionManager(AnnotationSecurityMap):
     getPrincipalsAndPermissions = AnnotationSecurityMap.getAllCells
 
 
+@implementer(IPrincipalPermissionManager)
 class PrincipalPermissionManager(SecurityMap):
     """Mappings between principals and permissions."""
-
-    implements(IPrincipalPermissionManager)
 
     def grantPermissionToPrincipal(self, permission_id, principal_id,
                                    check=True):

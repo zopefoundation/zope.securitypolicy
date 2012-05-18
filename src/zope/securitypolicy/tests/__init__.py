@@ -11,15 +11,14 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.interface import implements
+from zope.interface import implementer
 from zope.authentication.interfaces import IAuthentication, PrincipalLookupError
 from zope.security.interfaces import IPrincipal
 
+@implementer(IAuthentication)
 class DummyPrincipalRegistry(object):
     """Dummy principal registry that only implements getPrincipal
     and definePrincipal method that are needed for securitypolicy tests."""
-    
-    implements(IAuthentication)
     
     def __init__(self):
         self._principals = {}
@@ -36,10 +35,9 @@ class DummyPrincipalRegistry(object):
 
 principalRegistry = DummyPrincipalRegistry()
 
+@implementer(IPrincipal)
 class DummyPrincipal(object):
     """Very simple principal implementation"""
-    
-    implements(IPrincipal)
     
     def __init__(self, id, title=u'', description=u''):
         self.id = id

@@ -13,7 +13,7 @@
 ##############################################################################
 """Permission to Roles Manager (Adapter)
 """
-from zope.interface import implements
+from zope.interface import implementer
 
 from zope.security.permission import allPermissions
 from zope.securitypolicy.role import checkRole
@@ -23,6 +23,7 @@ from zope.securitypolicy.securitymap import AnnotationSecurityMap
 from zope.securitypolicy.securitymap import SecurityMap
 
 
+@implementer(IRolePermissionManager)
 class AnnotationRolePermissionManager(AnnotationSecurityMap):
     """Provide adapter that manages role permission data in an object attribute
     """
@@ -30,8 +31,6 @@ class AnnotationRolePermissionManager(AnnotationSecurityMap):
     # the annotation key is a holdover from this module's old
     # location, but cannot change without breaking existing databases
     key = 'zope.app.security.AnnotationRolePermissionManager'
-
-    implements(IRolePermissionManager)
 
     def grantPermissionToRole(self, permission_id, role_id):
         AnnotationSecurityMap.addCell(self, permission_id, role_id, Allow)
@@ -49,10 +48,9 @@ class AnnotationRolePermissionManager(AnnotationSecurityMap):
             self, permission_id, role_id, default)
 
 
+@implementer(IRolePermissionManager)
 class RolePermissionManager(SecurityMap):
     """Mappings between roles and permissions."""
-
-    implements(IRolePermissionManager)
 
     def grantPermissionToRole(self, permission_id, role_id, check=True):
         '''See interface IRolePermissionMap'''

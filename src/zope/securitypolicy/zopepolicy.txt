@@ -19,8 +19,9 @@ grants and denials, objects must be annotatable:
 
   >>> import zope.interface
   >>> from zope.annotation.interfaces import IAttributeAnnotatable
-  >>> class Ob:
-  ...     zope.interface.implements(IAttributeAnnotatable)
+  >>> @zope.interface.implementer(IAttributeAnnotatable)
+  ... class Ob:
+  ...     pass
 
   >>> ob = Ob()
 
@@ -499,8 +500,8 @@ For our examples here, we'll create and register a stub principal
 authentication service:
 
   >>> from zope.authentication.interfaces import IAuthentication
-  >>> class FauxPrincipals(object):
-  ...     zope.interface.implements(IAuthentication)
+  >>> @zope.interface.implementer(IAuthentication)
+  ... class FauxPrincipals(object):
   ...     def __init__(self):
   ...         self.data = {}
   ...     def __setitem__(self, key, value):

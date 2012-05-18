@@ -14,7 +14,7 @@
 """Grant info
 """
 from zope.annotation.interfaces import IAnnotations
-from zope.interface import implements
+from zope.interface import implementer
 from zope.securitypolicy.interfaces import Unset
 from zope.securitypolicy.interfaces import IGrantInfo
 
@@ -34,9 +34,8 @@ rolepermkey = AnnotationRolePermissionManager.key
 del AnnotationRolePermissionManager
 
 
+@implementer(IGrantInfo)
 class AnnotationGrantInfo(object):
-
-    implements(IGrantInfo)
 
     prinper = prinrole = permrole = {}
 

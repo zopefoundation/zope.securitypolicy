@@ -18,7 +18,7 @@ This vocabulary provides role IDs.
 __docformat__ = 'restructuredtext'
 
 import zope.component
-from zope.interface import implements, classProvides
+from zope.interface import implementer, provider
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from zope.schema.interfaces import IVocabularyFactory
 
@@ -26,6 +26,7 @@ from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.interfaces import IGrantVocabulary
 
 
+@provider(IVocabularyFactory)
 class RoleIdsVocabulary(SimpleVocabulary):
     """A vocabular of role IDs.
 
@@ -62,7 +63,6 @@ class RoleIdsVocabulary(SimpleVocabulary):
     >>> tearDown()
 
     """
-    classProvides(IVocabularyFactory)
 
     def __init__(self, context):
         terms = []
@@ -72,7 +72,7 @@ class RoleIdsVocabulary(SimpleVocabulary):
         super(RoleIdsVocabulary, self).__init__(terms)
 
 
+@provider(IVocabularyFactory)
+@implementer(IGrantVocabulary)
 class GrantVocabulary(SimpleVocabulary):
     """A vocabular for getting the RadioWidget via the Choice field."""
-    classProvides(IVocabularyFactory)
-    implements(IGrantVocabulary)

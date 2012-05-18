@@ -17,7 +17,7 @@ import unittest
 
 from zope.component import provideAdapter, provideUtility
 from zope.component.testing import PlacelessSetup
-from zope.interface import implements
+from zope.interface import implementer
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.security.interfaces import IPermission
@@ -29,8 +29,9 @@ from zope.securitypolicy.principalpermission import \
 from zope.securitypolicy.tests import principalRegistry
 
 
+@implementer(IAttributeAnnotatable)
 class Manageable(object):
-    implements(IAttributeAnnotatable)
+    pass
 
 class Test(PlacelessSetup, unittest.TestCase):
 

@@ -13,7 +13,7 @@
 ##############################################################################
 """Mappings between principals and roles, stored in an object locally.
 """
-from zope.interface import implements
+from zope.interface import implementer
 
 from zope.authentication.principal import checkPrincipal
 from zope.securitypolicy.interfaces import Allow, Deny, Unset
@@ -23,14 +23,13 @@ from zope.securitypolicy.securitymap import AnnotationSecurityMap
 from zope.securitypolicy.role import checkRole
 
 
+@implementer(IPrincipalRoleManager)
 class AnnotationPrincipalRoleManager(AnnotationSecurityMap):
     """Mappings between principals and roles."""
 
     # the annotation key is a holdover from this module's old
     # location, but cannot change without breaking existing databases
     key = 'zope.app.security.AnnotationPrincipalRoleManager'
-
-    implements(IPrincipalRoleManager)
 
     def assignRoleToPrincipal(self, role_id, principal_id):
         AnnotationSecurityMap.addCell(self, role_id, principal_id, Allow)
@@ -49,10 +48,9 @@ class AnnotationPrincipalRoleManager(AnnotationSecurityMap):
     getPrincipalsAndRoles = AnnotationSecurityMap.getAllCells
 
 
+@implementer(IPrincipalRoleManager)
 class PrincipalRoleManager(SecurityMap):
     """Mappings between principals and roles."""
-
-    implements(IPrincipalRoleManager)
 
     def assignRoleToPrincipal(self, role_id, principal_id, check=True):
         ''' See the interface IPrincipalRoleManager '''
