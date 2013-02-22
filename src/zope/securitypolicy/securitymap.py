@@ -96,14 +96,14 @@ class SecurityMap(object):
     def getRow(self, rowentry):
         row = self._byrow.get(rowentry)
         if row:
-            return row.items()
+            return list(row.items())
         else:
             return []
 
     def getCol(self, colentry):
         col = self._bycol.get(colentry)
         if col:
-            return col.items()
+            return list(col.items())
         else:
             return []
 

@@ -66,7 +66,7 @@ class TestSecurityMap(unittest.TestCase):
         map.addCell('a', 'b', marker)
         self.assertEqual(map._byrow['a']['b'], marker)
         self.assertEqual(map._bycol['b']['a'], marker)
-        
+
     def test_delCell(self):
         map = self._getSecurityMap()
         self.assertEqual(getInteraction().invalidated, 0)
@@ -76,8 +76,8 @@ class TestSecurityMap(unittest.TestCase):
         map._bycol[1][0] = 'aa'
         map.delCell(0, 1)
         self.assertEqual(getInteraction().invalidated, 1)
-        self.assertEqual(map._byrow.get(0), None) 
-        self.assertEqual(map._bycol.get(1), None) 
+        self.assertEqual(map._byrow.get(0), None)
+        self.assertEqual(map._bycol.get(1), None)
 
     def test_queryCell(self):
         map = self._getSecurityMap()

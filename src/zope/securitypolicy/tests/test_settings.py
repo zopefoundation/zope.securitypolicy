@@ -14,15 +14,20 @@
 """Security Settings Tests
 """
 import unittest
-from cPickle import Pickler, Unpickler
-from StringIO import StringIO
+from pickle import Pickler, Unpickler
+
+try:
+    from StringIO import StringIO as BytesIO
+except ImportError:
+    # Py3: New location.
+    from io import BytesIO
 
 from zope.securitypolicy.interfaces import Allow
 
 class Test(unittest.TestCase):
 
     def testPickleUnpickle(self):
-        s = StringIO()
+        s = BytesIO()
         p = Pickler(s)
         p.dump(Allow)
         s.seek(0)

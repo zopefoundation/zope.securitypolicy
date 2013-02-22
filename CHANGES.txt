@@ -2,8 +2,10 @@
 CHANGES
 =======
 
-4.0.0 (unreleased)
-------------------
+4.0.0a1 (unreleased)
+--------------------
+
+- Add Python 3.3 support.
 
 - Replaced deprecated ``zope.interface.classProvides`` usage with equivalent
   ``zope.interface.provider`` decorator.

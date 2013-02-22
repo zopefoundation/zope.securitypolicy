@@ -56,9 +56,13 @@ class PermissionSetting(object):
 
 # register PermissionSettings to be symbolic constants by identity,
 # even when pickled and unpickled.
-import copy_reg
-copy_reg.constructor(PermissionSetting)
-copy_reg.pickle(PermissionSetting,
+try:
+    import copy_reg as copyreg
+except ImportError:
+    # Py3: Location change.
+    import copyreg
+copyreg.constructor(PermissionSetting)
+copyreg.pickle(PermissionSetting,
                 PermissionSetting.getName,
                 PermissionSetting)
 

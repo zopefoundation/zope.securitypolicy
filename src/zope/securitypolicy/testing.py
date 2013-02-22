@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2004 Zope Foundation and Contributors.
+# Copyright (c) 2013 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -11,17 +11,15 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Doctests for 'permission' module.
+"""Reusable functionality for testing
 """
-from doctest import DocTestSuite
-import unittest
+import re
+from zope.testing import renormalizing
 
-from zope.securitypolicy import testing
-
-def test_suite():
-    return unittest.TestSuite((
-        DocTestSuite('zope.securitypolicy.role', checker=testing.checker),
-        ))
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
+checker = renormalizing.RENormalizing([
+    # Python 3 unicode removed the "u".
+    (re.compile("u('.*?')"),
+     r"\1"),
+    (re.compile('u(".*?")'),
+     r"\1"),
+    ])
