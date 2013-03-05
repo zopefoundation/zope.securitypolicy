@@ -89,12 +89,14 @@ setup(
     extras_require=dict(
           test=[
               'zope.testing',
+              'zope.testrunner',
               ],
           dublincore=[
               'zope.dublincore >= 3.7',
               ]),
     tests_require = [
         'zope.testing',
+        'zope.testrunner',
         ],
     test_suite = '__main__.alltests',
     include_package_data=True,
