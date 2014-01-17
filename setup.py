@@ -21,8 +21,11 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
+
 
 def alltests():
     import os
@@ -85,20 +88,20 @@ setup(
         'zope.location',
         'zope.schema',
         'zope.security',
-        ],
+    ],
     extras_require=dict(
-          test=[
-              'zope.testing',
-              'zope.testrunner',
-              ],
-          dublincore=[
-              'zope.dublincore >= 3.7',
-              ]),
-    tests_require = [
+        test=[
+            'zope.testing',
+            'zope.testrunner',
+        ],
+        dublincore=[
+            'zope.dublincore >= 3.7',
+        ]),
+    tests_require=[
         'zope.testing',
         'zope.testrunner',
-        ],
-    test_suite = '__main__.alltests',
+    ],
+    test_suite='__main__.alltests',
     include_package_data=True,
     zip_safe=False,
-    )
+)
