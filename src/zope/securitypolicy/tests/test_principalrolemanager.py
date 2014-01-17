@@ -108,8 +108,8 @@ class Test(PlacelessSetup, unittest.TestCase):
         principalRoleManager.assignRoleToPrincipal(role2, prin1)
         roles = principalRoleManager.getRolesForPrincipal(prin1)
         self.assertEqual(len(roles), 2)
-        self.failUnless((role1, Allow) in roles)
-        self.failUnless((role2, Allow) in roles)
+        self.assertTrue((role1, Allow) in roles)
+        self.assertTrue((role2, Allow) in roles)
 
     def testManyPrincipalsOneRole(self):
         role1 = defineRole('Role One', 'Role #1').id
@@ -119,8 +119,8 @@ class Test(PlacelessSetup, unittest.TestCase):
         principalRoleManager.assignRoleToPrincipal(role1, prin2)
         principals = principalRoleManager.getPrincipalsForRole(role1)
         self.assertEqual(len(principals), 2)
-        self.failUnless((prin1, Allow) in principals)
-        self.failUnless((prin2, Allow) in principals)
+        self.assertTrue((prin1, Allow) in principals)
+        self.assertTrue((prin2, Allow) in principals)
 
     def testPrincipalsAndRoles(self):
         role1 = defineRole('Role One', 'Role #1').id
@@ -132,9 +132,9 @@ class Test(PlacelessSetup, unittest.TestCase):
         principalRoleManager.assignRoleToPrincipal(role2, prin1)
         principalsAndRoles = principalRoleManager.getPrincipalsAndRoles()
         self.assertEqual(len(principalsAndRoles), 3)
-        self.failUnless((role1, prin1, Allow) in principalsAndRoles)
-        self.failUnless((role1, prin2, Allow) in principalsAndRoles)
-        self.failUnless((role2, prin1, Allow) in principalsAndRoles)
+        self.assertTrue((role1, prin1, Allow) in principalsAndRoles)
+        self.assertTrue((role1, prin2, Allow) in principalsAndRoles)
+        self.assertTrue((role2, prin1, Allow) in principalsAndRoles)
 
 
 def test_suite():

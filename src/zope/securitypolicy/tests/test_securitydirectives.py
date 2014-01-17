@@ -56,7 +56,7 @@ class TestRoleDirective(TestBase, unittest.TestCase):
         xmlconfig.file("role.zcml", zope.securitypolicy.tests)
 
         role = zope.component.getUtility(IRole, "zope.Everyperson")
-        self.failUnless(role.id.endswith('Everyperson'))
+        self.assertTrue(role.id.endswith('Everyperson'))
         self.assertEqual(role.title, 'Tout le monde')
         self.assertEqual(role.description,
                          'The common man, woman, person, or thing')
@@ -81,30 +81,30 @@ class TestSecurityMapping(TestBase, unittest.TestCase):
         perms = role_perm_mgr.getPermissionsForRole("zope.Bar")
 
         self.assertEqual(len(roles), 1)
-        self.failUnless(("zope.Bar",Allow) in roles)
+        self.assertTrue(("zope.Bar",Allow) in roles)
 
         self.assertEqual(len(perms), 1)
-        self.failUnless(("zope.Foo",Allow) in perms)
+        self.assertTrue(("zope.Foo",Allow) in perms)
 
     def test_PermPrincipalMap(self):
         principals = principal_perm_mgr.getPrincipalsForPermission("zope.Foo")
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.Blah")
 
         self.assertEqual(len(principals), 1)
-        self.failUnless(("zope.Blah", Allow) in principals)
+        self.assertTrue(("zope.Blah", Allow) in principals)
 
         self.assertEqual(len(perms), 1)
-        self.failUnless(("zope.Foo", Allow) in perms)
+        self.assertTrue(("zope.Foo", Allow) in perms)
 
     def test_RolePrincipalMap(self):
         principals = principal_role_mgr.getPrincipalsForRole("zope.Bar")
         roles = principal_role_mgr.getRolesForPrincipal("zope.Blah")
 
         self.assertEqual(len(principals), 1)
-        self.failUnless(("zope.Blah", Allow) in principals)
+        self.assertTrue(("zope.Blah", Allow) in principals)
 
         self.assertEqual(len(roles), 1)
-        self.failUnless(("zope.Bar", Allow) in roles)
+        self.assertTrue(("zope.Bar", Allow) in roles)
 
 
 def test_suite():

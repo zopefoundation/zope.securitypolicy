@@ -69,13 +69,13 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.denyPermissionToRole(perm3, role1)
         perms = manager.getPermissionsForRole(role1)
         self.assertEqual(len(perms), 3)
-        self.failUnless((perm1,Allow) in perms)
-        self.failUnless((perm2,Allow) in perms)
-        self.failUnless((perm3,Deny) in perms)
+        self.assertTrue((perm1,Allow) in perms)
+        self.assertTrue((perm2,Allow) in perms)
+        self.assertTrue((perm3,Deny) in perms)
         manager.unsetPermissionFromRole(perm1, role1)
         perms = manager.getPermissionsForRole(role1)
         self.assertEqual(len(perms), 2)
-        self.failUnless((perm2,Allow) in perms)
+        self.assertTrue((perm2,Allow) in perms)
 
     def testAllPermissions(self):
         perm1 = definePermission('Perm One', 'P1').id
@@ -87,9 +87,9 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.grantAllPermissionsToRole(role1)
         perms = manager.getPermissionsForRole(role1)
         self.assertEqual(len(perms), 3)
-        self.failUnless((perm1, Allow) in perms)
-        self.failUnless((perm2, Allow) in perms)
-        self.failUnless((perm3, Allow) in perms)
+        self.assertTrue((perm1, Allow) in perms)
+        self.assertTrue((perm2, Allow) in perms)
+        self.assertTrue((perm3, Allow) in perms)
 
     def testManyRolesOnePermission(self):
         perm1 = definePermission('Perm One', 'title').id
@@ -103,13 +103,13 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.denyPermissionToRole(perm1, role1)
         roles = manager.getRolesForPermission(perm1)
         self.assertEqual(len(roles), 2)
-        self.failIf((role1,Allow) in roles)
-        self.failUnless((role1,Deny) in roles)
-        self.failUnless((role2,Allow) in roles)
+        self.assertFalse((role1, Allow) in roles)
+        self.assertTrue((role1,Deny) in roles)
+        self.assertTrue((role2,Allow) in roles)
         manager.unsetPermissionFromRole(perm1, role1)
         roles = manager.getRolesForPermission(perm1)
         self.assertEqual(len(roles), 1)
-        self.failUnless((role2,Allow) in roles)
+        self.assertTrue((role2,Allow) in roles)
 
     def test_invalidRole(self):
         self.assertRaises(ValueError,

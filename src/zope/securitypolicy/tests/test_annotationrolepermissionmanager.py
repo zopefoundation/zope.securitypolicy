@@ -64,15 +64,15 @@ class Test(PlacelessSetup, unittest.TestCase):
         mgr.grantPermissionToRole(self.read,self.peon)
 
         l = list(mgr.getPermissionsForRole(self.manager))
-        self.failUnless((self.read, Allow) in l)
-        self.failUnless((self.write, Allow) in l)
+        self.assertTrue((self.read, Allow) in l)
+        self.assertTrue((self.write, Allow) in l)
 
         l = list(mgr.getPermissionsForRole(self.peon))
-        self.failUnless([(self.read, Allow)] == l)
+        self.assertTrue([(self.read, Allow)] == l)
 
         l = list(mgr.getRolesForPermission(self.read))
-        self.failUnless((self.manager, Allow) in l)
-        self.failUnless((self.peon, Allow) in l)
+        self.assertTrue((self.manager, Allow) in l)
+        self.assertTrue((self.peon, Allow) in l)
 
         l = list(mgr.getRolesForPermission(self.write))
         self.assertEqual(l, [(self.manager, Allow)])

@@ -116,16 +116,16 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.grantPermissionToPrincipal(perm2, prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.failUnless((perm1,Allow) in perms)
-        self.failUnless((perm2,Allow) in perms)
+        self.assertTrue((perm1,Allow) in perms)
+        self.assertTrue((perm2,Allow) in perms)
         manager.denyPermissionToPrincipal(perm2, prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.failUnless((perm1,Allow) in perms)
-        self.failUnless((perm2,Deny) in perms)
+        self.assertTrue((perm1,Allow) in perms)
+        self.assertTrue((perm2,Deny) in perms)
         perms = manager.getPrincipalsAndPermissions()
-        self.failUnless((perm1,prin1,Allow) in perms)
-        self.failUnless((perm2,prin1,Deny) in perms)
+        self.assertTrue((perm1,prin1,Allow) in perms)
+        self.assertTrue((perm2,prin1,Deny) in perms)
 
     def testAllPermissions(self):
         perm1 = definePermission('Perm One', 'title').id
@@ -134,8 +134,8 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.grantAllPermissionsToPrincipal(prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.failUnless((perm1,Allow) in perms)
-        self.failUnless((perm2,Allow) in perms)
+        self.assertTrue((perm1,Allow) in perms)
+        self.assertTrue((perm2,Allow) in perms)
 
     def testManyPrincipalsOnePermission(self):
         perm1 = definePermission('Perm One', 'title').id
@@ -145,8 +145,8 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.denyPermissionToPrincipal(perm1, prin2)
         principals = manager.getPrincipalsForPermission(perm1)
         self.assertEqual(len(principals), 2)
-        self.failUnless((prin1,Allow) in principals)
-        self.failUnless((prin2,Deny) in principals)
+        self.assertTrue((prin1,Allow) in principals)
+        self.assertTrue((prin2,Deny) in principals)
 
 def test_suite():
     loader=unittest.TestLoader()

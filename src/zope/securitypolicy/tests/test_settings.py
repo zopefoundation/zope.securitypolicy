@@ -34,7 +34,7 @@ class Test(unittest.TestCase):
         u = Unpickler(s)
         newAllow = u.load()
 
-        self.failUnless(newAllow is Allow)
+        self.assertTrue(newAllow is Allow)
 
 def test_suite():
     loader=unittest.TestLoader()
