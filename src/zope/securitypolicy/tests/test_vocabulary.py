@@ -18,11 +18,12 @@ import unittest
 
 from zope.securitypolicy import testing
 
+
 def test_suite():
     return unittest.TestSuite((
         DocTestSuite(
-                'zope.securitypolicy.vocabulary', checker=testing.checker),
-        ))
+            'zope.securitypolicy.vocabulary', checker=testing.checker),
+    ))
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

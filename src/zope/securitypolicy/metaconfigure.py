@@ -19,11 +19,11 @@ from zope.component.zcml import utility
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.rolepermission import \
-     rolePermissionManager as role_perm_mgr
+    rolePermissionManager as role_perm_mgr
 from zope.securitypolicy.principalpermission import \
-     principalPermissionManager as principal_perm_mgr
+    principalPermissionManager as principal_perm_mgr
 from zope.securitypolicy.principalrole import \
-     principalRoleManager as principal_role_mgr
+    principalRoleManager as principal_role_mgr
 
 
 def grant(_context, principal=None, role=None, permission=None):
@@ -42,7 +42,7 @@ def grant(_context, principal=None, role=None, permission=None):
                 discriminator=('grantRoleToPrincipal', role, principal),
                 callable=principal_role_mgr.assignRoleToPrincipal,
                 args=(role, principal),
-                )
+            )
         else:
             _context.action(
                 discriminator=('grantPermissionToPrincipal',
@@ -50,13 +50,13 @@ def grant(_context, principal=None, role=None, permission=None):
                                principal),
                 callable=principal_perm_mgr.grantPermissionToPrincipal,
                 args=(permission, principal),
-                )
+            )
     else:
         _context.action(
             discriminator=('grantPermissionToRole', permission, role),
             callable=role_perm_mgr.grantPermissionToRole,
             args=(permission, role),
-            )
+        )
 
 
 def grantAll(_context, principal=None, role=None):
@@ -76,13 +76,13 @@ def grantAll(_context, principal=None, role=None):
                            principal),
             callable=principal_perm_mgr.grantAllPermissionsToPrincipal,
             args=(principal, ),
-            )
+        )
     else:
         _context.action(
             discriminator=('grantAllPermissionsToRole', role),
             callable=role_perm_mgr.grantAllPermissionsToRole,
             args=(role, ),
-            )
+        )
 
 
 def defineRole(_context, id, title, description=''):

@@ -33,12 +33,12 @@ def definePermission(id, title=None, description=None):
     provideUtility(perm, IPermission, perm.id)
     return perm
 
+
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
         super(Test, self).setUp()
         provideUtility(principalRegistry, IAuthentication)
-
 
     def _make_principal(self, id=None, title=None):
         p = principalRegistry.definePrincipal(
@@ -52,13 +52,11 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertEqual(manager.getPrincipalsForPermission(permission), [])
         self.assertEqual(manager.getPermissionsForPrincipal(principal), [])
 
-
     def test_invalidPrincipal(self):
         permission = definePermission('APerm', 'title').id
         self.assertRaises(ValueError,
                           manager.grantPermissionToPrincipal,
                           permission, 'principal')
-
 
     def testPrincipalPermission(self):
         permission = definePermission('APerm', 'title').id
@@ -116,16 +114,16 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.grantPermissionToPrincipal(perm2, prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.assertTrue((perm1,Allow) in perms)
-        self.assertTrue((perm2,Allow) in perms)
+        self.assertTrue((perm1, Allow) in perms)
+        self.assertTrue((perm2, Allow) in perms)
         manager.denyPermissionToPrincipal(perm2, prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.assertTrue((perm1,Allow) in perms)
-        self.assertTrue((perm2,Deny) in perms)
+        self.assertTrue((perm1, Allow) in perms)
+        self.assertTrue((perm2, Deny) in perms)
         perms = manager.getPrincipalsAndPermissions()
-        self.assertTrue((perm1,prin1,Allow) in perms)
-        self.assertTrue((perm2,prin1,Deny) in perms)
+        self.assertTrue((perm1, prin1, Allow) in perms)
+        self.assertTrue((perm2, prin1, Deny) in perms)
 
     def testAllPermissions(self):
         perm1 = definePermission('Perm One', 'title').id
@@ -134,8 +132,8 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.grantAllPermissionsToPrincipal(prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.assertTrue((perm1,Allow) in perms)
-        self.assertTrue((perm2,Allow) in perms)
+        self.assertTrue((perm1, Allow) in perms)
+        self.assertTrue((perm2, Allow) in perms)
 
     def testManyPrincipalsOnePermission(self):
         perm1 = definePermission('Perm One', 'title').id
@@ -145,12 +143,13 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.denyPermissionToPrincipal(perm1, prin2)
         principals = manager.getPrincipalsForPermission(perm1)
         self.assertEqual(len(principals), 2)
-        self.assertTrue((prin1,Allow) in principals)
-        self.assertTrue((prin2,Deny) in principals)
+        self.assertTrue((prin1, Allow) in principals)
+        self.assertTrue((prin2, Deny) in principals)
+
 
 def test_suite():
-    loader=unittest.TestLoader()
+    loader = unittest.TestLoader()
     return loader.loadTestsFromTestCase(Test)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.TextTestRunner().run(test_suite())

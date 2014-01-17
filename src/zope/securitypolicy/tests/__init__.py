@@ -15,14 +15,15 @@ from zope.interface import implementer
 from zope.authentication.interfaces import IAuthentication, PrincipalLookupError
 from zope.security.interfaces import IPrincipal
 
+
 @implementer(IAuthentication)
 class DummyPrincipalRegistry(object):
     """Dummy principal registry that only implements getPrincipal
     and definePrincipal method that are needed for securitypolicy tests."""
-    
+
     def __init__(self):
         self._principals = {}
-        
+
     def getPrincipal(self, id):
         if id not in self._principals:
             raise PrincipalLookupError(id)
@@ -35,10 +36,11 @@ class DummyPrincipalRegistry(object):
 
 principalRegistry = DummyPrincipalRegistry()
 
+
 @implementer(IPrincipal)
 class DummyPrincipal(object):
     """Very simple principal implementation"""
-    
+
     def __init__(self, id, title=u'', description=u''):
         self.id = id
         self.title = title

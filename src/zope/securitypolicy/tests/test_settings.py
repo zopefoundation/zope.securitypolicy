@@ -24,6 +24,7 @@ except ImportError:
 
 from zope.securitypolicy.interfaces import Allow
 
+
 class Test(unittest.TestCase):
 
     def testPickleUnpickle(self):
@@ -36,9 +37,10 @@ class Test(unittest.TestCase):
 
         self.assertTrue(newAllow is Allow)
 
+
 def test_suite():
-    loader=unittest.TestLoader()
+    loader = unittest.TestLoader()
     return loader.loadTestsFromTestCase(Test)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.TextTestRunner().run(test_suite())

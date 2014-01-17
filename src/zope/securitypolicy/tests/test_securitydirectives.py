@@ -81,10 +81,10 @@ class TestSecurityMapping(TestBase, unittest.TestCase):
         perms = role_perm_mgr.getPermissionsForRole("zope.Bar")
 
         self.assertEqual(len(roles), 1)
-        self.assertTrue(("zope.Bar",Allow) in roles)
+        self.assertTrue(("zope.Bar", Allow) in roles)
 
         self.assertEqual(len(perms), 1)
-        self.assertTrue(("zope.Foo",Allow) in perms)
+        self.assertTrue(("zope.Foo", Allow) in perms)
 
     def test_PermPrincipalMap(self):
         principals = principal_perm_mgr.getPrincipalsForPermission("zope.Foo")
@@ -111,7 +111,7 @@ def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(TestRoleDirective),
         unittest.makeSuite(TestSecurityMapping),
-        ))
+    ))
 
 if __name__ == '__main__':
     unittest.main()

@@ -18,10 +18,11 @@ import unittest
 
 from zope.securitypolicy import testing
 
+
 def test_suite():
     return unittest.TestSuite((
         DocTestSuite('zope.securitypolicy.role', checker=testing.checker),
-        ))
+    ))
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

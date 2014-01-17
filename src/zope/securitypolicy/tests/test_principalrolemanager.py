@@ -26,10 +26,12 @@ from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.principalrole import principalRoleManager
 from zope.securitypolicy.tests import principalRegistry
 
+
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)
     provideUtility(role, IRole, role.id)
     return role
+
 
 class Test(PlacelessSetup, unittest.TestCase):
 
@@ -82,8 +84,6 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertEqual(principalRoleManager.getSetting(principal, role, 1),
                          1)
 
-
-
     def test_invalidPrincipal(self):
         self.assertRaises(ValueError,
                           principalRoleManager.assignRoleToPrincipal,
@@ -98,7 +98,6 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertRaises(ValueError,
                           principalRoleManager.assignRoleToPrincipal,
                           'role1', prin1)
-
 
     def testManyRolesOnePrincipal(self):
         role1 = defineRole('Role One', 'Role #1').id
@@ -138,8 +137,8 @@ class Test(PlacelessSetup, unittest.TestCase):
 
 
 def test_suite():
-    loader=unittest.TestLoader()
+    loader = unittest.TestLoader()
     return loader.loadTestsFromTestCase(Test)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.TextTestRunner().run(test_suite())

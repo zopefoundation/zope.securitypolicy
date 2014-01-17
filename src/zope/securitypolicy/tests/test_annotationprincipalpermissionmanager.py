@@ -33,6 +33,7 @@ from zope.securitypolicy.tests import principalRegistry
 class Manageable(object):
     pass
 
+
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
@@ -113,7 +114,7 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager = AnnotationPrincipalPermissionManager(Manageable())
         provideUtility(Permission('Perm One', 'title'), IPermission,
                        'Perm One')
-        perm1 = 'Perm One' 
+        perm1 = 'Perm One'
         provideUtility(Permission('Perm Two', 'title'), IPermission,
                        'Perm Two')
         perm2 = 'Perm Two'
@@ -134,7 +135,7 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager = AnnotationPrincipalPermissionManager(Manageable())
         provideUtility(Permission('Perm One', 'title'), IPermission,
                        'Perm One')
-        perm1 = 'Perm One' 
+        perm1 = 'Perm One'
         prin1 = self._make_principal()
         prin2 = self._make_principal('Principal 2', 'Principal Two')
         manager.grantPermissionToPrincipal(perm1, prin1)
@@ -144,9 +145,10 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertTrue((prin1, Allow) in principals)
         self.assertTrue((prin2, Deny) in principals)
 
+
 def test_suite():
-    loader=unittest.TestLoader()
+    loader = unittest.TestLoader()
     return loader.loadTestsFromTestCase(Test)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.TextTestRunner().run(test_suite())

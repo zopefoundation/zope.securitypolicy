@@ -28,13 +28,14 @@ from zope.securitypolicy.interfaces import IPrincipalRoleManager
 from zope.securitypolicy.interfaces import IPrincipalPermissionManager
 from zope.securitypolicy.interfaces import IRolePermissionManager
 from zope.securitypolicy.principalpermission import \
-     AnnotationPrincipalPermissionManager
+    AnnotationPrincipalPermissionManager
 from zope.securitypolicy.principalrole import \
-     AnnotationPrincipalRoleManager
+    AnnotationPrincipalRoleManager
 from zope.securitypolicy.rolepermission import \
-     AnnotationRolePermissionManager
+    AnnotationRolePermissionManager
 from zope.securitypolicy.grantinfo import \
-     AnnotationGrantInfo
+    AnnotationGrantInfo
+
 
 class TestZCML(unittest.TestCase):
 
@@ -74,4 +75,4 @@ def test_suite():
             package='zope.securitypolicy',
             setUp=setUp, tearDown=componentTearDown),
         unittest.makeSuite(TestZCML),
-        ))
+    ))

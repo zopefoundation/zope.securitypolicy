@@ -27,9 +27,11 @@ from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
 
+
 @implementer(IAttributeAnnotatable)
 class Manageable(object):
     pass
+
 
 class Test(PlacelessSetup, unittest.TestCase):
 
@@ -37,31 +39,30 @@ class Test(PlacelessSetup, unittest.TestCase):
         PlacelessSetup.setUp(self)
         provideAdapter(AttributeAnnotations)
 
-
         read = Permission('read', 'Read Something')
-        provideUtility(read, IPermission, read.id)        
+        provideUtility(read, IPermission, read.id)
         self.read = read.id
 
         write = Permission('write', 'Write Something')
-        provideUtility(write, IPermission, write.id)        
+        provideUtility(write, IPermission, write.id)
         self.write = write.id
 
         peon = Role('peon', 'Poor Slob')
-        provideUtility(peon, IRole, peon.id)        
+        provideUtility(peon, IRole, peon.id)
         self.peon = peon.id
 
         manager = Role('manager', 'Supreme Being')
-        provideUtility(manager, IRole, manager.id)        
+        provideUtility(manager, IRole, manager.id)
         self.manager = manager.id
 
     def testNormal(self):
         obj = Manageable()
         mgr = AnnotationRolePermissionManager(obj)
-        mgr.grantPermissionToRole(self.read,self.manager)
-        mgr.grantPermissionToRole(self.write,self.manager)
-        mgr.grantPermissionToRole(self.write,self.manager)
+        mgr.grantPermissionToRole(self.read, self.manager)
+        mgr.grantPermissionToRole(self.write, self.manager)
+        mgr.grantPermissionToRole(self.write, self.manager)
 
-        mgr.grantPermissionToRole(self.read,self.peon)
+        mgr.grantPermissionToRole(self.read, self.peon)
 
         l = list(mgr.getPermissionsForRole(self.manager))
         self.assertTrue((self.read, Allow) in l)
@@ -91,8 +92,8 @@ class Test(PlacelessSetup, unittest.TestCase):
 
 
 def test_suite():
-    loader=unittest.TestLoader()
+    loader = unittest.TestLoader()
     return loader.loadTestsFromTestCase(Test)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.TextTestRunner().run(test_suite())

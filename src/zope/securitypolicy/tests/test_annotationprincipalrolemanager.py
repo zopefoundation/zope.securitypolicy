@@ -27,17 +27,20 @@ from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.tests import principalRegistry
 
+
 @implementer(IAttributeAnnotatable)
 class Manageable(object):
     pass
+
 
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)
     zope.component.provideUtility(role, IRole, name=role.id)
     return role
 
+
 class Test(PlacelessSetup, unittest.TestCase):
-    
+
     def setUp(self):
         PlacelessSetup.setUp(self)
         zope.component.provideAdapter(AttributeAnnotations)
@@ -138,9 +141,10 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertTrue((role1, prin2, Allow) in principalsAndRoles)
         self.assertTrue((role2, prin1, Allow) in principalsAndRoles)
 
+
 def test_suite():
-    loader=unittest.TestLoader()
+    loader = unittest.TestLoader()
     return loader.loadTestsFromTestCase(Test)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.TextTestRunner().run(test_suite())

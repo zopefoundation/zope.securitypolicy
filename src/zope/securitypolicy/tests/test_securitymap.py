@@ -19,6 +19,7 @@ from zope.securitypolicy.securitymap import PersistentSecurityMap
 from zope.security.management import setSecurityPolicy, getInteraction
 from zope.security.management import newInteraction, endInteraction
 
+
 class InteractionStub:
     invalidated = 0
     def invalidate_cache(self):
@@ -163,4 +164,4 @@ def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(TestSecurityMap),
         unittest.makeSuite(TestPersistentSecurityMap),
-        ))
+    ))

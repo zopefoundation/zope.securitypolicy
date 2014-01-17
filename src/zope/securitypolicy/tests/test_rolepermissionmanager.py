@@ -24,17 +24,20 @@ from zope.securitypolicy.role import Role
 from zope.securitypolicy.interfaces import Allow, Deny, Unset
 from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.rolepermission import \
-        rolePermissionManager as manager
+    rolePermissionManager as manager
+
 
 def defineRole(id, title=None, description=None):
     role = Role(id, title, description)
     provideUtility(role, IRole, role.id)
     return role
 
+
 def definePermission(id, title=None, description=None):
     perm = Permission(id, title, description)
     provideUtility(perm, IPermission, perm.id)
     return perm
+
 
 class Test(PlacelessSetup, unittest.TestCase):
 
@@ -51,10 +54,9 @@ class Test(PlacelessSetup, unittest.TestCase):
         role = defineRole('ARole', 'A Role').id
         manager.grantPermissionToRole(permission, role)
         self.assertEqual(manager.getRolesForPermission(permission),
-                                                        [(role,Allow)])
+                                                        [(role, Allow)])
         self.assertEqual(manager.getPermissionsForRole(role),
-                                                    [(permission,Allow)])
-
+                                                    [(permission, Allow)])
 
     def testManyPermissionsOneRole(self):
         perm1 = definePermission('Perm One', 'P1').id
@@ -69,13 +71,13 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.denyPermissionToRole(perm3, role1)
         perms = manager.getPermissionsForRole(role1)
         self.assertEqual(len(perms), 3)
-        self.assertTrue((perm1,Allow) in perms)
-        self.assertTrue((perm2,Allow) in perms)
-        self.assertTrue((perm3,Deny) in perms)
+        self.assertTrue((perm1, Allow) in perms)
+        self.assertTrue((perm2, Allow) in perms)
+        self.assertTrue((perm3, Deny) in perms)
         manager.unsetPermissionFromRole(perm1, role1)
         perms = manager.getPermissionsForRole(role1)
         self.assertEqual(len(perms), 2)
-        self.assertTrue((perm2,Allow) in perms)
+        self.assertTrue((perm2, Allow) in perms)
 
     def testAllPermissions(self):
         perm1 = definePermission('Perm One', 'P1').id
@@ -104,12 +106,12 @@ class Test(PlacelessSetup, unittest.TestCase):
         roles = manager.getRolesForPermission(perm1)
         self.assertEqual(len(roles), 2)
         self.assertFalse((role1, Allow) in roles)
-        self.assertTrue((role1,Deny) in roles)
-        self.assertTrue((role2,Allow) in roles)
+        self.assertTrue((role1, Deny) in roles)
+        self.assertTrue((role2, Allow) in roles)
         manager.unsetPermissionFromRole(perm1, role1)
         roles = manager.getRolesForPermission(perm1)
         self.assertEqual(len(roles), 1)
-        self.assertTrue((role2,Allow) in roles)
+        self.assertTrue((role2, Allow) in roles)
 
     def test_invalidRole(self):
         self.assertRaises(ValueError,
@@ -122,8 +124,8 @@ class Test(PlacelessSetup, unittest.TestCase):
 
 
 def test_suite():
-    loader=unittest.TestLoader()
+    loader = unittest.TestLoader()
     return loader.loadTestsFromTestCase(Test)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.TextTestRunner().run(test_suite())

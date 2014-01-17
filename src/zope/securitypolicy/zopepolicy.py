@@ -270,7 +270,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
 
             if not self.cached_decision(
                 object, principal.id, self._groupsFor(principal), permission,
-                ):
+            ):
                 return False
 
             seen[principal.id] = 1
