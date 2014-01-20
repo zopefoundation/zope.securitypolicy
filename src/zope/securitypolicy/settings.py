@@ -49,22 +49,15 @@ class PermissionSetting(object):
     def getName(self):
         return self.__name
 
+    def __reduce__(self):
+        # register PermissionSettings to be symbolic constants by identity,
+        # even when pickled and unpickled.
+        return self.__name
+
     def __str__(self):
         return "PermissionSetting: %s" % self.__name
 
     __repr__ = __str__
-
-# register PermissionSettings to be symbolic constants by identity,
-# even when pickled and unpickled.
-try:
-    import copy_reg as copyreg
-except ImportError:
-    # Py3: Location change.
-    import copyreg
-copyreg.constructor(PermissionSetting)
-copyreg.pickle(PermissionSetting,
-               PermissionSetting.getName,
-               PermissionSetting)
 
 
 Allow = PermissionSetting(
