@@ -1,9 +1,8 @@
-=======
-CHANGES
+Changes
 =======
 
-4.0.0a2 (unreleased)
---------------------
+4.0.0 (unreleased)
+------------------
 
 - Nothing changed yet.
 
