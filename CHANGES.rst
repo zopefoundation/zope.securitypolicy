@@ -4,21 +4,21 @@ Changes
 4.0.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for testing on Travis.
 
 
 4.0.0a1 (2013-02-22)
 --------------------
 
-- Add Python 3.3 support.
+- Add support for Python 3.3.
 
-- Replaced deprecated ``zope.interface.classProvides`` usage with equivalent
+- Replace deprecated ``zope.interface.classProvides`` usage with equivalent
   ``zope.interface.provider`` decorator.
 
-- Replaced deprecated ``zope.interface.implements`` usage with equivalent
+- Replace deprecated ``zope.interface.implements`` usage with equivalent
   ``zope.interface.implementer`` decorator.
 
-- Dropped support for Python 2.4 and 2.5.
+- Drop support for Python 2.4 and 2.5.
 
 
 3.7.0 (2010-09-25)
@@ -30,18 +30,18 @@ Changes
 - LP #564525:  fix permission moved from ``zope.app.dublincore`` namespace
   to ``zope.dublincore``.
 
-- Removed unused imports and pep8 cleanup.
+- Remove unused imports and pep8 cleanup.
 
 - Use doctest module instead of the deprecated zope.testing.doctest.
 
 - AnnotationGrantInfo implements IGrantInfo.
 
-- Added test extra to declare test dependency on ``zope.component [test]``.
+- Add test extra to declare test dependency on ``zope.component [test]``.
 
-- Added an extra named `dublincore` to express optional dependency on
-  `zope.dublincore >= 3.7`.
+- Add an extra named ``dublincore`` to express optional dependency on
+  ``zope.dublincore >= 3.7``.
 
-- Added tests for ZCML files making sure they include everything they need.
+- Add tests for ZCML files making sure they include everything they need.
 
 
 3.6.1 (2009-07-24)
@@ -58,13 +58,13 @@ Changes
 
 - Get rid of ``zope.app.testing`` and other testing dependencices.
 
-- Add ``ZODB3`` to install dependencies, because we use `Persistent`
+- Add ``ZODB3`` to install dependencies, because we use ``Persistent``
   class. We didn't fail before, because it was installed implicitly.
 
 3.5.1 (2009-03-10)
 ------------------
 
-- Don't depend on the `hook` extra of zope.component, as we don't need
+- Don't depend on the ``hook`` extra of zope.component, as we don't need
   it explicitly.
 
 - Import security settings (Allow, Deny, Unset) in the ``interfaces``
@@ -73,12 +73,12 @@ Changes
   The ``zope.app.security`` will be adapted to import them from
   ``zope.securitypolicy.interfaces``.
 
-- Use `_z_instances` instead of `__instances__` for storing instances
+- Use ``_z_instances`` instead of ``__instances__`` for storing instances
   for ``zope.securitypolicy.settings.PermissionSetting`` singleton
   implementation, because __*__ name pattern is reserved for special
   names in python.
 
-- Add security protections for the `PermissionSetting`.
+- Add security protections for the ``PermissionSetting``.
 
 - Improve documentation formatting, add it to the package's long
   description.
@@ -95,7 +95,7 @@ Changes
 3.4.2 (2009-01-28)
 ------------------
 
-- Changed mailing list address to zope-dev at zope.org. Fix package
+- Change mailing list address to zope-dev at zope.org. Fix package
   homepage to the pypi page.
 
 - Fix test in buildout which still depended on zope.app.securitypolicy
