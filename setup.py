@@ -49,11 +49,11 @@ setup(
     author_email='zope-dev@zope.org',
     description='Default security policy for Zope3',
     long_description=(
-        read('README.txt')
+        read('README.rst')
         + '\n.. contents::\n\n' +
         read('src', 'zope', 'securitypolicy', 'zopepolicy.txt')
         + '\n\n' +
-        read('CHANGES.txt')),
+        read('CHANGES.rst')),
     keywords="zope3 security policy",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
