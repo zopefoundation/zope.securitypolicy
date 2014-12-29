@@ -50,7 +50,7 @@ setup(
     description='Default security policy for Zope3',
     long_description=(
         read('README.rst')
-        + '\n.. contents::\n\n' +
+        + '\n\n' +
         read('src', 'zope', 'securitypolicy', 'zopepolicy.txt')
         + '\n\n' +
         read('CHANGES.rst')),
