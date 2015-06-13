@@ -2,8 +2,9 @@
 __pycache__
 .installed.cfg
 .tox
-bin
-develop-eggs
-dist
-parts
+bin/
+develop-eggs/
+eggs/
+dist/
+parts/
 src/*.egg-info
