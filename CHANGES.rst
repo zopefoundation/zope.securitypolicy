@@ -8,6 +8,13 @@ Changes
 
 - Drop support for Python 2.6.
 
+- Add support to grant multiple permissions with one ZCML statement. Example::
+
+    <grant
+      role="my-role"
+      permissions="zope.foo
+                   zope.bar" />
+
 
 4.0.0 (2014-12-24)
 ------------------
