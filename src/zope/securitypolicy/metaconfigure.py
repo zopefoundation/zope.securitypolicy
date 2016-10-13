@@ -27,9 +27,9 @@ from zope.securitypolicy.principalrole import \
 
 
 def grant(_context, principal=None, role=None, permission=None):
-    nspecified = ((principal is not None)
-                  + (role is not None)
-                  + (permission is not None))
+    nspecified = ((principal is not None) +
+                  (role is not None) +
+                  (permission is not None))
 
     if nspecified != 2:
         raise ConfigurationError(
@@ -62,8 +62,8 @@ def grant(_context, principal=None, role=None, permission=None):
 def grantAll(_context, principal=None, role=None):
     """Grant all permissions to a role or principal
     """
-    nspecified = ((principal is not None)
-                  + (role is not None))
+    nspecified = ((principal is not None) +
+                  (role is not None))
 
     if nspecified != 1:
         raise ConfigurationError(

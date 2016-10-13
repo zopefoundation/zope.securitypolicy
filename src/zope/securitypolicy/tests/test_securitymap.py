@@ -22,6 +22,7 @@ from zope.security.management import newInteraction, endInteraction
 
 class InteractionStub:
     invalidated = 0
+
     def invalidate_cache(self):
         self.invalidated += 1
 

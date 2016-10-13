@@ -74,7 +74,8 @@ class TestSecurityMapping(TestBase, unittest.TestCase):
                                       IPermission, 'zope.Foo')
         defineRole("zope.Bar", '', '')
         principalRegistry.definePrincipal("zope.Blah", '', '')
-        self.context = xmlconfig.file("mapping.zcml", zope.securitypolicy.tests)
+        self.context = xmlconfig.file(
+            "mapping.zcml", zope.securitypolicy.tests)
 
     def test_PermRoleMap(self):
         roles = role_perm_mgr.getRolesForPermission("zope.Foo")

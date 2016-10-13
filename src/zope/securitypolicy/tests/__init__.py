@@ -12,7 +12,8 @@
 #
 ##############################################################################
 from zope.interface import implementer
-from zope.authentication.interfaces import IAuthentication, PrincipalLookupError
+from zope.authentication.interfaces import IAuthentication
+from zope.authentication.interfaces import PrincipalLookupError
 from zope.security.interfaces import IPrincipal
 
 

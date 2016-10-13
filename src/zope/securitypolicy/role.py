@@ -103,5 +103,5 @@ def unsetIdOnDeactivation(role, event):
 
 def checkRole(context, role_id):
     names = [name for name, util in getUtilitiesFor(IRole, context)]
-    if not role_id in names:
+    if role_id not in names:
         raise ValueError("Undefined role id", role_id)

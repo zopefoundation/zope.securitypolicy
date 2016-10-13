@@ -20,16 +20,15 @@ from zope.securitypolicy.interfaces import IGrantInfo
 
 from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
+from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
+from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
+
 prinperkey = AnnotationPrincipalPermissionManager.key
 del AnnotationPrincipalPermissionManager
 
-from zope.securitypolicy.principalrole import \
-    AnnotationPrincipalRoleManager
 prinrolekey = AnnotationPrincipalRoleManager.key
 del AnnotationPrincipalRoleManager
 
-from zope.securitypolicy.rolepermission import \
-    AnnotationRolePermissionManager
 rolepermkey = AnnotationRolePermissionManager.key
 del AnnotationRolePermissionManager
 

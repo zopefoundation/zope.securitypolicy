@@ -23,7 +23,7 @@ from zope.schema import TextLine, Text
 # in these interfaces.  The implementation may move to another
 # location in the future, so this should be the preferred module to
 # import these from.
-from zope.securitypolicy.settings import Allow, Deny, Unset
+from zope.securitypolicy.settings import Allow, Deny, Unset  # noqa
 
 
 class IRole(Interface):
