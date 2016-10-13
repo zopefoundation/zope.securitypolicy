@@ -13,6 +13,7 @@
 ##############################################################################
 """Grant Directive Schema
 """
+from zope.configuration.fields import Tokens
 from zope.interface import Interface
 from zope.schema import Id
 from zope.security.zcml import Permission, IPermissionDirective
@@ -38,6 +39,12 @@ class IGrantDirective(IGrantAllDirective):
     permission = Permission(
         title=u"Permission",
         description=u"Specifies the Permission to be mapped.",
+        required=False)
+
+    permissions = Tokens(
+        title=u"Permissions",
+        description=u"Specifies a list of permissions to be mapped.",
+        value_type=Permission(),
         required=False)
 
 

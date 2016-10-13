@@ -8,8 +8,20 @@
       />
 
   <grant
+      permissions="zope.Qwer
+                   zope.Qux"
+      role="zope.Fox"
+      />
+
+  <grant
       permission="zope.Foo"
       principal="zope.Blah"
+      />
+
+  <grant
+      permissions="zope.Qwer
+                   zope.Qux"
+      principal="zope.One"
       />
 
   <grant
