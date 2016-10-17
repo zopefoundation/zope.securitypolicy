@@ -47,7 +47,8 @@ class TestZCML(unittest.TestCase):
     def testConfigureZCML(self):
         import zope.configuration
         import zope.securitypolicy
-        zope.configuration.xmlconfig.file("configure.zcml", zope.securitypolicy)
+        zope.configuration.xmlconfig.file(
+            "configure.zcml", zope.securitypolicy)
 
     def testSecuritypolicyZCML(self):
         import zope.configuration
@@ -72,7 +73,7 @@ def setUp(test):
 def test_suite():
     return unittest.TestSuite((
         DocFileSuite('zopepolicy.txt',
-            package='zope.securitypolicy',
-            setUp=setUp, tearDown=componentTearDown),
+                     package='zope.securitypolicy',
+                     setUp=setUp, tearDown=componentTearDown),
         unittest.makeSuite(TestZCML),
     ))

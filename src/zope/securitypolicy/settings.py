@@ -63,15 +63,15 @@ except ImportError:
     import copyreg
 copyreg.constructor(PermissionSetting)
 copyreg.pickle(PermissionSetting,
-                PermissionSetting.getName,
-                PermissionSetting)
+               PermissionSetting.getName,
+               PermissionSetting)
 
 
-Allow = PermissionSetting('Allow',
-    'Explicit allow setting for permissions')
+Allow = PermissionSetting(
+    'Allow', 'Explicit allow setting for permissions')
 
-Deny = PermissionSetting('Deny',
-    'Explicit deny setting for permissions')
+Deny = PermissionSetting(
+    'Deny', 'Explicit deny setting for permissions')
 
-Unset = PermissionSetting('Unset',
-    'Unset constant that denotes no setting for permission')
+Unset = PermissionSetting(
+    'Unset', 'Unset constant that denotes no setting for permission')

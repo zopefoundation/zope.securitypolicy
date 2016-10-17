@@ -54,9 +54,9 @@ class Test(PlacelessSetup, unittest.TestCase):
         role = defineRole('ARole', 'A Role').id
         manager.grantPermissionToRole(permission, role)
         self.assertEqual(manager.getRolesForPermission(permission),
-                                                        [(role, Allow)])
+                         [(role, Allow)])
         self.assertEqual(manager.getPermissionsForRole(role),
-                                                    [(permission, Allow)])
+                         [(permission, Allow)])
 
     def testManyPermissionsOneRole(self):
         perm1 = definePermission('Perm One', 'P1').id

@@ -263,7 +263,7 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
         for participation in self.participations:
             principal = participation.principal
             if principal is system_user:
-                continue # always allow system_user
+                continue  # always allow system_user
 
             if principal.id in seen:
                 continue
