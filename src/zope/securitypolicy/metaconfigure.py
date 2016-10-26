@@ -32,8 +32,10 @@ def grant(_context, principal=None, role=None, permission=None,
                   + (role is not None)
                   + (permission is not None)
                   + (permissions is not None))
+    permspecified = ((permission is not None)
+                     + (permissions is not None))
 
-    if nspecified != 2:
+    if nspecified != 2 or permspecified == 2:
         raise ConfigurationError(
             "Exactly two of the principal, role, and permission resp. "
             "permissions attributes must be specified")
