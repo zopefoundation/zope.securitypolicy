@@ -43,7 +43,9 @@ class IGrantDirective(IGrantAllDirective):
 
     permissions = Tokens(
         title=u"Permissions",
-        description=u"Specifies a list of permissions to be mapped.",
+        description=(
+            u"Specifies a whitespace-separated list of permissions to be "
+            u"mapped."),
         value_type=Permission(),
         required=False)
 
