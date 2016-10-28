@@ -1,0 +1,11 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <include package="zope.securitypolicy" file="meta.zcml"/>
+
+  <grant
+      permission="zope.Foo"
+      permissions="zope.Qwer
+                   zope.Qux"
+      />
+
+</configure>

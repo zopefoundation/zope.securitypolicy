@@ -18,6 +18,7 @@ import unittest
 import zope.component
 from zope.configuration import xmlconfig
 from zope.configuration.config import ConfigurationConflictError
+from zope.configuration.exceptions import ConfigurationError
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
@@ -72,8 +73,14 @@ class TestSecurityMapping(TestBase, unittest.TestCase):
         super(TestSecurityMapping, self).setUp()
         zope.component.provideUtility(Permission('zope.Foo', ''),
                                       IPermission, 'zope.Foo')
+        zope.component.provideUtility(Permission('zope.Qwer', ''),
+                                      IPermission, 'zope.Qwer')
+        zope.component.provideUtility(Permission('zope.Qux', ''),
+                                      IPermission, 'zope.Qux')
         defineRole("zope.Bar", '', '')
+        defineRole("zope.Fox", '', '')
         principalRegistry.definePrincipal("zope.Blah", '', '')
+        principalRegistry.definePrincipal("zope.One", '', '')
         self.context = xmlconfig.file(
             "mapping.zcml", zope.securitypolicy.tests)
 
@@ -87,6 +94,26 @@ class TestSecurityMapping(TestBase, unittest.TestCase):
         self.assertEqual(len(perms), 1)
         self.assertTrue(("zope.Foo", Allow) in perms)
 
+    def test_PermRoleMap_multiple(self):
+        quer_roles = role_perm_mgr.getRolesForPermission("zope.Qwer")
+        qux_roles = role_perm_mgr.getRolesForPermission("zope.Qux")
+        perms = role_perm_mgr.getPermissionsForRole("zope.Fox")
+
+        self.assertEqual(len(quer_roles), 1)
+        self.assertTrue(("zope.Fox", Allow) in quer_roles)
+
+        self.assertEqual(len(qux_roles), 1)
+        self.assertTrue(("zope.Fox", Allow) in qux_roles)
+
+        self.assertEqual(len(perms), 2)
+        self.assertTrue(("zope.Qwer", Allow) in perms)
+        self.assertTrue(("zope.Qux", Allow) in perms)
+
+    def test_PermRoleMap_does_not_allow_permission_and_permissions(self):
+        with self.assertRaises(ConfigurationError):
+            xmlconfig.file(
+                "permission_and_permissions.zcml", zope.securitypolicy.tests)
+
     def test_PermPrincipalMap(self):
         principals = principal_perm_mgr.getPrincipalsForPermission("zope.Foo")
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.Blah")
@@ -96,6 +123,23 @@ class TestSecurityMapping(TestBase, unittest.TestCase):
 
         self.assertEqual(len(perms), 1)
         self.assertTrue(("zope.Foo", Allow) in perms)
+
+    def test_PermPrincipalMap_multiple(self):
+        quer_principals = principal_perm_mgr.getPrincipalsForPermission(
+            "zope.Qwer")
+        qux_principals = principal_perm_mgr.getPrincipalsForPermission(
+            "zope.Qux")
+        perms = principal_perm_mgr.getPermissionsForPrincipal("zope.One")
+
+        self.assertEqual(len(quer_principals), 1)
+        self.assertTrue(("zope.One", Allow) in quer_principals)
+
+        self.assertEqual(len(qux_principals), 1)
+        self.assertTrue(("zope.One", Allow) in qux_principals)
+
+        self.assertEqual(len(perms), 2)
+        self.assertTrue(("zope.Qwer", Allow) in perms)
+        self.assertTrue(("zope.Qux", Allow) in perms)
 
     def test_RolePrincipalMap(self):
         principals = principal_role_mgr.getPrincipalsForRole("zope.Bar")

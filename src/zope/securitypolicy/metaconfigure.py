@@ -26,24 +26,31 @@ from zope.securitypolicy.principalrole import \
     principalRoleManager as principal_role_mgr
 
 
-def grant(_context, principal=None, role=None, permission=None):
+def grant(_context, principal=None, role=None, permission=None,
+          permissions=None):
     nspecified = ((principal is not None)
                   + (role is not None)
-                  + (permission is not None))
+                  + (permission is not None)
+                  + (permissions is not None))
+    permspecified = ((permission is not None)
+                     + (permissions is not None))
 
-    if nspecified != 2:
+    if nspecified != 2 or permspecified == 2:
         raise ConfigurationError(
-            "Exactly two of the principal, role, and permission attributes "
-            "must be specified")
+            "Exactly two of the principal, role, and permission resp. "
+            "permissions attributes must be specified")
 
-    if principal:
-        if role:
-            _context.action(
-                discriminator=('grantRoleToPrincipal', role, principal),
-                callable=principal_role_mgr.assignRoleToPrincipal,
-                args=(role, principal),
-            )
-        else:
+    if permission:
+        permissions = [permission]
+
+    if principal and role:
+        _context.action(
+            discriminator=('grantRoleToPrincipal', role, principal),
+            callable=principal_role_mgr.assignRoleToPrincipal,
+            args=(role, principal),
+        )
+    elif principal and permissions:
+        for permission in permissions:
             _context.action(
                 discriminator=('grantPermissionToPrincipal',
                                permission,
@@ -51,12 +58,13 @@ def grant(_context, principal=None, role=None, permission=None):
                 callable=principal_perm_mgr.grantPermissionToPrincipal,
                 args=(permission, principal),
             )
-    else:
-        _context.action(
-            discriminator=('grantPermissionToRole', permission, role),
-            callable=role_perm_mgr.grantPermissionToRole,
-            args=(permission, role),
-        )
+    elif role and permissions:
+        for permission in permissions:
+            _context.action(
+                discriminator=('grantPermissionToRole', permission, role),
+                callable=role_perm_mgr.grantPermissionToRole,
+                args=(permission, role),
+            )
 
 
 def grantAll(_context, principal=None, role=None):
