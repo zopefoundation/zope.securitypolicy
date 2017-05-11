@@ -4,7 +4,7 @@ Changes
 4.2.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Python 3.6.
 
 
 4.1.0 (2016-11-05)

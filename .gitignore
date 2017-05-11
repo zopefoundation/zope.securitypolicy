@@ -1,10 +1,14 @@
 *.pyc
-__pycache__
+.coverage
+.coverage.*
 .installed.cfg
 .tox
+__pycache__
 bin/
+coverage.xml
 develop-eggs/
-eggs/
 dist/
+eggs/
+htmlcov/
 parts/
 src/*.egg-info
