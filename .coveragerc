@@ -1,0 +1,12 @@
+[run]
+branch = True
+source = zope.securitypolicy
+
+[report]
+precision = 2
+
+[paths]
+source =
+    src/
+    .tox/py*/lib/python*/site-packages/
+    .tox/pypy*/site-packages/

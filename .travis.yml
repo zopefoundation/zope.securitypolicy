@@ -5,11 +5,18 @@ python:
     - 3.3
     - 3.4
     - 3.5
-    - pypy
-    - pypy3
+    - 3.6
+    - pypy-5.4.1
 install:
-    - pip install .
+  - pip install -U pip setuptools zope.testrunner
+  - pip install -U coveralls coverage
+  - pip install -U -e ".[test]"
 script:
-    - python setup.py -q test -q
+  - coverage run -m zope.testrunner --test-path=src --auto-color
+after_success:
+  - coveralls
 notifications:
-    email: false
+  email: false
+cache: pip
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
