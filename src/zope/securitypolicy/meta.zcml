@@ -12,6 +12,13 @@
 
   <meta:directive
       namespace="http://namespaces.zope.org/zope"
+      name="deny"
+      schema=".metadirectives.IDenyDirective"
+      handler=".metaconfigure.deny"
+      />
+
+  <meta:directive
+      namespace="http://namespaces.zope.org/zope"
       name="grantAll"
       schema=".metadirectives.IGrantAllDirective"
       handler=".metaconfigure.grantAll"

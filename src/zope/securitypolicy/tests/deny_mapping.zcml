@@ -1,0 +1,32 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <include package="zope.securitypolicy" file="meta.zcml"/>
+
+  <deny
+      permission="zope.Foo"
+      role="zope.Bar"
+      />
+
+  <deny
+      permissions="zope.Qwer
+                   zope.Qux"
+      role="zope.Fox"
+      />
+
+  <deny
+      permission="zope.Foo"
+      principal="zope.Blah"
+      />
+
+  <deny
+      permissions="zope.Qwer
+                   zope.Qux"
+      principal="zope.One"
+      />
+
+  <deny
+      role="zope.Bar"
+      principal="zope.Blah"
+      />
+
+</configure>

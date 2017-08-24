@@ -19,8 +19,8 @@ from zope.schema import Id
 from zope.security.zcml import Permission, IPermissionDirective
 
 
-class IGrantAllDirective(Interface):
-    """Grant Permissions to roles and principals and roles to principals."""
+class ISecurityObjectAssignmentDirective(Interface):
+    """Abstract schema for security policy declarations."""
 
     principal = Id(
         title=u"Principal",
@@ -33,8 +33,13 @@ class IGrantAllDirective(Interface):
         required=False)
 
 
-class IGrantDirective(IGrantAllDirective):
+class IGrantAllDirective(ISecurityObjectAssignmentDirective):
     """Grant Permissions to roles and principals and roles to principals."""
+
+
+class ISpecificSecurityObjectAssignmentDirective(
+        ISecurityObjectAssignmentDirective):
+    """Abstract schema to set up one or more permissions"""
 
     permission = Permission(
         title=u"Permission",
@@ -48,6 +53,14 @@ class IGrantDirective(IGrantAllDirective):
             u"mapped."),
         value_type=Permission(),
         required=False)
+
+
+class IGrantDirective(ISpecificSecurityObjectAssignmentDirective):
+    """Grant Permissions to roles and principals and roles to principals."""
+
+
+class IDenyDirective(ISpecificSecurityObjectAssignmentDirective):
+    """Deny Permissions to roles and principals and roles to principals."""
 
 
 class IDefineRoleDirective(IPermissionDirective):
