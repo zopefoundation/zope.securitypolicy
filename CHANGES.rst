@@ -1,7 +1,7 @@
 Changes
 =======
 
-4.2.0 (unreleased)
+4.2.0 (2017-08-24)
 ------------------
 
 - Add ``<zope:deny>`` directive, which is a mirror of the ``<zope:grant>``
