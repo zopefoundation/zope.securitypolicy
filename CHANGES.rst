@@ -4,6 +4,9 @@ Changes
 4.2.0 (unreleased)
 ------------------
 
+- Add ``<zope:deny>`` directive, which is a mirror of the ``<zope:grant>``
+  directive.
+
 - Add support for Python 3.6.
 
 

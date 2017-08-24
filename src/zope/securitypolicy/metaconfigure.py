@@ -67,6 +67,47 @@ def grant(_context, principal=None, role=None, permission=None,
             )
 
 
+def deny(_context, principal=None, role=None, permission=None,
+          permissions=None):
+    nspecified = ((principal is not None)
+                  + (role is not None)
+                  + (permission is not None)
+                  + (permissions is not None))
+    permspecified = ((permission is not None)
+                     + (permissions is not None))
+
+    if nspecified != 2 or permspecified == 2:
+        raise ConfigurationError(
+            "Exactly two of the principal, role, and permission resp. "
+            "permissions attributes must be specified")
+
+    if permission:
+        permissions = [permission]
+
+    if principal and role:
+        _context.action(
+            discriminator=('denyRoleFromPrincipal', role, principal),
+            callable=principal_role_mgr.removeRoleFromPrincipal,
+            args=(role, principal),
+        )
+    elif principal and permissions:
+        for permission in permissions:
+            _context.action(
+                discriminator=('denyPermissionToPrincipal',
+                               permission,
+                               principal),
+                callable=principal_perm_mgr.denyPermissionToPrincipal,
+                args=(permission, principal),
+            )
+    elif role and permissions:
+        for permission in permissions:
+            _context.action(
+                discriminator=('denyPermissionToRole', permission, role),
+                callable=role_perm_mgr.denyPermissionToRole,
+                args=(permission, role),
+            )
+
+
 def grantAll(_context, principal=None, role=None):
     """Grant all permissions to a role or principal
     """
