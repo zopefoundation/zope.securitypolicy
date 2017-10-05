@@ -1,7 +1,7 @@
 ``zope.securitypolicy``
 =======================
 
-.. image:: https://travis-ci.org/zopefoundation/zope.securitypolicy.png?branch=master
+.. image:: https://travis-ci.org/zopefoundation/zope.securitypolicy.svg?branch=master
         :target: https://travis-ci.org/zopefoundation/zope.securitypolicy
 
 This package provides an useful security policy for Zope3. It's the
