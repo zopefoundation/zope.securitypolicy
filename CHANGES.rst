@@ -16,6 +16,11 @@ Changes
 - Make ``AnnotationGrantInfo`` consistently return lists instead of
   dict views on Python 3.
 
+- Make ``AnnotationSecurityMap`` (and objects derived from it, such as
+  ``AnnotationPrincipalPermissionManager`` and the role managers) more
+  efficient when adding or removing cells before they have been
+  persisted. They now avoid some unnecessary object copying.
+
 4.2.0 (2017-08-24)
 ------------------
 

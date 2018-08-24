@@ -177,8 +177,34 @@ class TestPersistentSecurityMap(TestSecurityMap):
         return PersistentSecurityMap()
 
 
-def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(TestSecurityMap),
-        unittest.makeSuite(TestPersistentSecurityMap),
-    ))
+class TestAnnotationSecurityMap(unittest.TestCase):
+
+    def test_changed_sets_map(self):
+        from zope.securitypolicy.securitymap import AnnotationSecurityMap
+        from zope.annotation.interfaces import IAnnotations
+
+        class Context(object):
+            def __init__(self):
+                self.annotations = {}
+
+            def __conform__(self, iface):
+                if iface is IAnnotations:
+                    return self.annotations
+
+        class ASM(AnnotationSecurityMap):
+            # 'key' is expected to be defined by subclasses
+            key = 'key'
+
+        context = Context()
+        sec_map = ASM(context)
+        # No key added yet.
+        self.assertEqual(context.annotations, {})
+        self.assertIsNone(sec_map.map)
+
+        # Adding a cell sets the map
+        sec_map.addCell('row', 'col', 'val')
+
+        self.assertEqual(len(context.annotations), 1)
+        self.assertIn(ASM.key, context.annotations)
+        psm = context.annotations[ASM.key]
+        self.assertIs(psm, sec_map.map)
