@@ -30,6 +30,8 @@ class SecurityMap(object):
     def __nonzero__(self):
         return bool(self._byrow)
 
+    __bool__ = __nonzero__
+
     def addCell(self, rowentry, colentry, value):
         # setdefault may get expensive if an empty mapping is
         # expensive to create, for PersistentDict for instance.

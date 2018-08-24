@@ -10,6 +10,11 @@ Changes
 
 - Drop support for ``python setup.py test``.
 
+- Make ``SecurityMap`` and ``AnnotationGrantInfo`` have proper truth
+  behaviour on Python 3; previously they were always true.
+
+- Make ``AnnotationGrantInfo`` consistently return lists instead of
+  dict views on Python 3.
 
 4.2.0 (2017-08-24)
 ------------------
