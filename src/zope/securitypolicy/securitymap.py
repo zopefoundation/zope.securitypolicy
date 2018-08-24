@@ -148,7 +148,7 @@ class AnnotationSecurityMap(SecurityMap):
         if isinstance(map, PersistentSecurityMap):
             map._p_changed = 1
         else:
-            map = PersistentSecurityMap()
+            map = self.map = PersistentSecurityMap()
             map._byrow = self._byrow
             map._bycol = self._bycol
             annotations = IAnnotations(self._context)

@@ -20,7 +20,7 @@ from zope.security.management import setSecurityPolicy, getInteraction
 from zope.security.management import newInteraction, endInteraction
 
 
-class InteractionStub:
+class InteractionStub(object):
     invalidated = 0
 
     def invalidate_cache(self):
@@ -57,6 +57,22 @@ class TestSecurityMap(unittest.TestCase):
         self.assertEqual(getInteraction().invalidated, 3)
         self.assertEqual(map._byrow[5][3], 'fd')
         self.assertEqual(map._bycol[3][5], 'fd')
+
+    def test_addCell_no_invalidation(self):
+
+        class NoInvalidation(object):
+            attrs = ()
+            def __getattr__(self, name):
+                self.attrs += (name,)
+                return object.__getattr__(self, name)
+
+        setSecurityPolicy(NoInvalidation)
+        endInteraction()
+        newInteraction()
+
+        map = self._getSecurityMap()
+        map.addCell(0, 0, 'aa')
+        self.assertIn('invalidate_cache', getInteraction().attrs)
 
     def test_addCell_noninteger(self):
         map = self._getSecurityMap()
