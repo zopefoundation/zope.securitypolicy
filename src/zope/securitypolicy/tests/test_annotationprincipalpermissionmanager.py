@@ -144,11 +144,3 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertEqual(len(principals), 2)
         self.assertTrue((prin1, Allow) in principals)
         self.assertTrue((prin2, Deny) in principals)
-
-
-def test_suite():
-    loader = unittest.TestLoader()
-    return loader.loadTestsFromTestCase(Test)
-
-if __name__ == '__main__':
-    unittest.TextTestRunner().run(test_suite())

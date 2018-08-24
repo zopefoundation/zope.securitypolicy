@@ -14,13 +14,7 @@
 """Security Settings Tests
 """
 import unittest
-from pickle import Pickler, Unpickler
-
-try:
-    from StringIO import StringIO as BytesIO
-except ImportError:
-    # Py3: New location.
-    from io import BytesIO
+import pickle
 
 from zope.securitypolicy.interfaces import Allow
 
@@ -28,19 +22,8 @@ from zope.securitypolicy.interfaces import Allow
 class Test(unittest.TestCase):
 
     def testPickleUnpickle(self):
-        s = BytesIO()
-        p = Pickler(s)
-        p.dump(Allow)
-        s.seek(0)
-        u = Unpickler(s)
-        newAllow = u.load()
+        for prot in range(0, pickle.HIGHEST_PROTOCOL):
+            s = pickle.dumps(Allow, prot)
+            newAllow = pickle.loads(s)
 
-        self.assertTrue(newAllow is Allow)
-
-
-def test_suite():
-    loader = unittest.TestLoader()
-    return loader.loadTestsFromTestCase(Test)
-
-if __name__ == '__main__':
-    unittest.TextTestRunner().run(test_suite())
+            self.assertIs(newAllow, Allow)

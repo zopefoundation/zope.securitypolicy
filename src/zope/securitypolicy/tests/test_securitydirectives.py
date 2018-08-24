@@ -291,15 +291,3 @@ class TestSecurityDenyMapping(TestBase, unittest.TestCase):
 
         self.assertEqual(len(roles), 1)
         self.assertTrue(("zope.Bar", Deny) in roles)
-
-
-def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(TestRoleDirective),
-        unittest.makeSuite(TestSecurityGrantMapping),
-        unittest.makeSuite(TestSecurityGrantAllMapping),
-        unittest.makeSuite(TestSecurityDenyMapping),
-    ))
-
-if __name__ == '__main__':
-    unittest.main()

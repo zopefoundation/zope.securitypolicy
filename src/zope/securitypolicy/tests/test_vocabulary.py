@@ -24,6 +24,3 @@ def test_suite():
         DocTestSuite(
             'zope.securitypolicy.vocabulary', checker=testing.checker),
     ))
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')

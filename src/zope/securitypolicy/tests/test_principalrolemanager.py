@@ -134,11 +134,3 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertTrue((role1, prin1, Allow) in principalsAndRoles)
         self.assertTrue((role1, prin2, Allow) in principalsAndRoles)
         self.assertTrue((role2, prin1, Allow) in principalsAndRoles)
-
-
-def test_suite():
-    loader = unittest.TestLoader()
-    return loader.loadTestsFromTestCase(Test)
-
-if __name__ == '__main__':
-    unittest.TextTestRunner().run(test_suite())
