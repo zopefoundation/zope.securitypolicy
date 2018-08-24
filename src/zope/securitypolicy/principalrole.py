@@ -101,7 +101,7 @@ principalRoleManager = PrincipalRoleManager()
 # simpler.
 try:
     from zope.testing.cleanup import addCleanUp
-except ImportError:
+except ImportError: # pragma: no cover
     pass
 else:
     addCleanUp(principalRoleManager._clear)

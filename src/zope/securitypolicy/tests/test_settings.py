@@ -27,3 +27,15 @@ class Test(unittest.TestCase):
             newAllow = pickle.loads(s)
 
             self.assertIs(newAllow, Allow)
+
+    def testDescription(self):
+        self.assertEqual("Explicit allow setting for permissions",
+                         Allow.getDescription())
+
+    def testName(self):
+        self.assertEqual("Allow",
+                         Allow.getName())
+
+    def testStr(self):
+        self.assertEqual("PermissionSetting: Allow",
+                         str(Allow))
