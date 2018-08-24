@@ -30,6 +30,8 @@ class SecurityMap(object):
     def __nonzero__(self):
         return bool(self._byrow)
 
+    __bool__ = __nonzero__
+
     def addCell(self, rowentry, colentry, value):
         # setdefault may get expensive if an empty mapping is
         # expensive to create, for PersistentDict for instance.
@@ -146,7 +148,7 @@ class AnnotationSecurityMap(SecurityMap):
         if isinstance(map, PersistentSecurityMap):
             map._p_changed = 1
         else:
-            map = PersistentSecurityMap()
+            map = self.map = PersistentSecurityMap()
             map._byrow = self._byrow
             map._bycol = self._bycol
             annotations = IAnnotations(self._context)

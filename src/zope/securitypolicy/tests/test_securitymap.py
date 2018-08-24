@@ -20,7 +20,7 @@ from zope.security.management import setSecurityPolicy, getInteraction
 from zope.security.management import newInteraction, endInteraction
 
 
-class InteractionStub:
+class InteractionStub(object):
     invalidated = 0
 
     def invalidate_cache(self):
@@ -57,6 +57,22 @@ class TestSecurityMap(unittest.TestCase):
         self.assertEqual(getInteraction().invalidated, 3)
         self.assertEqual(map._byrow[5][3], 'fd')
         self.assertEqual(map._bycol[3][5], 'fd')
+
+    def test_addCell_no_invalidation(self):
+
+        class NoInvalidation(object):
+            attrs = ()
+            def __getattr__(self, name):
+                self.attrs += (name,)
+                return object.__getattr__(self, name)
+
+        setSecurityPolicy(NoInvalidation)
+        endInteraction()
+        newInteraction()
+
+        map = self._getSecurityMap()
+        map.addCell(0, 0, 'aa')
+        self.assertIn('invalidate_cache', getInteraction().attrs)
 
     def test_addCell_noninteger(self):
         map = self._getSecurityMap()
@@ -161,8 +177,34 @@ class TestPersistentSecurityMap(TestSecurityMap):
         return PersistentSecurityMap()
 
 
-def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(TestSecurityMap),
-        unittest.makeSuite(TestPersistentSecurityMap),
-    ))
+class TestAnnotationSecurityMap(unittest.TestCase):
+
+    def test_changed_sets_map(self):
+        from zope.securitypolicy.securitymap import AnnotationSecurityMap
+        from zope.annotation.interfaces import IAnnotations
+
+        class Context(object):
+            def __init__(self):
+                self.annotations = {}
+
+            def __conform__(self, iface):
+                if iface is IAnnotations:
+                    return self.annotations
+
+        class ASM(AnnotationSecurityMap):
+            # 'key' is expected to be defined by subclasses
+            key = 'key'
+
+        context = Context()
+        sec_map = ASM(context)
+        # No key added yet.
+        self.assertEqual(context.annotations, {})
+        self.assertIsNone(sec_map.map)
+
+        # Adding a cell sets the map
+        sec_map.addCell('row', 'col', 'val')
+
+        self.assertEqual(len(context.annotations), 1)
+        self.assertIn(ASM.key, context.annotations)
+        psm = context.annotations[ASM.key]
+        self.assertIs(psm, sec_map.map)

@@ -57,6 +57,8 @@ class Test(PlacelessSetup, unittest.TestCase):
                          [(role, Allow)])
         self.assertEqual(manager.getPermissionsForRole(role),
                          [(permission, Allow)])
+        self.assertEqual(manager.getRolesAndPermissions(),
+                         [('APerm', 'ARole', Allow)])
 
     def testManyPermissionsOneRole(self):
         perm1 = definePermission('Perm One', 'P1').id
@@ -121,11 +123,3 @@ class Test(PlacelessSetup, unittest.TestCase):
         self.assertRaises(ValueError,
                           manager.grantPermissionToRole, perm1, 'role1'
                           )
-
-
-def test_suite():
-    loader = unittest.TestLoader()
-    return loader.loadTestsFromTestCase(Test)
-
-if __name__ == '__main__':
-    unittest.TextTestRunner().run(test_suite())

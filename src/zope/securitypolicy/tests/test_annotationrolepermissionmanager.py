@@ -89,11 +89,3 @@ class Test(PlacelessSetup, unittest.TestCase):
 
         self.assertEqual(mgr.getSetting(self.read, self.peon), Unset)
         self.assertEqual(mgr.getSetting(self.read, self.peon, 1), 1)
-
-
-def test_suite():
-    loader = unittest.TestLoader()
-    return loader.loadTestsFromTestCase(Test)
-
-if __name__ == '__main__':
-    unittest.TextTestRunner().run(test_suite())

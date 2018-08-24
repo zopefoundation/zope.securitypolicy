@@ -326,24 +326,23 @@ def settingsForObject(ob):
         principalPermissions = IPrincipalPermissionMap(ob, None)
         if principalPermissions is not None:
             settings = principalPermissions.getPrincipalsAndPermissions()
-            settings.sort()
             data['principalPermissions'] = [
                 {'principal': pr, 'permission': p, 'setting': s}
-                for (p, pr, s) in settings]
+                for (p, pr, s) in sorted(settings)]
 
         principalRoles = IPrincipalRoleMap(ob, None)
         if principalRoles is not None:
             settings = principalRoles.getPrincipalsAndRoles()
             data['principalRoles'] = [
                 {'principal': p, 'role': r, 'setting': s}
-                for (r, p, s) in settings]
+                for (r, p, s) in sorted(settings)]
 
         rolePermissions = IRolePermissionMap(ob, None)
         if rolePermissions is not None:
             settings = rolePermissions.getRolesAndPermissions()
             data['rolePermissions'] = [
                 {'permission': p, 'role': r, 'setting': s}
-                for (p, r, s) in settings]
+                for (p, r, s) in sorted(settings)]
 
         ob = getattr(ob, '__parent__', None)
 
@@ -351,19 +350,18 @@ def settingsForObject(ob):
     result.append(('global settings', data))
 
     settings = principalPermissionManager.getPrincipalsAndPermissions()
-    settings.sort()
     data['principalPermissions'] = [
         {'principal': pr, 'permission': p, 'setting': s}
-        for (p, pr, s) in settings]
+        for (p, pr, s) in sorted(settings)]
 
     settings = principalRoleManager.getPrincipalsAndRoles()
     data['principalRoles'] = [
         {'principal': p, 'role': r, 'setting': s}
-        for (r, p, s) in settings]
+        for (r, p, s) in sorted(settings)]
 
     settings = rolePermissionManager.getRolesAndPermissions()
     data['rolePermissions'] = [
         {'permission': p, 'role': r, 'setting': s}
-        for (p, r, s) in settings]
+        for (p, r, s) in sorted(settings)]
 
     return result
