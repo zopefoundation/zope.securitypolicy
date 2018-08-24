@@ -3,7 +3,7 @@
 =====================
 
 .. image:: https://img.shields.io/pypi/v/zope.securitypolicy.svg
-   :target: https://pypi.python.org/pypi/zope.securitypolicy/
+   :target: https://pypi.org/project/zope.securitypolicy/
    :alt: Latest release
 
 .. image:: https://img.shields.io/pypi/pyversions/zope.securitypolicy.svg
