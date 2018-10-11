@@ -84,13 +84,13 @@
 
   <subscriber
       for=".interfaces.IRole
-           zope.component.interfaces.IRegistered"
+           zope.interface.interfaces.IRegistered"
       handler=".role.setIdOnActivation"
       />
 
   <subscriber
       for=".interfaces.IRole
-           zope.component.interfaces.IUnregistered"
+           zope.interface.interfaces.IUnregistered"
       handler=".role.unsetIdOnDeactivation"
       />
 

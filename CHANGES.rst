@@ -4,7 +4,7 @@ Changes
 4.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use current location for `IRegistered` and `IUnregistered` interface.
 
 
 4.3.0 (2018-08-27)
