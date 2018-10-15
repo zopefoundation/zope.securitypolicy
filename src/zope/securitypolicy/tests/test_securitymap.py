@@ -208,3 +208,17 @@ class TestAnnotationSecurityMap(unittest.TestCase):
         self.assertIn(ASM.key, context.annotations)
         psm = context.annotations[ASM.key]
         self.assertIs(psm, sec_map.map)
+
+
+class TestSecurityMapInheritance(unittest.TestCase):
+
+    def test_inheritance(self):
+
+        from zope.securitypolicy.securitymap import SecurityMap
+        class CustomSecurityMap(SecurityMap):
+
+            def __nonzero__(self):
+                return True
+
+        security_map = CustomSecurityMap()
+        self.assertTrue(security_map)
