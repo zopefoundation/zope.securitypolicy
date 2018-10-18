@@ -58,7 +58,7 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
-        'Framework :: Zope3'],
+        'Framework :: Zope :: 3'],
     url='https://github.com/zopefoundation/zope.securitypolicy',
     license='ZPL 2.1',
     packages=find_packages('src'),
