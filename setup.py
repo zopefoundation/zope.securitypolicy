@@ -72,7 +72,7 @@ setup(
         'zope.component',
         'zope.configuration',
         'zope.i18nmessageid',
-        'zope.interface',
+        'zope.interface >= 3.8',
         'zope.location',
         'zope.schema',
         'zope.security',
