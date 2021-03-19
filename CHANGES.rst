@@ -1,22 +1,25 @@
-Changes
-=======
+=========
+ Changes
+=========
 
 4.3.2 (unreleased)
-------------------
+==================
 
 - Add support for Python 3.8.
 
 - Drop support for Python 3.4.
 
+- Fix some test imports to use the proper imports from
+  ``zope.interface`` instead of ``zope.component``.
 
 4.3.1 (2018-10-11)
-------------------
+==================
 
 - Use current location for `IRegistered` and `IUnregistered` interface.
 
 
 4.3.0 (2018-08-27)
-------------------
+==================
 
 - Add support for Python 3.7.
 
@@ -36,7 +39,7 @@ Changes
   persisted. They now avoid some unnecessary object copying.
 
 4.2.0 (2017-08-24)
-------------------
+==================
 
 - Add ``<zope:deny>`` directive, which is a mirror of the ``<zope:grant>``
   directive.
@@ -45,7 +48,7 @@ Changes
 
 
 4.1.0 (2016-11-05)
-------------------
+==================
 
 - Add support for Python 3.5.
 
@@ -60,7 +63,7 @@ Changes
 
 
 4.0.0 (2014-12-24)
-------------------
+==================
 
 - Add support for PyPy.  (PyPy3 is pending release of a fix for:
   https://bitbucket.org/pypy/pypy/issue/1946)
@@ -71,7 +74,7 @@ Changes
 
 
 4.0.0a1 (2013-02-22)
---------------------
+====================
 
 - Add support for Python 3.3.
 
@@ -85,7 +88,7 @@ Changes
 
 
 3.7.0 (2010-09-25)
-------------------
+==================
 
 - LP #131115: Clean up inconsistency in ``getSetting`` interface definitions
   and actual usage for the various security maps.
@@ -108,13 +111,13 @@ Changes
 
 
 3.6.1 (2009-07-24)
-------------------
+==================
 
 - Make tests work when the default and Zope vocabulary registry compete in the
   cleanup.
 
 3.6.0 (2009-03-14)
-------------------
+==================
 
 - Change ``zope.app.security`` dependency to the new ``zope.authentication``
   package, dropping a big number of unused dependencies.
@@ -125,7 +128,7 @@ Changes
   class. We didn't fail before, because it was installed implicitly.
 
 3.5.1 (2009-03-10)
-------------------
+==================
 
 - Don't depend on the ``hook`` extra of zope.component, as we don't need
   it explicitly.
@@ -151,12 +154,12 @@ Changes
 - Remove old zpkg-related files and zcml slugs.
 
 3.5.0 (2009-01-31)
-------------------
+==================
 
 - Include settings that were previously imported from zope.app.security.
 
 3.4.2 (2009-01-28)
-------------------
+==================
 
 - Change mailing list address to zope-dev at zope.org. Fix package
   homepage to the pypi page.
@@ -168,11 +171,11 @@ Changes
   in the code directly depends on this.
 
 3.4.1 (2008-06-02)
-------------------
+==================
 
 - Fix reference to deprecated security policy from ZCML.
 
 3.4.0 (2007-09-25)
-------------------
+==================
 
 - Initial documented release
