@@ -1,8 +1,0 @@
-[run]
-source = zope.securitypolicy
-
-[report]
-exclude_lines =
-    pragma: no cover
-    raise AssertionError
-    raise NotImplementedError
