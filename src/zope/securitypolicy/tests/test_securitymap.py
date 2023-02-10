@@ -14,10 +14,14 @@
 """Test SecurityMap implementations
 """
 import unittest
-from zope.securitypolicy.securitymap import SecurityMap
+
+from zope.security.management import endInteraction
+from zope.security.management import getInteraction
+from zope.security.management import newInteraction
+from zope.security.management import setSecurityPolicy
+
 from zope.securitypolicy.securitymap import PersistentSecurityMap
-from zope.security.management import setSecurityPolicy, getInteraction
-from zope.security.management import newInteraction, endInteraction
+from zope.securitypolicy.securitymap import SecurityMap
 
 
 class InteractionStub(object):
@@ -62,6 +66,7 @@ class TestSecurityMap(unittest.TestCase):
 
         class NoInvalidation(object):
             attrs = ()
+
             def __getattr__(self, name):
                 self.attrs += (name,)
                 return object.__getattr__(self, name)
@@ -180,8 +185,9 @@ class TestPersistentSecurityMap(TestSecurityMap):
 class TestAnnotationSecurityMap(unittest.TestCase):
 
     def test_changed_sets_map(self):
-        from zope.securitypolicy.securitymap import AnnotationSecurityMap
         from zope.annotation.interfaces import IAnnotations
+
+        from zope.securitypolicy.securitymap import AnnotationSecurityMap
 
         class Context(object):
             def __init__(self):

@@ -14,50 +14,51 @@
 """Tests the zope policy.
 """
 
-from doctest import DocFileSuite
 import unittest
+from doctest import DocFileSuite
+
+from zope.annotation.attribute import AttributeAnnotations
+from zope.annotation.interfaces import IAnnotatable
+from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.component import provideAdapter
 from zope.component.testing import setUp as componentSetUp
 from zope.component.testing import tearDown as componentTearDown
-from zope.annotation.interfaces import IAnnotatable
-from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.annotation.attribute import AttributeAnnotations
 from zope.security.management import endInteraction
 from zope.testing.cleanup import CleanUp
-from zope import interface
 
+from zope import interface
+from zope.securitypolicy import zopepolicy
+from zope.securitypolicy.grantinfo import AnnotationGrantInfo
 from zope.securitypolicy.interfaces import IGrantInfo
-from zope.securitypolicy.interfaces import IPrincipalRoleManager
 from zope.securitypolicy.interfaces import IPrincipalPermissionManager
+from zope.securitypolicy.interfaces import IPrincipalRoleManager
 from zope.securitypolicy.interfaces import IRolePermissionManager
 from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
-from zope.securitypolicy.principalrole import \
-    AnnotationPrincipalRoleManager
-from zope.securitypolicy.rolepermission import \
-    AnnotationRolePermissionManager
-from zope.securitypolicy.grantinfo import \
-    AnnotationGrantInfo
-from zope.securitypolicy import zopepolicy
+from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
+from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
 
 
 class TestZCML(CleanUp, unittest.TestCase):
 
     def testMetaZCML(self):
         import zope.configuration
+
         import zope.securitypolicy
         zope.configuration.xmlconfig.file("meta.zcml", zope.securitypolicy)
 
     def testConfigureZCML(self):
         import zope.configuration
+
         import zope.securitypolicy
         zope.configuration.xmlconfig.file(
             "configure.zcml", zope.securitypolicy)
 
     def testSecuritypolicyZCML(self):
-        import zope.configuration
-        import zope.securitypolicy
         import zope.annotation
+        import zope.configuration
+
+        import zope.securitypolicy
         zope.configuration.xmlconfig.file(
             "configure.zcml", zope.annotation)
 
@@ -92,10 +93,10 @@ class TestZCML(CleanUp, unittest.TestCase):
         interface.alsoProvides(self, IAttributeAnnotatable)
         settings = zopepolicy.settingsForObject(self)
         self.assertEqual(
-            settings[0],
-            ('(no name)',
-             {'principalPermissions': [], 'principalRoles': [], 'rolePermissions': []})
-        )
+            settings[0], ('(no name)', {
+                'principalPermissions': [],
+                'principalRoles': [],
+                'rolePermissions': []}))
 
 
 class TestZopePolicy(CleanUp, unittest.TestCase):
@@ -128,6 +129,7 @@ class TestZopePolicy(CleanUp, unittest.TestCase):
         self.policy.add(Participation())
 
         invoked_counter = []
+
         def cached_decision(self, *args):
             invoked_counter.append(args)
             return True
@@ -138,6 +140,7 @@ class TestZopePolicy(CleanUp, unittest.TestCase):
 
     def test__findGroupsFor_seen(self):
         group_id = 'group'
+
         class Principal(object):
             groups = (group_id,)
 
@@ -152,6 +155,7 @@ class TestZopePolicy(CleanUp, unittest.TestCase):
     def test__findGroupsFor_LookupError(self):
         # lookup errors are ignored
         from zope.authentication.interfaces import PrincipalLookupError
+
         class Principal(object):
             groups = ('group',)
 

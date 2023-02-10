@@ -20,11 +20,12 @@ from zope.component.testing import PlacelessSetup
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.securitypolicy.role import Role
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IRole
-from zope.securitypolicy.rolepermission import \
-    rolePermissionManager as manager
+from zope.securitypolicy.interfaces import Unset
+from zope.securitypolicy.role import Role
+from zope.securitypolicy.rolepermission import rolePermissionManager as manager
 
 
 def defineRole(id, title=None, description=None):

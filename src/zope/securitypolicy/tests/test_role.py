@@ -13,8 +13,8 @@
 ##############################################################################
 """Doctests for 'permission' module.
 """
-from doctest import DocTestSuite
 import unittest
+from doctest import DocTestSuite
 
 from zope.securitypolicy import testing
 

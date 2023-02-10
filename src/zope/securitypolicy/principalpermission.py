@@ -14,14 +14,16 @@
 """Mappings between principals and permissions, stored in an object locally.
 """
 
+from zope.authentication.principal import checkPrincipal
 from zope.interface import implementer
 from zope.security.permission import allPermissions
 
-from zope.authentication.principal import checkPrincipal
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IPrincipalPermissionManager
-from zope.securitypolicy.securitymap import SecurityMap
+from zope.securitypolicy.interfaces import Unset
 from zope.securitypolicy.securitymap import AnnotationSecurityMap
+from zope.securitypolicy.securitymap import SecurityMap
 
 
 @implementer(IPrincipalPermissionManager)
@@ -112,7 +114,7 @@ principalPermissionManager = PrincipalPermissionManager()
 # simpler.
 try:
     from zope.testing.cleanup import addCleanUp
-except ImportError: # pragma: no cover
+except ImportError:  # pragma: no cover
     pass
 else:
     addCleanUp(principalPermissionManager._clear)

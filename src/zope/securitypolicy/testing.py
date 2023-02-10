@@ -14,7 +14,9 @@
 """Reusable functionality for testing
 """
 import re
+
 from zope.testing import renormalizing
+
 
 checker = renormalizing.RENormalizing([
     # Python 3 unicode removed the "u".

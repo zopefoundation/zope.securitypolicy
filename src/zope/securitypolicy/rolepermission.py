@@ -14,11 +14,13 @@
 """Permission to Roles Manager (Adapter)
 """
 from zope.interface import implementer
-
 from zope.security.permission import allPermissions
-from zope.securitypolicy.role import checkRole
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IRolePermissionManager
+from zope.securitypolicy.interfaces import Unset
+from zope.securitypolicy.role import checkRole
 from zope.securitypolicy.securitymap import AnnotationSecurityMap
 from zope.securitypolicy.securitymap import SecurityMap
 
@@ -96,6 +98,7 @@ class RolePermissionManager(SecurityMap):
         '''See interface IRolePermissionMap'''
         return self.getAllCells()
 
+
 # Permissions are our rows, and roles are our columns
 rolePermissionManager = RolePermissionManager()
 
@@ -104,7 +107,7 @@ rolePermissionManager = RolePermissionManager()
 # simpler.
 try:
     from zope.testing.cleanup import addCleanUp
-except ImportError: # pragma: no cover
+except ImportError:  # pragma: no cover
     pass
 else:
     addCleanUp(rolePermissionManager._clear)

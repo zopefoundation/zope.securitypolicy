@@ -17,13 +17,16 @@ In all cases, 'setting' values are one of the defined constants
 `Allow`, `Deny`, or `Unset`.
 """
 from zope.interface import Interface
-from zope.schema import TextLine, Text
+from zope.schema import Text
+from zope.schema import TextLine
 
 # These are the "setting" values returned by several methods defined
 # in these interfaces.  The implementation may move to another
 # location in the future, so this should be the preferred module to
 # import these from.
-from zope.securitypolicy.settings import Allow, Deny, Unset  # noqa
+from zope.securitypolicy.settings import Allow  # noqa: F401 unused
+from zope.securitypolicy.settings import Deny  # noqa: F401 imported but unused
+from zope.securitypolicy.settings import Unset
 
 
 class IRole(Interface):

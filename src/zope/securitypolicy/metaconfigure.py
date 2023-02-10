@@ -13,17 +13,17 @@
 ##############################################################################
 """ Register security related configuration directives.
 """
-from zope.configuration.exceptions import ConfigurationError
 from zope.component.zcml import utility
+from zope.configuration.exceptions import ConfigurationError
 
 from zope.securitypolicy.interfaces import IRole
-from zope.securitypolicy.role import Role
-from zope.securitypolicy.rolepermission import \
-    rolePermissionManager as role_perm_mgr
 from zope.securitypolicy.principalpermission import \
     principalPermissionManager as principal_perm_mgr
 from zope.securitypolicy.principalrole import \
     principalRoleManager as principal_role_mgr
+from zope.securitypolicy.role import Role
+from zope.securitypolicy.rolepermission import \
+    rolePermissionManager as role_perm_mgr
 
 
 def grant(_context, principal=None, role=None, permission=None,
@@ -68,7 +68,7 @@ def grant(_context, principal=None, role=None, permission=None,
 
 
 def deny(_context, principal=None, role=None, permission=None,
-          permissions=None):
+         permissions=None):
     nspecified = ((principal is not None)
                   + (role is not None)
                   + (permission is not None)

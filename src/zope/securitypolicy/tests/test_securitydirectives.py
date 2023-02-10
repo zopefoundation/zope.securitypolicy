@@ -16,25 +16,25 @@
 import unittest
 
 import zope.component
+from zope.authentication.interfaces import IAuthentication
+from zope.component.testing import PlacelessSetup
 from zope.configuration import xmlconfig
 from zope.configuration.config import ConfigurationConflictError
 from zope.configuration.exceptions import ConfigurationError
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.component.testing import PlacelessSetup
-from zope.authentication.interfaces import IAuthentication
-
-from zope.securitypolicy.role import Role
-from zope.securitypolicy.interfaces import Allow, Deny
+import zope.securitypolicy.tests
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IRole
-from zope.securitypolicy.rolepermission import \
-    rolePermissionManager as role_perm_mgr
 from zope.securitypolicy.principalpermission import \
     principalPermissionManager as principal_perm_mgr
 from zope.securitypolicy.principalrole import \
     principalRoleManager as principal_role_mgr
-import zope.securitypolicy.tests
+from zope.securitypolicy.role import Role
+from zope.securitypolicy.rolepermission import \
+    rolePermissionManager as role_perm_mgr
 from zope.securitypolicy.tests import principalRegistry
 
 
@@ -255,6 +255,7 @@ class TestSecurityDenyMapping(TestBase, unittest.TestCase):
                        />
                  </configure>
             ''', context=self.context)
+
     def test_PermPrincipalMap(self):
         principals = principal_perm_mgr.getPrincipalsForPermission("zope.Foo")
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.Blah")

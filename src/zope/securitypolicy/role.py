@@ -16,14 +16,14 @@
 __docformat__ = 'restructuredtext'
 
 from persistent import Persistent
-
-from zope.interface import implementer
 from zope.component import getUtilitiesFor
+from zope.i18nmessageid import ZopeMessageFactory as _
+from zope.interface import implementer
 from zope.location import Location
 
 from zope.securitypolicy.interfaces import IRole
 
-from zope.i18nmessageid import ZopeMessageFactory as _
+
 NULL_ID = _('<role not activated>')
 
 

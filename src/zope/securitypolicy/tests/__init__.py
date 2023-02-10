@@ -11,9 +11,9 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from zope.interface import implementer
 from zope.authentication.interfaces import IAuthentication
 from zope.authentication.interfaces import PrincipalLookupError
+from zope.interface import implementer
 from zope.security.interfaces import IPrincipal
 
 
@@ -34,6 +34,7 @@ class DummyPrincipalRegistry(object):
         p = DummyPrincipal(id, title, description)
         self._principals[id] = p
         return p
+
 
 principalRegistry = DummyPrincipalRegistry()
 

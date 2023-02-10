@@ -14,16 +14,18 @@
 """Test handler for PrincipalRoleManager module.
 """
 import unittest
+
 import zope.component
-from zope.interface import implementer
-from zope.annotation.interfaces import IAttributeAnnotatable
-
-from zope.component.testing import PlacelessSetup
 from zope.annotation.attribute import AttributeAnnotations
+from zope.annotation.interfaces import IAttributeAnnotatable
+from zope.component.testing import PlacelessSetup
+from zope.interface import implementer
 
-from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IRole
+from zope.securitypolicy.interfaces import Unset
+from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
 from zope.securitypolicy.role import Role
 from zope.securitypolicy.tests import principalRegistry
 

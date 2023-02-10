@@ -16,7 +16,8 @@
 from zope.configuration.fields import Tokens
 from zope.interface import Interface
 from zope.schema import Id
-from zope.security.zcml import Permission, IPermissionDirective
+from zope.security.zcml import IPermissionDirective
+from zope.security.zcml import Permission
 
 
 class ISecurityObjectAssignmentDirective(Interface):

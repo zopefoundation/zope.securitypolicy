@@ -15,13 +15,14 @@
 """
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import implementer
-from zope.securitypolicy.interfaces import Unset
-from zope.securitypolicy.interfaces import IGrantInfo
 
+from zope.securitypolicy.interfaces import IGrantInfo
+from zope.securitypolicy.interfaces import Unset
 from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
 from zope.securitypolicy.principalrole import AnnotationPrincipalRoleManager
 from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
+
 
 prinperkey = AnnotationPrincipalPermissionManager.key
 del AnnotationPrincipalPermissionManager

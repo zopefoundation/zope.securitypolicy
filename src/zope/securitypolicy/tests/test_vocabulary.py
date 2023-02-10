@@ -13,8 +13,8 @@
 ##############################################################################
 """Role vocabluary doc tests.
 """
-from doctest import DocTestSuite
 import unittest
+from doctest import DocTestSuite
 
 from zope.securitypolicy import testing
 
