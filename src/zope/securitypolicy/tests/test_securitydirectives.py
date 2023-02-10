@@ -47,7 +47,7 @@ def defineRole(id, title=None, description=None):
 class TestBase(PlacelessSetup):
 
     def setUp(self):
-        super(TestBase, self).setUp()
+        super().setUp()
         zope.component.provideUtility(principalRegistry, IAuthentication)
 
 
@@ -70,7 +70,7 @@ class TestRoleDirective(TestBase, unittest.TestCase):
 class TestSecurityGrantMapping(TestBase, unittest.TestCase):
 
     def setUp(self):
-        super(TestSecurityGrantMapping, self).setUp()
+        super().setUp()
         zope.component.provideUtility(Permission('zope.Foo', ''),
                                       IPermission, 'zope.Foo')
         zope.component.provideUtility(Permission('zope.Qwer', ''),
@@ -155,7 +155,7 @@ class TestSecurityGrantMapping(TestBase, unittest.TestCase):
 class TestSecurityGrantAllMapping(TestBase, unittest.TestCase):
 
     def setUp(self):
-        super(TestSecurityGrantAllMapping, self).setUp()
+        super().setUp()
         zope.component.provideUtility(Permission('zope.Qwer', ''),
                                       IPermission, 'zope.Qwer')
         zope.component.provideUtility(Permission('zope.Qux', ''),
@@ -194,7 +194,7 @@ class TestSecurityGrantAllMapping(TestBase, unittest.TestCase):
 class TestSecurityDenyMapping(TestBase, unittest.TestCase):
 
     def setUp(self):
-        super(TestSecurityDenyMapping, self).setUp()
+        super().setUp()
         zope.component.provideUtility(Permission('zope.Foo', ''),
                                       IPermission, 'zope.Foo')
         zope.component.provideUtility(Permission('zope.Qwer', ''),

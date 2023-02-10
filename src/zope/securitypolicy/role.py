@@ -28,7 +28,7 @@ NULL_ID = _('<role not activated>')
 
 
 @implementer(IRole)
-class Role(object):
+class Role:
 
     def __init__(self, id, title, description=""):
         self.id = id
@@ -58,7 +58,7 @@ def setIdOnActivation(role, event):
 
     >>> role1 = LocalRole('Role 1', 'A first role')
     >>> role1.id
-    u'<role not activated>'
+    '<role not activated>'
     >>> import zope.interface.interfaces
     >>> event = zope.interface.interfaces.Registered(
     ...     Registration(role1, 'role1'))
@@ -96,7 +96,7 @@ def unsetIdOnDeactivation(role, event):
 
     >>> unsetIdOnDeactivation(role1, event)
     >>> role1.id
-    u'<role not activated>'
+    '<role not activated>'
     """
     role.id = NULL_ID
 

@@ -33,14 +33,14 @@ from zope.securitypolicy.tests import principalRegistry
 
 
 @implementer(IAttributeAnnotatable)
-class Manageable(object):
+class Manageable:
     pass
 
 
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super().setUp()
         provideAdapter(AttributeAnnotations)
 
     def _make_principal(self, id=None, title=None):

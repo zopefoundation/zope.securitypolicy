@@ -11,15 +11,10 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Doctests for 'permission' module.
+"""Doctests for 'role' module.
 """
-import unittest
 from doctest import DocTestSuite
-
-from zope.securitypolicy import testing
 
 
 def test_suite():
-    return unittest.TestSuite((
-        DocTestSuite('zope.securitypolicy.role', checker=testing.checker),
-    ))
+    return DocTestSuite('zope.securitypolicy.role')

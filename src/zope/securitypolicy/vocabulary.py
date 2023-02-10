@@ -58,9 +58,9 @@ class RoleIdsVocabulary(SimpleVocabulary):
     >>> vocab = registry.get(None, 'Role Ids')
 
     >>> vocab.getTermByToken('a_id').value
-    u'a_id'
+    'a_id'
     >>> vocab.getTermByToken('b_id').value
-    u'b_id'
+    'b_id'
 
     >>> tearDown()
 
@@ -71,7 +71,7 @@ class RoleIdsVocabulary(SimpleVocabulary):
         roles = zope.component.getUtilitiesFor(IRole, context)
         for name, role in roles:
             terms.append(SimpleTerm(name, name, name))
-        super(RoleIdsVocabulary, self).__init__(terms)
+        super().__init__(terms)
 
 
 @provider(IVocabularyFactory)

@@ -24,13 +24,13 @@ class ISecurityObjectAssignmentDirective(Interface):
     """Abstract schema for security policy declarations."""
 
     principal = Id(
-        title=u"Principal",
-        description=u"Specifies the Principal to be mapped.",
+        title="Principal",
+        description="Specifies the Principal to be mapped.",
         required=False)
 
     role = Id(
-        title=u"Role",
-        description=u"Specifies the Role to be mapped.",
+        title="Role",
+        description="Specifies the Role to be mapped.",
         required=False)
 
 
@@ -43,15 +43,15 @@ class ISpecificSecurityObjectAssignmentDirective(
     """Abstract schema to set up one or more permissions"""
 
     permission = Permission(
-        title=u"Permission",
-        description=u"Specifies the Permission to be mapped.",
+        title="Permission",
+        description="Specifies the Permission to be mapped.",
         required=False)
 
     permissions = Tokens(
-        title=u"Permissions",
+        title="Permissions",
         description=(
-            u"Specifies a whitespace-separated list of permissions to be "
-            u"mapped."),
+            "Specifies a whitespace-separated list of permissions to be "
+            "mapped."),
         value_type=Permission(),
         required=False)
 

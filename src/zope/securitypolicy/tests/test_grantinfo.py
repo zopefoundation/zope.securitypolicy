@@ -22,7 +22,7 @@ from zope.securitypolicy import grantinfo
 
 # pylint:disable=protected-access
 
-class Manager(object):
+class Manager:
 
     def __init__(self):
         self._bycol = {}

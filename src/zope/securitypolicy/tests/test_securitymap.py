@@ -24,7 +24,7 @@ from zope.securitypolicy.securitymap import PersistentSecurityMap
 from zope.securitypolicy.securitymap import SecurityMap
 
 
-class InteractionStub(object):
+class InteractionStub:
     invalidated = 0
 
     def invalidate_cache(self):
@@ -64,7 +64,7 @@ class TestSecurityMap(unittest.TestCase):
 
     def test_addCell_no_invalidation(self):
 
-        class NoInvalidation(object):
+        class NoInvalidation:
             attrs = ()
 
             def __getattr__(self, name):
@@ -189,7 +189,7 @@ class TestAnnotationSecurityMap(unittest.TestCase):
 
         from zope.securitypolicy.securitymap import AnnotationSecurityMap
 
-        class Context(object):
+        class Context:
             def __init__(self):
                 self.annotations = {}
 

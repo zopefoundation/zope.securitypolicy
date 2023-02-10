@@ -178,10 +178,10 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             pass
 
         if parent is None:
-            roles = dict(
-                [(role, 1)
-                 for (role, setting) in globalRolesForPermission(permission)
-                 if setting is Allow])
+            roles = {
+                role: 1
+                for (role, setting) in globalRolesForPermission(permission)
+                if setting is Allow}
             cache_roles[permission] = roles
             return roles
 
@@ -231,9 +231,9 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             pass
 
         if parent is None:
-            roles = dict(
-                [(role, SettingAsBoolean[setting])
-                 for (role, setting) in globalRolesForPrincipal(principal)])
+            roles = {
+                role: SettingAsBoolean[setting]
+                for (role, setting) in globalRolesForPrincipal(principal)}
             roles['zope.Anonymous'] = True  # Everybody has Anonymous
             cache_principal_roles[principal] = roles
             return roles

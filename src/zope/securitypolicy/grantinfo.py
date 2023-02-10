@@ -35,7 +35,7 @@ del AnnotationRolePermissionManager
 
 
 @implementer(IGrantInfo)
-class AnnotationGrantInfo(object):
+class AnnotationGrantInfo:
 
     def __init__(self, context):
         self._context = context

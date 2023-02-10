@@ -12,7 +12,7 @@
 #
 ##############################################################################
 # This package is developed by the Zope Toolkit project, documented here:
-# http://docs.zope.org/zopetoolkit
+# https://zopetoolkit.readthedocs.io/
 # When developing and releasing this package, please follow the documented
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
@@ -33,7 +33,7 @@ setup(
     name='zope.securitypolicy',
     version='5.0.dev0',
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     description='Default security policy for Zope3',
     long_description=(
         read('README.rst')
@@ -66,6 +66,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope'],
+    python_requires='>=3.7',
     install_requires=[
         'persistent',
         'setuptools',

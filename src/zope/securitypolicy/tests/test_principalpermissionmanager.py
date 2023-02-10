@@ -38,7 +38,7 @@ def definePermission(id, title=None, description=None):
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super().setUp()
         provideUtility(principalRegistry, IAuthentication)
 
     def _make_principal(self, id=None, title=None):

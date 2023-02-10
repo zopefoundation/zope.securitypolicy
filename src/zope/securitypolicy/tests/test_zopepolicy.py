@@ -102,13 +102,13 @@ class TestZCML(CleanUp, unittest.TestCase):
 class TestZopePolicy(CleanUp, unittest.TestCase):
 
     def setUp(self):
-        super(TestZopePolicy, self).setUp()
+        super().setUp()
         self.policy = zopepolicy.ZopeSecurityPolicy()
 
     def test_checkPermission_system_user(self):
         from zope.security.management import system_user
 
-        class Participation(object):
+        class Participation:
             principal = system_user
             interaction = None
 
@@ -118,10 +118,10 @@ class TestZopePolicy(CleanUp, unittest.TestCase):
 
     def test_checkPermission_multiple_participations_for_same_id(self):
 
-        class Principal(object):
+        class Principal:
             id = 'principal'
 
-        class Participation(object):
+        class Participation:
             principal = Principal()
             interaction = None
 
@@ -141,7 +141,7 @@ class TestZopePolicy(CleanUp, unittest.TestCase):
     def test__findGroupsFor_seen(self):
         group_id = 'group'
 
-        class Principal(object):
+        class Principal:
             groups = (group_id,)
 
         seen = {group_id}
@@ -156,7 +156,7 @@ class TestZopePolicy(CleanUp, unittest.TestCase):
         # lookup errors are ignored
         from zope.authentication.interfaces import PrincipalLookupError
 
-        class Principal(object):
+        class Principal:
             groups = ('group',)
 
         def getPrincipal(gid):

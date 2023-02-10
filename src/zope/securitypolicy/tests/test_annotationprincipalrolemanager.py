@@ -31,7 +31,7 @@ from zope.securitypolicy.tests import principalRegistry
 
 
 @implementer(IAttributeAnnotatable)
-class Manageable(object):
+class Manageable:
     pass
 
 

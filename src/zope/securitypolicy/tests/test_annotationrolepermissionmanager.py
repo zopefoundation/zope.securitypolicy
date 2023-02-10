@@ -33,7 +33,7 @@ from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
 
 
 @implementer(IAttributeAnnotatable)
-class Manageable(object):
+class Manageable:
     pass
 
 
