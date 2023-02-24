@@ -13,8 +13,8 @@
 ##############################################################################
 """Security Settings Tests
 """
-import unittest
 import pickle
+import unittest
 
 from zope.securitypolicy.interfaces import Allow
 

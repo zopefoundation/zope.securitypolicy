@@ -15,14 +15,15 @@
 """
 import unittest
 
+from zope.authentication.interfaces import IAuthentication
 from zope.component import provideUtility
 from zope.component.testing import PlacelessSetup
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.authentication.interfaces import IAuthentication
-
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
+from zope.securitypolicy.interfaces import Unset
 from zope.securitypolicy.principalpermission import \
     principalPermissionManager as manager
 from zope.securitypolicy.tests import principalRegistry
@@ -37,7 +38,7 @@ def definePermission(id, title=None, description=None):
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super().setUp()
         provideUtility(principalRegistry, IAuthentication)
 
     def _make_principal(self, id=None, title=None):

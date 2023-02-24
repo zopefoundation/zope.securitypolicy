@@ -14,13 +14,7 @@
 """Role vocabluary doc tests.
 """
 from doctest import DocTestSuite
-import unittest
-
-from zope.securitypolicy import testing
 
 
 def test_suite():
-    return unittest.TestSuite((
-        DocTestSuite(
-            'zope.securitypolicy.vocabulary', checker=testing.checker),
-    ))
+    return DocTestSuite('zope.securitypolicy.vocabulary')

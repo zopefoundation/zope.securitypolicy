@@ -15,29 +15,32 @@
 """
 import unittest
 
-from zope.component import provideAdapter, provideUtility
-from zope.component.testing import PlacelessSetup
-from zope.interface import implementer
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable
+from zope.component import provideAdapter
+from zope.component import provideUtility
+from zope.component.testing import PlacelessSetup
+from zope.interface import implementer
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
+from zope.securitypolicy.interfaces import Unset
 from zope.securitypolicy.principalpermission import \
     AnnotationPrincipalPermissionManager
 from zope.securitypolicy.tests import principalRegistry
 
 
 @implementer(IAttributeAnnotatable)
-class Manageable(object):
+class Manageable:
     pass
 
 
 class Test(PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super().setUp()
         provideAdapter(AttributeAnnotations)
 
     def _make_principal(self, id=None, title=None):

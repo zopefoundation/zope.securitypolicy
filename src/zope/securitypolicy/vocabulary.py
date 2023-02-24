@@ -18,12 +18,14 @@ This vocabulary provides role IDs.
 __docformat__ = 'restructuredtext'
 
 import zope.component
-from zope.interface import implementer, provider
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.interface import implementer
+from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
-from zope.securitypolicy.interfaces import IRole
 from zope.securitypolicy.interfaces import IGrantVocabulary
+from zope.securitypolicy.interfaces import IRole
 
 
 @provider(IVocabularyFactory)
@@ -56,9 +58,9 @@ class RoleIdsVocabulary(SimpleVocabulary):
     >>> vocab = registry.get(None, 'Role Ids')
 
     >>> vocab.getTermByToken('a_id').value
-    u'a_id'
+    'a_id'
     >>> vocab.getTermByToken('b_id').value
-    u'b_id'
+    'b_id'
 
     >>> tearDown()
 
@@ -69,7 +71,7 @@ class RoleIdsVocabulary(SimpleVocabulary):
         roles = zope.component.getUtilitiesFor(IRole, context)
         for name, role in roles:
             terms.append(SimpleTerm(name, name, name))
-        super(RoleIdsVocabulary, self).__init__(terms)
+        super().__init__(terms)
 
 
 @provider(IVocabularyFactory)

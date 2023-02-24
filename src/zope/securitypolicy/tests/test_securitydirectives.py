@@ -16,25 +16,25 @@
 import unittest
 
 import zope.component
+from zope.authentication.interfaces import IAuthentication
+from zope.component.testing import PlacelessSetup
 from zope.configuration import xmlconfig
 from zope.configuration.config import ConfigurationConflictError
 from zope.configuration.exceptions import ConfigurationError
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.component.testing import PlacelessSetup
-from zope.authentication.interfaces import IAuthentication
-
-from zope.securitypolicy.role import Role
-from zope.securitypolicy.interfaces import Allow, Deny
+import zope.securitypolicy.tests
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IRole
-from zope.securitypolicy.rolepermission import \
-    rolePermissionManager as role_perm_mgr
 from zope.securitypolicy.principalpermission import \
     principalPermissionManager as principal_perm_mgr
 from zope.securitypolicy.principalrole import \
     principalRoleManager as principal_role_mgr
-import zope.securitypolicy.tests
+from zope.securitypolicy.role import Role
+from zope.securitypolicy.rolepermission import \
+    rolePermissionManager as role_perm_mgr
 from zope.securitypolicy.tests import principalRegistry
 
 
@@ -47,7 +47,7 @@ def defineRole(id, title=None, description=None):
 class TestBase(PlacelessSetup):
 
     def setUp(self):
-        super(TestBase, self).setUp()
+        super().setUp()
         zope.component.provideUtility(principalRegistry, IAuthentication)
 
 
@@ -70,7 +70,7 @@ class TestRoleDirective(TestBase, unittest.TestCase):
 class TestSecurityGrantMapping(TestBase, unittest.TestCase):
 
     def setUp(self):
-        super(TestSecurityGrantMapping, self).setUp()
+        super().setUp()
         zope.component.provideUtility(Permission('zope.Foo', ''),
                                       IPermission, 'zope.Foo')
         zope.component.provideUtility(Permission('zope.Qwer', ''),
@@ -155,7 +155,7 @@ class TestSecurityGrantMapping(TestBase, unittest.TestCase):
 class TestSecurityGrantAllMapping(TestBase, unittest.TestCase):
 
     def setUp(self):
-        super(TestSecurityGrantAllMapping, self).setUp()
+        super().setUp()
         zope.component.provideUtility(Permission('zope.Qwer', ''),
                                       IPermission, 'zope.Qwer')
         zope.component.provideUtility(Permission('zope.Qux', ''),
@@ -194,7 +194,7 @@ class TestSecurityGrantAllMapping(TestBase, unittest.TestCase):
 class TestSecurityDenyMapping(TestBase, unittest.TestCase):
 
     def setUp(self):
-        super(TestSecurityDenyMapping, self).setUp()
+        super().setUp()
         zope.component.provideUtility(Permission('zope.Foo', ''),
                                       IPermission, 'zope.Foo')
         zope.component.provideUtility(Permission('zope.Qwer', ''),
@@ -255,6 +255,7 @@ class TestSecurityDenyMapping(TestBase, unittest.TestCase):
                        />
                  </configure>
             ''', context=self.context)
+
     def test_PermPrincipalMap(self):
         principals = principal_perm_mgr.getPrincipalsForPermission("zope.Foo")
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.Blah")

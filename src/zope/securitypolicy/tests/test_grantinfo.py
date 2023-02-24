@@ -14,14 +14,15 @@
 
 import unittest
 
-from zope import interface
 from zope.annotation.interfaces import IAnnotations
 
+from zope import interface
 from zope.securitypolicy import grantinfo
+
 
 # pylint:disable=protected-access
 
-class Manager(object):
+class Manager:
 
     def __init__(self):
         self._bycol = {}
@@ -65,7 +66,6 @@ class TestAnnotationGrantInfo(unittest.TestCase):
         self.assertEqual([],
                          info.getRolesForPrincipal(None))
 
-
     def test_manager_attributes(self):
         context, prinper, prinrole, roleperm = self._makeContext()
         info = self._makeOne(context)
@@ -73,7 +73,6 @@ class TestAnnotationGrantInfo(unittest.TestCase):
         self.assertIs(info.prinper, prinper._bycol)
         self.assertIs(info.prinrole, prinrole._bycol)
         self.assertIs(info.permrole, roleperm._byrow)
-
 
     def test_principal_permission_grant(self):
         context, prinper, _, _ = self._makeContext()
@@ -85,11 +84,17 @@ class TestAnnotationGrantInfo(unittest.TestCase):
         self.assertIs(grant,
                       info.principalPermissionGrant("principal", "permission"))
 
-        self.assertIs(grantinfo.Unset,
-                      info.principalPermissionGrant("principal", "other permission"))
+        self.assertIs(
+            grantinfo.Unset,
+            info.principalPermissionGrant(
+                "principal",
+                "other permission"))
 
-        self.assertIs(grantinfo.Unset,
-                      info.principalPermissionGrant("other principal", "other permission"))
+        self.assertIs(
+            grantinfo.Unset,
+            info.principalPermissionGrant(
+                "other principal",
+                "other permission"))
 
     def test_roles_for_permission(self):
         context, _, _, roleperm = self._makeContext()

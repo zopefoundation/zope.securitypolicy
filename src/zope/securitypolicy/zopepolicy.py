@@ -15,32 +15,29 @@
 """
 
 import zope.interface
-
+from zope.authentication.interfaces import IAuthentication
+from zope.authentication.interfaces import PrincipalLookupError
 from zope.component import getUtility
 from zope.security.checker import CheckerPublic
-from zope.security.management import system_user
-from zope.security.simplepolicies import ParanoidSecurityPolicy
 from zope.security.interfaces import ISecurityPolicy
+from zope.security.management import system_user
 from zope.security.proxy import removeSecurityProxy
+from zope.security.simplepolicies import ParanoidSecurityPolicy
 
-from zope.authentication.interfaces import (
-    PrincipalLookupError,
-    IAuthentication)
-
-from zope.securitypolicy.principalpermission import principalPermissionManager
-globalPrincipalPermissionSetting = principalPermissionManager.getSetting
-
-from zope.securitypolicy.rolepermission import rolePermissionManager
-globalRolesForPermission = rolePermissionManager.getRolesForPermission
-
-from zope.securitypolicy.principalrole import principalRoleManager
-globalRolesForPrincipal = principalRoleManager.getRolesForPrincipal
-
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
-from zope.securitypolicy.interfaces import IRolePermissionMap
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IPrincipalPermissionMap
 from zope.securitypolicy.interfaces import IPrincipalRoleMap
+from zope.securitypolicy.interfaces import IRolePermissionMap
+from zope.securitypolicy.interfaces import Unset
+from zope.securitypolicy.principalpermission import principalPermissionManager
+from zope.securitypolicy.principalrole import principalRoleManager
+from zope.securitypolicy.rolepermission import rolePermissionManager
 
+
+globalPrincipalPermissionSetting = principalPermissionManager.getSetting
+globalRolesForPermission = rolePermissionManager.getRolesForPermission
+globalRolesForPrincipal = principalRoleManager.getRolesForPrincipal
 SettingAsBoolean = {Allow: True, Deny: False, Unset: None, None: None}
 
 
@@ -181,10 +178,10 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             pass
 
         if parent is None:
-            roles = dict(
-                [(role, 1)
-                 for (role, setting) in globalRolesForPermission(permission)
-                 if setting is Allow])
+            roles = {
+                role: 1
+                for (role, setting) in globalRolesForPermission(permission)
+                if setting is Allow}
             cache_roles[permission] = roles
             return roles
 
@@ -234,9 +231,9 @@ class ZopeSecurityPolicy(ParanoidSecurityPolicy):
             pass
 
         if parent is None:
-            roles = dict(
-                [(role, SettingAsBoolean[setting])
-                 for (role, setting) in globalRolesForPrincipal(principal)])
+            roles = {
+                role: SettingAsBoolean[setting]
+                for (role, setting) in globalRolesForPrincipal(principal)}
             roles['zope.Anonymous'] = True  # Everybody has Anonymous
             cache_principal_roles[principal] = roles
             return roles

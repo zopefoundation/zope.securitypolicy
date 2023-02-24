@@ -14,22 +14,26 @@
 """Test handler for Annotation Role Permission Manager.
 """
 import unittest
-from zope.component import provideUtility, provideAdapter
-from zope.component.testing import PlacelessSetup
-from zope.interface import implementer
+
 from zope.annotation.attribute import AttributeAnnotations
 from zope.annotation.interfaces import IAttributeAnnotatable
+from zope.component import provideAdapter
+from zope.component import provideUtility
+from zope.component.testing import PlacelessSetup
+from zope.interface import implementer
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-from zope.securitypolicy.role import Role
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IRole
+from zope.securitypolicy.interfaces import Unset
+from zope.securitypolicy.role import Role
 from zope.securitypolicy.rolepermission import AnnotationRolePermissionManager
 
 
 @implementer(IAttributeAnnotatable)
-class Manageable(object):
+class Manageable:
     pass
 
 
@@ -64,28 +68,28 @@ class Test(PlacelessSetup, unittest.TestCase):
 
         mgr.grantPermissionToRole(self.read, self.peon)
 
-        l = list(mgr.getPermissionsForRole(self.manager))
-        self.assertTrue((self.read, Allow) in l)
-        self.assertTrue((self.write, Allow) in l)
+        l_ = list(mgr.getPermissionsForRole(self.manager))
+        self.assertTrue((self.read, Allow) in l_)
+        self.assertTrue((self.write, Allow) in l_)
 
-        l = list(mgr.getPermissionsForRole(self.peon))
-        self.assertTrue([(self.read, Allow)] == l)
+        l_ = list(mgr.getPermissionsForRole(self.peon))
+        self.assertTrue([(self.read, Allow)] == l_)
 
-        l = list(mgr.getRolesForPermission(self.read))
-        self.assertTrue((self.manager, Allow) in l)
-        self.assertTrue((self.peon, Allow) in l)
+        l_ = list(mgr.getRolesForPermission(self.read))
+        self.assertTrue((self.manager, Allow) in l_)
+        self.assertTrue((self.peon, Allow) in l_)
 
-        l = list(mgr.getRolesForPermission(self.write))
-        self.assertEqual(l, [(self.manager, Allow)])
+        l_ = list(mgr.getRolesForPermission(self.write))
+        self.assertEqual(l_, [(self.manager, Allow)])
 
         mgr.denyPermissionToRole(self.read, self.peon)
-        l = list(mgr.getPermissionsForRole(self.peon))
-        self.assertEqual(l, [(self.read, Deny)])
+        l_ = list(mgr.getPermissionsForRole(self.peon))
+        self.assertEqual(l_, [(self.read, Deny)])
 
         mgr.unsetPermissionFromRole(self.read, self.peon)
 
-        l = list(mgr.getRolesForPermission(self.read))
-        self.assertEqual(l, [(self.manager, Allow)])
+        l_ = list(mgr.getRolesForPermission(self.read))
+        self.assertEqual(l_, [(self.manager, Allow)])
 
         self.assertEqual(mgr.getSetting(self.read, self.peon), Unset)
         self.assertEqual(mgr.getSetting(self.read, self.peon, 1), 1)

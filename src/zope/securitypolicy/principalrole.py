@@ -13,14 +13,16 @@
 ##############################################################################
 """Mappings between principals and roles, stored in an object locally.
 """
+from zope.authentication.principal import checkPrincipal
 from zope.interface import implementer
 
-from zope.authentication.principal import checkPrincipal
-from zope.securitypolicy.interfaces import Allow, Deny, Unset
+from zope.securitypolicy.interfaces import Allow
+from zope.securitypolicy.interfaces import Deny
 from zope.securitypolicy.interfaces import IPrincipalRoleManager
-from zope.securitypolicy.securitymap import SecurityMap
-from zope.securitypolicy.securitymap import AnnotationSecurityMap
+from zope.securitypolicy.interfaces import Unset
 from zope.securitypolicy.role import checkRole
+from zope.securitypolicy.securitymap import AnnotationSecurityMap
+from zope.securitypolicy.securitymap import SecurityMap
 
 
 @implementer(IPrincipalRoleManager)
@@ -94,6 +96,7 @@ class PrincipalRoleManager(SecurityMap):
         ''' See the interface IPrincipalRoleMap '''
         return self.getAllCells()
 
+
 # Roles are our rows, and principals are our columns
 principalRoleManager = PrincipalRoleManager()
 
@@ -101,7 +104,7 @@ principalRoleManager = PrincipalRoleManager()
 # simpler.
 try:
     from zope.testing.cleanup import addCleanUp
-except ImportError: # pragma: no cover
+except ImportError:  # pragma: no cover
     pass
 else:
     addCleanUp(principalRoleManager._clear)

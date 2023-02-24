@@ -19,7 +19,7 @@ from there.
 """
 
 
-class PermissionSetting(object):
+class PermissionSetting:
     """PermissionSettings should be considered as immutable.
     They can be compared by identity. They are identified by
     their name.

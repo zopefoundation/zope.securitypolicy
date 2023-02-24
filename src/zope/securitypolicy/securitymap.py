@@ -18,7 +18,7 @@ from zope.annotation import IAnnotations
 from zope.security.management import queryInteraction
 
 
-class SecurityMap(object):
+class SecurityMap:
 
     def __init__(self):
         self._clear()
