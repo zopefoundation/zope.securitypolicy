@@ -31,7 +31,7 @@ def read(*rnames):
 
 setup(
     name='zope.securitypolicy',
-    version='5.0.dev0',
+    version='5.0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     description='Default security policy for Zope3',
