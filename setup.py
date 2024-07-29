@@ -88,10 +88,6 @@ setup(
         dublincore=[
             'zope.dublincore >= 3.7',
         ]),
-    tests_require=[
-        'zope.testing',
-        'zope.testrunner',
-    ],
     include_package_data=True,
     zip_safe=False,
 )
