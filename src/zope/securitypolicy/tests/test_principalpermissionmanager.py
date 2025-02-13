@@ -115,16 +115,16 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.grantPermissionToPrincipal(perm2, prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.assertTrue((perm1, Allow) in perms)
-        self.assertTrue((perm2, Allow) in perms)
+        self.assertIn((perm1, Allow), perms)
+        self.assertIn((perm2, Allow), perms)
         manager.denyPermissionToPrincipal(perm2, prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.assertTrue((perm1, Allow) in perms)
-        self.assertTrue((perm2, Deny) in perms)
+        self.assertIn((perm1, Allow), perms)
+        self.assertIn((perm2, Deny), perms)
         perms = manager.getPrincipalsAndPermissions()
-        self.assertTrue((perm1, prin1, Allow) in perms)
-        self.assertTrue((perm2, prin1, Deny) in perms)
+        self.assertIn((perm1, prin1, Allow), perms)
+        self.assertIn((perm2, prin1, Deny), perms)
 
     def testAllPermissions(self):
         perm1 = definePermission('Perm One', 'title').id
@@ -133,8 +133,8 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.grantAllPermissionsToPrincipal(prin1)
         perms = manager.getPermissionsForPrincipal(prin1)
         self.assertEqual(len(perms), 2)
-        self.assertTrue((perm1, Allow) in perms)
-        self.assertTrue((perm2, Allow) in perms)
+        self.assertIn((perm1, Allow), perms)
+        self.assertIn((perm2, Allow), perms)
 
     def testManyPrincipalsOnePermission(self):
         perm1 = definePermission('Perm One', 'title').id
@@ -144,5 +144,5 @@ class Test(PlacelessSetup, unittest.TestCase):
         manager.denyPermissionToPrincipal(perm1, prin2)
         principals = manager.getPrincipalsForPermission(perm1)
         self.assertEqual(len(principals), 2)
-        self.assertTrue((prin1, Allow) in principals)
-        self.assertTrue((prin2, Deny) in principals)
+        self.assertIn((prin1, Allow), principals)
+        self.assertIn((prin2, Deny), principals)

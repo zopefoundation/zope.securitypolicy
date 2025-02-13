@@ -89,10 +89,10 @@ class TestSecurityGrantMapping(TestBase, unittest.TestCase):
         perms = role_perm_mgr.getPermissionsForRole("zope.Bar")
 
         self.assertEqual(len(roles), 1)
-        self.assertTrue(("zope.Bar", Allow) in roles)
+        self.assertIn(("zope.Bar", Allow), roles)
 
         self.assertEqual(len(perms), 1)
-        self.assertTrue(("zope.Foo", Allow) in perms)
+        self.assertIn(("zope.Foo", Allow), perms)
 
     def test_PermRoleMap_multiple(self):
         quer_roles = role_perm_mgr.getRolesForPermission("zope.Qwer")
@@ -100,14 +100,14 @@ class TestSecurityGrantMapping(TestBase, unittest.TestCase):
         perms = role_perm_mgr.getPermissionsForRole("zope.Fox")
 
         self.assertEqual(len(quer_roles), 1)
-        self.assertTrue(("zope.Fox", Allow) in quer_roles)
+        self.assertIn(("zope.Fox", Allow), quer_roles)
 
         self.assertEqual(len(qux_roles), 1)
-        self.assertTrue(("zope.Fox", Allow) in qux_roles)
+        self.assertIn(("zope.Fox", Allow), qux_roles)
 
         self.assertEqual(len(perms), 2)
-        self.assertTrue(("zope.Qwer", Allow) in perms)
-        self.assertTrue(("zope.Qux", Allow) in perms)
+        self.assertIn(("zope.Qwer", Allow), perms)
+        self.assertIn(("zope.Qux", Allow), perms)
 
     def test_PermRoleMap_does_not_allow_permission_and_permissions(self):
         with self.assertRaises(ConfigurationError):
@@ -119,10 +119,10 @@ class TestSecurityGrantMapping(TestBase, unittest.TestCase):
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.Blah")
 
         self.assertEqual(len(principals), 1)
-        self.assertTrue(("zope.Blah", Allow) in principals)
+        self.assertIn(("zope.Blah", Allow), principals)
 
         self.assertEqual(len(perms), 1)
-        self.assertTrue(("zope.Foo", Allow) in perms)
+        self.assertIn(("zope.Foo", Allow), perms)
 
     def test_PermPrincipalMap_multiple(self):
         quer_principals = principal_perm_mgr.getPrincipalsForPermission(
@@ -132,24 +132,24 @@ class TestSecurityGrantMapping(TestBase, unittest.TestCase):
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.One")
 
         self.assertEqual(len(quer_principals), 1)
-        self.assertTrue(("zope.One", Allow) in quer_principals)
+        self.assertIn(("zope.One", Allow), quer_principals)
 
         self.assertEqual(len(qux_principals), 1)
-        self.assertTrue(("zope.One", Allow) in qux_principals)
+        self.assertIn(("zope.One", Allow), qux_principals)
 
         self.assertEqual(len(perms), 2)
-        self.assertTrue(("zope.Qwer", Allow) in perms)
-        self.assertTrue(("zope.Qux", Allow) in perms)
+        self.assertIn(("zope.Qwer", Allow), perms)
+        self.assertIn(("zope.Qux", Allow), perms)
 
     def test_RolePrincipalMap(self):
         principals = principal_role_mgr.getPrincipalsForRole("zope.Bar")
         roles = principal_role_mgr.getRolesForPrincipal("zope.Blah")
 
         self.assertEqual(len(principals), 1)
-        self.assertTrue(("zope.Blah", Allow) in principals)
+        self.assertIn(("zope.Blah", Allow), principals)
 
         self.assertEqual(len(roles), 1)
-        self.assertTrue(("zope.Bar", Allow) in roles)
+        self.assertIn(("zope.Bar", Allow), roles)
 
 
 class TestSecurityGrantAllMapping(TestBase, unittest.TestCase):
@@ -169,15 +169,15 @@ class TestSecurityGrantAllMapping(TestBase, unittest.TestCase):
         perms = role_perm_mgr.getPermissionsForRole("zope.Bar")
 
         self.assertEqual(len(perms), 2)
-        self.assertTrue(("zope.Qwer", Allow) in perms)
-        self.assertTrue(("zope.Qux", Allow) in perms)
+        self.assertIn(("zope.Qwer", Allow), perms)
+        self.assertIn(("zope.Qux", Allow), perms)
 
     def test_PermPrincipalMap(self):
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.Blah")
 
         self.assertEqual(len(perms), 2)
-        self.assertTrue(("zope.Qwer", Allow) in perms)
-        self.assertTrue(("zope.Qux", Allow) in perms)
+        self.assertIn(("zope.Qwer", Allow), perms)
+        self.assertIn(("zope.Qux", Allow), perms)
 
     def test_principal_and_role_not_allowed(self):
         with self.assertRaises(ConfigurationError):
@@ -213,10 +213,10 @@ class TestSecurityDenyMapping(TestBase, unittest.TestCase):
         perms = role_perm_mgr.getPermissionsForRole("zope.Bar")
 
         self.assertEqual(len(roles), 1)
-        self.assertTrue(("zope.Bar", Deny) in roles)
+        self.assertIn(("zope.Bar", Deny), roles)
 
         self.assertEqual(len(perms), 1)
-        self.assertTrue(("zope.Foo", Deny) in perms)
+        self.assertIn(("zope.Foo", Deny), perms)
 
     def test_PermRoleMap_multiple(self):
         quer_roles = role_perm_mgr.getRolesForPermission("zope.Qwer")
@@ -224,14 +224,14 @@ class TestSecurityDenyMapping(TestBase, unittest.TestCase):
         perms = role_perm_mgr.getPermissionsForRole("zope.Fox")
 
         self.assertEqual(len(quer_roles), 1)
-        self.assertTrue(("zope.Fox", Deny) in quer_roles)
+        self.assertIn(("zope.Fox", Deny), quer_roles)
 
         self.assertEqual(len(qux_roles), 1)
-        self.assertTrue(("zope.Fox", Deny) in qux_roles)
+        self.assertIn(("zope.Fox", Deny), qux_roles)
 
         self.assertEqual(len(perms), 2)
-        self.assertTrue(("zope.Qwer", Deny) in perms)
-        self.assertTrue(("zope.Qux", Deny) in perms)
+        self.assertIn(("zope.Qwer", Deny), perms)
+        self.assertIn(("zope.Qux", Deny), perms)
 
     def test_PermRoleMap_does_not_allow_permission_and_permissions(self):
         with self.assertRaises(ConfigurationError):
@@ -261,10 +261,10 @@ class TestSecurityDenyMapping(TestBase, unittest.TestCase):
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.Blah")
 
         self.assertEqual(len(principals), 1)
-        self.assertTrue(("zope.Blah", Deny) in principals)
+        self.assertIn(("zope.Blah", Deny), principals)
 
         self.assertEqual(len(perms), 1)
-        self.assertTrue(("zope.Foo", Deny) in perms)
+        self.assertIn(("zope.Foo", Deny), perms)
 
     def test_PermPrincipalMap_multiple(self):
         quer_principals = principal_perm_mgr.getPrincipalsForPermission(
@@ -274,21 +274,21 @@ class TestSecurityDenyMapping(TestBase, unittest.TestCase):
         perms = principal_perm_mgr.getPermissionsForPrincipal("zope.One")
 
         self.assertEqual(len(quer_principals), 1)
-        self.assertTrue(("zope.One", Deny) in quer_principals)
+        self.assertIn(("zope.One", Deny), quer_principals)
 
         self.assertEqual(len(qux_principals), 1)
-        self.assertTrue(("zope.One", Deny) in qux_principals)
+        self.assertIn(("zope.One", Deny), qux_principals)
 
         self.assertEqual(len(perms), 2)
-        self.assertTrue(("zope.Qwer", Deny) in perms)
-        self.assertTrue(("zope.Qux", Deny) in perms)
+        self.assertIn(("zope.Qwer", Deny), perms)
+        self.assertIn(("zope.Qux", Deny), perms)
 
     def test_RolePrincipalMap(self):
         principals = principal_role_mgr.getPrincipalsForRole("zope.Bar")
         roles = principal_role_mgr.getRolesForPrincipal("zope.Blah")
 
         self.assertEqual(len(principals), 1)
-        self.assertTrue(("zope.Blah", Deny) in principals)
+        self.assertIn(("zope.Blah", Deny), principals)
 
         self.assertEqual(len(roles), 1)
-        self.assertTrue(("zope.Bar", Deny) in roles)
+        self.assertIn(("zope.Bar", Deny), roles)
