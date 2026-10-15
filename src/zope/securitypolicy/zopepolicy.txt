@@ -83,7 +83,7 @@ Note, however, that we always have the CheckerPublic permission:
   True
 
 We make grants and denials on objects by adapting them to various
-granting interfaces.  The objects returned from the adaptation are 
+granting interfaces.  The objects returned from the adaptation are
 object-specific manager objects:
 
   >>> from zope.securitypolicy import interfaces
