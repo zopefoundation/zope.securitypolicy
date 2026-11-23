@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zope.securitypolicy"
-version = "6.1"
+version = "6.2.dev0"
 description = "Default security policy for Zope3"
 license = "ZPL-2.1"
 classifiers = [
